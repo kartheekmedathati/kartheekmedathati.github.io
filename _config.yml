@@ -73,7 +73,7 @@ social:
 
 # Analytics
 analytics:
-  provider               :  "google-universal" # false (default), "google", "google-universal", "custom"
+  provider               :  "false" # false (default), "google", "google-universal", "custom"
   google:
     tracking_id          :
 
@@ -85,31 +85,31 @@ author:
   bio              : "Biological Vision, Computer Vision, Computational Neuroscience, Human Centered AI"
   location         : "Amazon, Hyderabad"
   employer         :
-  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=john+snow"
-  googlescholar    : "http://yourfullgooglescholarurl.com"
-  email            :
-  researchgate     :  # example: "https://www.researchgate.net/profile/yourprofile"
-  uri              :
-  bitbucket        :
+  pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=kartheek+medathati"
+  googlescholar    : "http://www-sop.inria.fr/members/Kartheek.Medathati/"
+  email            : "medathati@tutanota.com"
+  researchgate     : "https://www.researchgate.net/profile/N_V_Kartheek_Medathati"
+  uri              : "http://www-sop.inria.fr/members/Kartheek.Medathati/"
+  bitbucket        : 
   codepen          :
   dribbble         :
   flickr           :
   facebook         :
   foursquare       :
-  github           : "academicpages"
+  github           : "kartheekmedathati"
   google_plus      :
   keybase          :
   instagram        :
   impactstory      : #"https://profiles.impactstory.org/u/xxxx-xxxx-xxxx-xxxx"
   lastfm           :
-  linkedin         :
-  orcid            : "http://orcid.org/yourorcidurl"
+  linkedin         : "https://www.linkedin.com/in/kartheekmedathati/"
+  orcid            : 
   pinterest        :
   soundcloud       :
   stackoverflow    : # http://stackoverflow.com/users/123456/username
   steam            :
   tumblr           :
-  twitter          : "replacethistwitterhandle"
+  twitter          : "kartheekmnv"
   vine             :
   weibo            :
   xing             :

@@ -52,13 +52,6 @@ Publications
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
   
-#Talks
-#======
-#  <ul>{% for post in site.talks %}
-#    {% include archive-single-talk-cv.html %}
-#  {% endfor %}</ul>
-  
-  
 Service and leadership
 ======
 * Program Committee member, Mutual Benefits of Cognitive and Computer Vision, ICCV, 2017

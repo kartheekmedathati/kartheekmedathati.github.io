@@ -10,4 +10,4 @@ paperurl: 'https://dl.acm.org/doi/10.1145/3379155.3391319'
 
 [Download paper here](https://dl.acm.org/doi/pdf/10.1145/3379155.3391319)
 
-Recommended citation: Naga Venkata Kartheek Medathati, Ruta Desai, and James Hillis. 2020. Towards inferring cognitive state changes from pupil size variations in real world conditions. In ACM Symposium on Eye Tracking Research and Applications (ETRA '20 Full Papers). Association for Computing Machinery, New York, NY, USA, Article 22, 1–10. DOI:https://doi.org/10.1145/3379155.3391319
+Recommended Citation: Naga Venkata Kartheek Medathati, Ruta Desai, and James Hillis. 2020. Towards inferring cognitive state changes from pupil size variations in real world conditions. In ACM Symposium on Eye Tracking Research and Applications (ETRA '20 Full Papers). Association for Computing Machinery, New York, NY, USA, Article 22, 1–10. DOI:https://doi.org/10.1145/3379155.3391319

@@ -12,7 +12,7 @@ Methods explored in understanding biological vision are also helpful to improve 
 
 [Download paper here](https://www.sciencedirect.com/science/article/pii/S1077314216300339/pdfft?md5=4f11066c75e759ca85c419f162268056&pid=1-s2.0-S1077314216300339-main.pdf)
 
-Recommended citation: 'N. V. Kartheek Medathati, Heiko Neumann, Guillaume S. Masson, Pierre Kornprobst,
+Recommended Citation: 'N. V. Kartheek Medathati, Heiko Neumann, Guillaume S. Masson, Pierre Kornprobst,
 	Bio-inspired computer vision: Towards a synergistic approach of artificial and biological vision,
 	Computer Vision and Image Understanding,
 	Volume 150,

@@ -12,7 +12,7 @@ Neurons in MT area of the brain have long been associated with motion perception
 
 [Download paper here](https://www.nature.com/articles/s41598-017-11373-z.pdf)
 
-Recommended citation: 'Medathati, N.V.K., Rankin, J., Meso, A.I. et al. Recurrent network dynamics reconciles visual motion segmentation and integration. Sci Rep 7, 11270 (2017). https://doi.org/10.1038/s41598-017-11373-z'
+Recommended Citation: 'Medathati, N.V.K., Rankin, J., Meso, A.I. et al. Recurrent network dynamics reconciles visual motion segmentation and integration. Sci Rep 7, 11270 (2017). https://doi.org/10.1038/s41598-017-11373-z'
 
 
 

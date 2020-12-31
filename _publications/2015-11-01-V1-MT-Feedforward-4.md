@@ -13,7 +13,7 @@ Spatio-temporal energy based models of optical flow have not received much atten
 
 [Download paper here](https://hal.inria.fr/hal-01078117/document)
 
-Recommended citation: 'Fabio Solari, Manuela Chessa, N.V. Kartheek Medathati, Pierre Kornprobst,
+Recommended Citation: 'Fabio Solari, Manuela Chessa, N.V. Kartheek Medathati, Pierre Kornprobst,
 What can we expect from a V1-MT feedforward architecture for optical flow estimation?,
 Signal Processing: Image Communication,
 Volume 39, Part B,

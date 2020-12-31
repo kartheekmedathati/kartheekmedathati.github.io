@@ -17,12 +17,13 @@ Education
 
 Work experience
 ======
-* 2017 - 2019: Postdotoral Research Scientist 
-  * Duties included: Tagging issues
+
+* Oct 2017 - Oct 2019: Postdotoral Research Scientist 
+  * My work involved identification of several uses of eye tracking, biosensing technologies along with visual semantic information to enable naturalistic human-computer interactions. Towards this, I have designed and implemented two user studies (eye tracking, pupillometry, world facing camera, EEG) for studying user’s cognitive state changes in indoor environments under naturalistic settings. Applied machine learning techniques for event detection from time-series data. My work has resulted in one internal demo and two poster presentations.
   * Supervisor: James Hillis
 
-* Fall 2012: Research Assistant
-  * National University of Singapore
+* Feb 2013 - July 2013: Research Assistant
+  * NeuroMathComp project team, Inria-Sophia Antipolis
   * Duties included: Merging pull requests
   * Supervisor: Professor Micheal Brown
   

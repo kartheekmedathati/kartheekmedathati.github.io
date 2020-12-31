@@ -45,14 +45,6 @@ Work experience
   * G. E. Global Research, Bangalore, India
   * Designed and developed a program for automatic anatomic labeling and interactive visualization of neural vasculature in 3D CT head scans. Received special appreciation from the manager for delivering a solution in short span of two and half months.  
   
-Skills
-======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
 
 Publications
 ======
@@ -66,12 +58,8 @@ Talks
     {% include archive-single-talk-cv.html %}
   {% endfor %}</ul>
   
-Teaching
-======
-  <ul>{% for post in site.teaching %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
   
 Service and leadership
 ======
-* Currently signed in to 43 different slack teams
+* Program Committee member, Mutual Benefits of Cognitive and Computer Vision, ICCV, 2017
+ 

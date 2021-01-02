@@ -7,7 +7,7 @@ redirect_from:
   - /about/
   - /about.html
 ---
-<h3> My website is currently being redesigned and updated, please revisit after 1 Jan 2021 </h3>
+<h3> My website is currently being redesigned and updated, please revisit after 10 Jan 2021 </h3>
 
 In the meantime you can visit an olderversion [here](http://www-sop.inria.fr/members/Kartheek.Medathati/)
 

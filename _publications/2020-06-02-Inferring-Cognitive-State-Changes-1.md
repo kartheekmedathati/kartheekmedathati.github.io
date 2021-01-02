@@ -1,5 +1,5 @@
 ---
-title: "Towards inferring cognitive state changes from pupil size variations in real world conditions	"
+title: "Towards inferring cognitive state changes from pupil size variations in real world conditions"
 collection: publications
 permalink: /publication/2009-10-01-paper-title-number-1
 excerpt: 'In this paper we study how far we are from estimating cognitive state changes from eye movements in real world environments using a variety of visual search tasks'

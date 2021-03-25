@@ -25,7 +25,7 @@ redirect_from:
 * [Machine Learning Summer School](https://youtu.be/fkpw2QUUjTg)
 * [Brains, Minds and Machine, Virtual Summer School](https://youtube.com/playlist?list=PLyGKBDfnk-iCYqS4OiUUljd_98xELGjzi)
 * [Statistical Learning Theory and Applications](https://youtube.com/playlist?list=PLyGKBDfnk-iCXhuP9W-BQ9q2RkEIA5I5f)
-* [Theoretical Machine Learnign Lecture Series](https://youtube.com/playlist?list=PLdDZb3TwJPZ5VLprf2VUfC0h1zOGvV_gz)
+* [Theoretical Machine Learning Lecture Series](https://youtube.com/playlist?list=PLdDZb3TwJPZ5VLprf2VUfC0h1zOGvV_gz)
 * [Interpretability vs. Explainability in Machine Learning](https://youtu.be/zsRKPxgHURQ)
 
 ## Skills

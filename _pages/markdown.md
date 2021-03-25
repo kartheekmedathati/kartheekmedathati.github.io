@@ -1,6 +1,6 @@
 ---
 permalink: /markdown/
-title: "RMarkdown"
+title: "Resources"
 author_profile: true
 redirect_from: 
   - /md/

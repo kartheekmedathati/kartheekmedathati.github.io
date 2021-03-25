@@ -1,6 +1,6 @@
 ---
 permalink: /markdown/
-title: "Resources"
+title: "Markdown"
 author_profile: true
 redirect_from: 
   - /md/
@@ -11,18 +11,16 @@ redirect_from:
 
 * [Pursuing Computational Neuroscience: Adrienne Fairhall](https://fairhalllab.com/2013/06/14/pursuing-computational-neuroscience/)
 * [CompNeuroWeb](https://compneuroweb.com/)
+* [Path to PhD in Neuroscience](https://neurostars.org/t/path-to-phd-in-computational-neuroscience/7463/3)
 
 
 ## Computer Vision
 
 * [First Principles of Computer Vision](https://youtu.be/iEGvWcHsf0E)
-* Go to the [commit list](https://github.com/academicpages/academicpages.github.io/commits/master) (on your repo) to find the last version Github built with Jekyll. 
-  * Green check: successful build
-  * Orange circle: building
-  * Red X: error
-  * No icon: not built
+* [Multiple View Geometry](https://youtube.com/playlist?list=PLTBdjV_4f-EJn6udZ34tht9EVIW7lbeo4)
+* [Variational methods in Computer Vision](https://youtube.com/playlist?list=PLTBdjV_4f-EJ7A2iIH5L5ztqqrWYjP2RI)
 
-## Resources
+## Machine Learning 
  * [Liquid syntax guide](https://shopify.github.io/liquid/tags/control-flow/)
 
 ## Markdown guide

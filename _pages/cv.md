@@ -18,6 +18,13 @@ Education
 Work experience
 ======
 
+* Oct 2021 - Apr 2023: Applied Research Scientist
+  * Amazon Prime Video, Seattle, USA
+* Jun 2021 - Oct 2021: Research Scientist
+  * GE Global Research, Niskayuna, USA
+* Aug 2020 - May 2021: Applied Research Scientist 
+* Nov 2019 - Jul 2020: Research Scientist
+  * Self Employed, Hyderabad, India
 * Oct 2017 - Oct 2019: Postdotoral Research Scientist
   * Facebook Reality Labs (Oculus Research), Redmond, WA, USA  
   * My duties included identification of several uses of eye tracking, biosensing technologies along with visual semantic information to enable naturalistic human-computer interactions. I have designed and implemented two user studies involving eye tracking, pupillometry, world facing camera and EEG for identifying user’s cognitive state changes in indoor environments under naturalistic settings. Applied machine learning techniques for event detection from multi-modal time-series data. My work is very well received and has resulted in an internal demo and two posters.

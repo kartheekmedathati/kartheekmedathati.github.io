@@ -16,10 +16,10 @@ tags:
 3. What are the popular types of image quality assessment? Full Reference vs No Reference
 4. What are the popular benchmarks? 
 5. How do people collect ground truth for perceptual image quality measurement?
- 
-
-Importance of periceptual quality metrics. How do we convert subjective ratings into objective metrics? What are thebiggest datasets out there? How were they developed? 
-
+    - How do we convert subjective ratings into objective metrics? 
+    - What are the computational challenges involved?
+    - Is personalization required? 
+6. What are the important applications of perceptual image quality assessment?
 
 #### References
 1. https://github.com/chaofengc/Awesome-Image-Quality-Assessment

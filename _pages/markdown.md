@@ -35,9 +35,16 @@ redirect_from:
 * [Collaborative paper writing](https://medium.com/@deviparikh/planning-paper-writing-553f497e8839)
 * [Writing Rebuttals](https://medium.com/@deviparikh/how-we-write-rebuttals-dc84742fece1)
 * [Publication quality figures](https://github.com/jbmouret/matplotlib_for_papers)
+
+## Tools
+
 * Academic Website
     - [Using Academic Pages, Jekyll based](https://academicpages.github.io/)
     - [Using Pelican, python based](https://github.com/wjhopper/academia)
+
+* VSCode 
+    - https://insujang.github.io/2019-09-28/jekyll-vscode/
+    - https://code.visualstudio.com/docs/devcontainers/containers
 
 ## Industry Interview Preparation
 

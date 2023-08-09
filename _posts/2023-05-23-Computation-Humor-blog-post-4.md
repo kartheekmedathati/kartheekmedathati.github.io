@@ -1,5 +1,5 @@
 ---
-title: 'Computer Humor'
+title: 'Computational Humor'
 date: 2023-05-23
 permalink: /posts/2023/05/blog-post-4/
 tags:

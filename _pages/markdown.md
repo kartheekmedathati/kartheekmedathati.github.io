@@ -27,6 +27,7 @@ redirect_from:
 * [Statistical Learning Theory and Applications](https://youtube.com/playlist?list=PLyGKBDfnk-iCXhuP9W-BQ9q2RkEIA5I5f)
 * [Theoretical Machine Learning Lecture Series](https://youtube.com/playlist?list=PLdDZb3TwJPZ5VLprf2VUfC0h1zOGvV_gz)
 * [Interpretability vs. Explainability in Machine Learning](https://youtu.be/zsRKPxgHURQ)
+* [Full stack Deep Learning](https://fullstackdeeplearning.com/)
 
 ## Skills
 

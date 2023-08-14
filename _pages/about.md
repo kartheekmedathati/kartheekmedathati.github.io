@@ -15,8 +15,8 @@ you can visit an olderversion [here](http://www-sop.inria.fr/members/Kartheek.Me
 
 ### Highlights
 
-<div style="background-color: #FFFF00">
-> Recurrent network dynamics reconciles visual motion segmentation and integration, N. V. Kartheek Medathati, James Rankin, Andrew I. Meso, P. Kornprobst, G. S. Masson, Scientific Reports, 2017.
+<div style="background-color: #FF7518">
+ Recurrent network dynamics reconciles visual motion segmentation and integration, N. V. Kartheek Medathati, James Rankin, Andrew I. Meso, P. Kornprobst, G. S. Masson, Scientific Reports, 2017.
 </div> 
 
 > Bio-inspired computer vision: Towards a synergistic approach of artificial and biological vision, N. V. K. Medathati, H. Neumann, G. S. Masson, and P. Kornprobst. Computer Vision and Image Understanding, 150:1–30, 2016.

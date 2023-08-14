@@ -15,7 +15,7 @@ you can visit an olderversion [here](http://www-sop.inria.fr/members/Kartheek.Me
 
 ### Highlights
 
-<div style="background-color: #FF7518">
+<div style="background-color: #eee">
  Recurrent network dynamics reconciles visual motion segmentation and integration, N. V. Kartheek Medathati, James Rankin, Andrew I. Meso, P. Kornprobst, G. S. Masson, Scientific Reports, 2017.
 </div> 
 

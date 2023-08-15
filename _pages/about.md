@@ -30,9 +30,7 @@ you can visit an olderversion [here](http://www-sop.inria.fr/members/Kartheek.Me
 </div>
 
 
-<iframe src="https://onedrive.live.com/embed?resid=27058F57F76D3F1%2115434&amp;authkey=!ANPNTfAXNi1JrqU&amp;em=2&amp;wdAr=1.7777777777777777" width="476px" height="288px" frameborder="0">This is an embedded <a target="_blank" href="https://office.com">Microsoft Office</a> presentation, powered by <a target="_blank" href="https://office.com/webapps">Office</a>.</iframe>
 
 
-<iframe src="http://www-sop.inria.fr/members/Kartheek.Medathati/" width="400" height="400"></iframe>
 
 

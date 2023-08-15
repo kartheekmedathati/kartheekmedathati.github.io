@@ -12,5 +12,8 @@ main:
   - title: "Talks"
     url: /talks/
     
-  - title: "Resources"
+  - title: "Code"
+    url: /portfolio/
+  
+- title: "Resources"
     url: /markdown/

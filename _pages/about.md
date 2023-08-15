@@ -25,8 +25,9 @@ you can visit an olderversion [here](http://www-sop.inria.fr/members/Kartheek.Me
 <br>
 <div class="warning" style='background-color:#EDF2F7; color:#1A2067; border-left: solid #718096 4px; border-radius: 2px;'>
 <p style='padding:0; margin-left:0.1em; margin-right:0.1em; display: inline-block;'>
+ <b> Recurrent network dynamics reconciles visual motion segmentation and integration</b>, N. V. Kartheek Medathati, James Rankin, Andrew I. Meso, P. Kornprobst, G. S. Masson, Scientific Reports, 2017.
 <img src="images/Ring_Network_1.jpg" style="width:100%; zoom:9%;  float:bottom; padding: 4px"/>
- <b> Recurrent network dynamics reconciles visual motion segmentation and integration</b>, N. V. Kartheek Medathati, James Rankin, Andrew I. Meso, P. Kornprobst, G. S. Masson, Scientific Reports, 2017. </p>
+</p>
 </div>
 
 

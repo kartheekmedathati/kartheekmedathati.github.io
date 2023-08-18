@@ -41,6 +41,7 @@ redirect_from:
 * Academic Website
     - [Using Academic Pages, Jekyll based](https://academicpages.github.io/)
     - [Using Pelican, python based](https://github.com/wjhopper/academia)
+    - [From Jupyter Notebook to Microservice](https://github.com/alanjeffares/notebook-to-microservice/tree/master)
 
 * VSCode 
     - https://insujang.github.io/2019-09-28/jekyll-vscode/

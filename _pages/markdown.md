@@ -44,8 +44,8 @@ redirect_from:
     - [From Jupyter Notebook to Microservice](https://github.com/alanjeffares/notebook-to-microservice/tree/master)
 
 * VSCode 
-    - https://insujang.github.io/2019-09-28/jekyll-vscode/
-    - https://code.visualstudio.com/docs/devcontainers/containers
+    - [VS Code Setup for Jekyll website development](https://insujang.github.io/2019-09-28/jekyll-vscode/)
+    - [VS Code Develoment Containers](https://code.visualstudio.com/docs/devcontainers/containers)
 
 ## Industry Interview Preparation
 

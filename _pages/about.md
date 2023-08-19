@@ -10,13 +10,6 @@ redirect_from:
 
 I was an Applied Research Scientist with Amazon Prime Video in Seattle, WA, USA. I have also worked as a PostDoc with Facebook Reality Labs, Redmond, USA. I completed my PhD at INRIA-Sophia Antipolis in France. I was jointly supervised by [Dr. Pierre Kornprobst](https://team.inria.fr/biovision/pierre-kornprobst/) and [Dr. Guillaume Masson](http://www.int.univ-amu.fr/MASSON-Guillaume). I did my bachelors and masters in Electronics and Communications at [IIIT-Hyderabad](https://www.iiit.ac.in/), India.
 
-I am interested in the following fields:
-- Computer Vision
-- Neuroscience
-- Machine Learning
-- Cognitive Science
-
-I enjoy working on projects that bridge the gap between cutting edge research and practical implementation. 
 
 
 ### Highlights

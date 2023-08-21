@@ -38,6 +38,9 @@ redirect_from:
 
 ## Tools
 
+* MLOps
+    - [Clear ML](https://www.youtube.com/playlist?list=PLMdIlCuMqSTnoC45ME5_JnsJX0zWqDdlO)
+
 * Academic Website
     - [Using Academic Pages, Jekyll based](https://academicpages.github.io/)
     - [Using Pelican, python based](https://github.com/wjhopper/academia)
@@ -47,8 +50,8 @@ redirect_from:
     - [VS Code Setup for Jekyll website development](https://insujang.github.io/2019-09-28/jekyll-vscode/)
     - [VS Code Develoment Containers](https://code.visualstudio.com/docs/devcontainers/containers)
 
-* MLOps
-    - [Clear ML](https://www.youtube.com/playlist?list=PLMdIlCuMqSTnoC45ME5_JnsJX0zWqDdlO)
+* Activity Monitoring
+    - [Activity Watch](https://github.com/ActivityWatch/activitywatch)
 
 ## Industry Interview Preparation
 

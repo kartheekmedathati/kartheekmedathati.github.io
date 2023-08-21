@@ -47,6 +47,9 @@ redirect_from:
     - [VS Code Setup for Jekyll website development](https://insujang.github.io/2019-09-28/jekyll-vscode/)
     - [VS Code Develoment Containers](https://code.visualstudio.com/docs/devcontainers/containers)
 
+* MLOps
+    - [Clear ML](https://www.youtube.com/playlist?list=PLMdIlCuMqSTnoC45ME5_JnsJX0zWqDdlO)
+
 ## Industry Interview Preparation
 
 * [Preparing for programming interview with python](https://medium.com/@ratulsaha/preparing-for-programming-interview-as-a-phd-student-with-python-5f8af8b40d5f)

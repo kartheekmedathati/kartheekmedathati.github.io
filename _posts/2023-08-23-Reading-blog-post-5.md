@@ -21,3 +21,4 @@ tags:
 5. [From Gaussian Process to NTK](https://www.youtube.com/watch?v=VUX2bsrYag8)
     - [Toward NNGP and NTK: Part I](https://frankccccc.github.io/blog/posts/part_i_toward_nngp_and_ntk/)
     - [Toward NNGP and NTK: Part II](https://frankccccc.github.io/blog/posts/toward_nngp_and_ntk/)
+6. [Strucutred Randome Receptive Fields Enable Informative Sensory Encodings](https://www.youtube.com/watch?v=4Q2ZiwvCWTw)

@@ -18,5 +18,6 @@ tags:
 2. [Grokking (not that relevant?)](https://kindxiaoming.github.io/pdfs/grokking_review.pdf)
 3. [On the theory of stochastic processes, with particular reference to applications](https://digitalassets.lib.berkeley.edu/math/ucb/text/math_s1_article-21.pdf)
 4. [Formal Algorithms for Transformers](https://arxiv.org/pdf/2207.09238.pdf)
-
-
+5. [From Gaussian Process to NTK](https://www.youtube.com/watch?v=VUX2bsrYag8)
+    - [Toward NNGP and NTK: Part I](https://frankccccc.github.io/blog/posts/part_i_toward_nngp_and_ntk/)
+    - [Toward NNGP and NTK: Part II](https://frankccccc.github.io/blog/posts/toward_nngp_and_ntk/)

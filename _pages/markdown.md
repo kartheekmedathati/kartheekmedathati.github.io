@@ -21,7 +21,7 @@ redirect_from:
 * [Computational Vision Summer School](https://youtu.be/M1VHu1d4sGQ)
 
 ## Machine Learning 
-
+* [Dynamical Systems with Machine Learning](https://www.youtube.com/playlist?list=PLMrJAkhIeNNR6DzT17-MM1GHLkuYVjhyt)
 * [Machine Learning Summer School](https://youtu.be/fkpw2QUUjTg)
 * [Brains, Minds and Machine, Virtual Summer School](https://youtube.com/playlist?list=PLyGKBDfnk-iCYqS4OiUUljd_98xELGjzi)
 * [Statistical Learning Theory and Applications](https://youtube.com/playlist?list=PLyGKBDfnk-iCXhuP9W-BQ9q2RkEIA5I5f)

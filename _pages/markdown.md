@@ -32,6 +32,10 @@ redirect_from:
 * [Introduction to Bifurcation Theory](https://www.bio.vu.nl/thb/research/project/globif/)
 * [Dynamical Systems with Machine Learning](https://www.youtube.com/playlist?list=PLMrJAkhIeNNR6DzT17-MM1GHLkuYVjhyt)
 
+## Psychophysics
+
+* [Psychopy](https://github.com/psychopy/psychopy)
+
 ## Skills
 
 * [Tima Management: Calendar.Not to-do lists.](https://blog.usejournal.com/calendar-in-stead-of-to-do-lists-9ada86a512dd)

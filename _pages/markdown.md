@@ -21,13 +21,16 @@ redirect_from:
 * [Computational Vision Summer School](https://youtu.be/M1VHu1d4sGQ)
 
 ## Machine Learning 
-* [Dynamical Systems with Machine Learning](https://www.youtube.com/playlist?list=PLMrJAkhIeNNR6DzT17-MM1GHLkuYVjhyt)
 * [Machine Learning Summer School](https://youtu.be/fkpw2QUUjTg)
 * [Brains, Minds and Machine, Virtual Summer School](https://youtube.com/playlist?list=PLyGKBDfnk-iCYqS4OiUUljd_98xELGjzi)
 * [Statistical Learning Theory and Applications](https://youtube.com/playlist?list=PLyGKBDfnk-iCXhuP9W-BQ9q2RkEIA5I5f)
 * [Theoretical Machine Learning Lecture Series](https://youtube.com/playlist?list=PLdDZb3TwJPZ5VLprf2VUfC0h1zOGvV_gz)
 * [Interpretability vs. Explainability in Machine Learning](https://youtu.be/zsRKPxgHURQ)
 * [Full stack Deep Learning](https://fullstackdeeplearning.com/)
+
+## Dynamical Systems
+* [Introduction to Bifurcation Theory](https://www.bio.vu.nl/thb/research/project/globif/)
+* [Dynamical Systems with Machine Learning](https://www.youtube.com/playlist?list=PLMrJAkhIeNNR6DzT17-MM1GHLkuYVjhyt)
 
 ## Skills
 

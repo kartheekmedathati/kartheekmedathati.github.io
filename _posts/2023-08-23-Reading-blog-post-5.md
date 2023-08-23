@@ -17,5 +17,6 @@ tags:
     - [Dynamic 3D Gaussians](https://www.youtube.com/watch?v=hDuy1TgD8I4)
 2. [Grokking (not that relevant?)](https://kindxiaoming.github.io/pdfs/grokking_review.pdf)
 3. [On the theory of stochastic processes, with particular reference to applications](https://digitalassets.lib.berkeley.edu/math/ucb/text/math_s1_article-21.pdf)
+4. [Formal Algorithms for Transformers](https://arxiv.org/pdf/2207.09238.pdf)
 
 

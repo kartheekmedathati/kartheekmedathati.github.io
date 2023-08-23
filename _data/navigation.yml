@@ -3,7 +3,7 @@ main:
   - title: "Publications"
     url: /publications/
 
-  - title: "Blog Posts"
+  - title: "Posts"
     url: /year-archive/
     
   - title: "CV"
@@ -17,3 +17,5 @@ main:
 
   - title: "Resources"
     url: /markdown/
+
+

@@ -68,4 +68,13 @@ redirect_from:
 ## Advice
 
 * [Learning to Learn: Richard Hamming](https://youtu.be/AD4b-52jtos)
- 
+
+## Datasets
+
+1. [Video Datasets](https://github.com/xiaobai1217/Awesome-Video-Datasets)
+
+
+## Simulators and Environments
+
+1. [AI2Thor](https://ai2thor.allenai.org/)
+

@@ -1,7 +1,7 @@
 ---
 title: 'Computational Humor'
 date: 2023-05-23
-permalink: /posts/2023/05/blog-post-4/
+permalink: /posts/2023/08/blog-post-5/
 tags:
   - Computation Theories of Humor
   - Sarcasm
@@ -9,7 +9,7 @@ tags:
   - Multi-modal humor detection
 ---
 
-#### Introduction
+### Introduction
 
 1. What is humor?
 2. what are the important computational theories of humor?

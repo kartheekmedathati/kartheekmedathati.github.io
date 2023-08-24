@@ -13,6 +13,8 @@ tags:
 ##### 24 August 2023
 1. [What Can You Learn from Your Muscles? Learning Visual Representation from Human Interactions](https://github.com/ehsanik/muscleTorch)
 2. [Efficiently Measuring the Cognitive Ability of LLMS: An Adaptive Testing Perspective](https://arxiv.org/pdf/2306.10512.pdf)
+3. [VQA-HAT: Human Visual Attention in Visual Question Answering](https://computing.ece.vt.edu/~abhshkdz/vqa-hat/
+    - Has this changed wrt to recent models? 
 
 
 ##### 23 August 2023

@@ -78,3 +78,7 @@ redirect_from:
 
 1. [AI2Thor](https://ai2thor.allenai.org/)
 
+## Tutorials 
+
+1. [2D Gaussian Process Regression in Scikit-Learn](https://jamesbrind.uk/posts/2d-gaussian-process-regression/)
+

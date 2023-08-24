@@ -11,6 +11,8 @@ tags:
 
 ### Introduction
 
+"Humor is instant vacation" - Milton Berle
+
 1. What is humor?
 2. what are the important computational theories of humor?
 3. What are the popular models and their current limitations?

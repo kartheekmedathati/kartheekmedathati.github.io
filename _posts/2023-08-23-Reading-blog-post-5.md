@@ -10,6 +10,11 @@ tags:
 
 ### Papers 
 
+##### 24 August 2023
+1. [What Can You Learn from Your Muscles? Learning Visual Representation from Human Interactions](https://github.com/ehsanik/muscleTorch)
+2. [Efficiently Measuring the Cognitive Ability of LLMS: An Adaptive Testing Perspective](https://arxiv.org/pdf/2306.10512.pdf)
+
+
 ##### 23 August 2023
 
 1. [3D Gaussian Splatting for Real-Time Radiance Field Rendering](https://repo-sam.inria.fr/fungraph/3d-gaussian-splatting/)

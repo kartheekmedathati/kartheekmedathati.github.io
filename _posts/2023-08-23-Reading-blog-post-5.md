@@ -10,7 +10,14 @@ tags:
 
 ### Papers 
 
+##### 25 August 2023
+
+1. [Palette: Image to Image to Diffusion Process](https://arxiv.org/pdf/2111.05826.pdf)
+2. [A Survey of Vision Language Pre-training models](https://arxiv.org/pdf/2202.10936.pdf)
+3. [Vision Language Models for Vision tasks: A Survey](https://arxiv.org/pdf/2304.00685.pdf)
+
 ##### 24 August 2023
+
 1. [What Can You Learn from Your Muscles? Learning Visual Representation from Human Interactions](https://github.com/ehsanik/muscleTorch)
 2. [Efficiently Measuring the Cognitive Ability of LLMS: An Adaptive Testing Perspective](https://arxiv.org/pdf/2306.10512.pdf)
 3. [VQA-HAT: Human Visual Attention in Visual Question Answering](https://computing.ece.vt.edu/~abhshkdz/vqa-hat/)

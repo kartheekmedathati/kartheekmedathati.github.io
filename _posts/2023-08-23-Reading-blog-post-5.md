@@ -15,6 +15,7 @@ tags:
 1. [Palette: Image to Image to Diffusion Process](https://arxiv.org/pdf/2111.05826.pdf)
 2. [A Survey of Vision Language Pre-training models](https://arxiv.org/pdf/2202.10936.pdf)
 3. [Vision Language Models for Vision tasks: A Survey](https://arxiv.org/pdf/2304.00685.pdf)
+4. [HyperDiffusion: Generating Implicit Neural Fields with Weight-Space Diffusion](https://ziyaerkoc.com/hyperdiffusion/)
 
 ##### 24 August 2023
 

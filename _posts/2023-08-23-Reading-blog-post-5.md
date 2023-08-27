@@ -16,6 +16,7 @@ tags:
     - [Talk @Workshop](https://www.youtube.com/watch?v=DvUAiqTCMAg)
 2. [ProcThor: Large-Scale Embodied AI Using Procedural Generation](https://procthor.allenai.org/)
     - Note: Are there similar environments to cover urban scenes?
+    - Or eliminate the need like this: [Learning to navigate outdoor environments without outdoor experience](https://indoorsim2outdoorreal.github.io/)
 
 ##### 25 August 2023
 

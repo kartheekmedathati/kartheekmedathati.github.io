@@ -14,7 +14,8 @@ tags:
 
 1. [Diffusion Processes for Inverse Problems](https://www.icms.org.uk/sites/default/files/downloads/Workshops/2023/Jan-2023/Marcelo/Valentin%20De%20Bortoli%20.pdf)
     - [Talk @Workshop](https://www.youtube.com/watch?v=DvUAiqTCMAg)
-
+2. [ProcThor: Large-Scale Embodied AI Using Procedural Generation](https://procthor.allenai.org/)
+    - Note: Are there similar environments to cover urban scenes?
 
 ##### 25 August 2023
 

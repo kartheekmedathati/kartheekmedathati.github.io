@@ -10,6 +10,12 @@ tags:
 
 ### Papers 
 
+##### 26 August 2023
+
+1. [Diffusion Processes for Inverse Problems](https://www.icms.org.uk/sites/default/files/downloads/Workshops/2023/Jan-2023/Marcelo/Valentin%20De%20Bortoli%20.pdf)
+    - [Talk @Workshop](https://www.youtube.com/watch?v=DvUAiqTCMAg)
+
+
 ##### 25 August 2023
 
 1. [Palette: Image to Image to Diffusion Process](https://arxiv.org/pdf/2111.05826.pdf)

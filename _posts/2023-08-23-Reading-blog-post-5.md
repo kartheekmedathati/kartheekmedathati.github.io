@@ -16,6 +16,7 @@ tags:
 2. [A survey on applications of deep learning in microscopy image analysis](https://www.sciencedirect.com/science/article/abs/pii/S0010482521003176)
 3. [Deep learning tools for advancing drug discovery and development](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8994527/pdf/13205_2022_Article_3165.pdf)
 4. [Image based profiling for drug discovery](https://www.nature.com/articles/s41573-020-00117-w)
+5. [A theory of cortical map formation in the visual brain](https://www.nature.com/articles/s41467-022-29433-y)
 
 ##### 26 August 2023
 

@@ -12,6 +12,13 @@ tags:
 
 ##### 26 August 2023
 
+1. [What is next for bioimage analysis?"](https://www.nature.com/articles/s41592-023-01950-8)
+2. [A survey on applications of deep learning in microscopy image analysis](https://www.sciencedirect.com/science/article/abs/pii/S0010482521003176)
+3. [Deep learning tools for advancing drug discovery and development](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8994527/pdf/13205_2022_Article_3165.pdf)
+4. [Image based profiling for drug discovery](https://www.nature.com/articles/s41573-020-00117-w)
+
+##### 26 August 2023
+
 1. [Diffusion Processes for Inverse Problems](https://www.icms.org.uk/sites/default/files/downloads/Workshops/2023/Jan-2023/Marcelo/Valentin%20De%20Bortoli%20.pdf)
     - [Talk @Workshop](https://www.youtube.com/watch?v=DvUAiqTCMAg)
 2. [ProcThor: Large-Scale Embodied AI Using Procedural Generation](https://procthor.allenai.org/)

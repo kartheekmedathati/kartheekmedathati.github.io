@@ -1,7 +1,7 @@
 ---
 title: 'Computer Vision with Open Vocabulary'
-date: 2023-05-23
-permalink: /posts/2023/05/blog-post-3/
+date: 2023-08-31
+permalink: /posts/2023/08/blog-post-6/
 tags:
   - Interactive 3D viewer
   - Smithsonian 3D object collection

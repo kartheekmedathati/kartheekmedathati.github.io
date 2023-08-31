@@ -1,5 +1,5 @@
 ---
-title: 'Computer Vision with Open Vocabulary'
+title: 'Smithsonian Open Access'
 date: 2023-08-31
 permalink: /posts/2023/08/blog-post-6/
 tags:

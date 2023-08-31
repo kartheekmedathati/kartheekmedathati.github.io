@@ -10,7 +10,13 @@ tags:
 
 ### Papers 
 
-##### 26 August 2023
+##### 31 August 2023
+
+1. [Diffusion Models: A Comprehensive Survey of Methods and Applications](https://arxiv.org/pdf/2209.00796.pdf)
+2. [Efficient Diffusion Models for Vision: A Survey](https://arxiv.org/pdf/2209.00796.pdf)
+3. [NAVI: Category-Agnostic Image Collections with High Quality 3D Shape and Pose Annotations](https://arxiv.org/pdf/2209.00796.pdf)
+
+##### 29 August 2023
 
 1. [What is next for bioimage analysis?"](https://www.nature.com/articles/s41592-023-01950-8)
 2. [A survey on applications of deep learning in microscopy image analysis](https://www.sciencedirect.com/science/article/abs/pii/S0010482521003176)

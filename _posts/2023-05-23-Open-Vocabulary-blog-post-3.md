@@ -9,6 +9,20 @@ tags:
   - Open world vision
 ---
 
+<div>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+      <model-viewer
+   src="https://rawcdn.githack.com/BabylonJS/Exporters/422493778d6ffbc2980e83e46eb94729bbeada0c/Maya/Samples/glTF%202.0/T-Rex/trex_running.gltf"
+        alt="dragon"
+        auto-rotate
+        camera-controls
+      ></model-viewer>
+</div>
+
+
 #### Introduction
 
 1. What do we mean by open world vision?

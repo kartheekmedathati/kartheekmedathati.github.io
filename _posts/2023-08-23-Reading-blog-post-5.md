@@ -15,6 +15,9 @@ tags:
 1. [Diffusion Models: A Comprehensive Survey of Methods and Applications](https://arxiv.org/pdf/2209.00796.pdf)
 2. [Efficient Diffusion Models for Vision: A Survey](https://arxiv.org/pdf/2209.00796.pdf)
 3. [NAVI: Category-Agnostic Image Collections with High Quality 3D Shape and Pose Annotations](https://arxiv.org/pdf/2209.00796.pdf)
+4. [From data to functa: Your data point is a function and you can treat it like one](https://arxiv.org/pdf/2201.12204.pdf)
+    - *Very similar to hyperdiffusion
+    - Has it overcome the quality issues?
 
 ##### 29 August 2023
 

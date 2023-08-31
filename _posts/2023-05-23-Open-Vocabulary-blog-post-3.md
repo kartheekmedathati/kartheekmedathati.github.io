@@ -9,6 +9,8 @@ tags:
   - Open world vision
 ---
 
+### This is testing 3D embedding
+
 <div>
     <script
       type="module"

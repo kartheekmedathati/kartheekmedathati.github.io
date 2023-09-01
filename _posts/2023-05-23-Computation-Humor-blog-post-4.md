@@ -9,6 +9,8 @@ tags:
   - Multi-modal humor detection
 ---
 
+![Computational Humor](/images/The_Cycle_of_defining_humor.png)
+
 ### Introduction
 
 "Humor is instant vacation" - Milton Berle

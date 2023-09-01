@@ -44,7 +44,7 @@ tags:
     }
 </style>
       <model-viewer
-   src="../images/USNM_1145291-150k-2048-medium-100k-2048_draco.glb"
+   src="/images/USNM_1145291-150k-2048-medium-100k-2048_draco.glb"
         alt="fossil"
         auto-rotate
         camera-controls

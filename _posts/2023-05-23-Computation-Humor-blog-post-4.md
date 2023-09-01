@@ -24,6 +24,14 @@ tags:
 *(Under Construction)
 #### Datasets for Humor Detection
 
+| Dataset Name                              | Data Type        | Description and Characteristics                   |
+|------------------------------------------|------------------|---------------------------------------------------|
+| CMU Multimodal Opinion Sentiment and Emotion (MOSEI) | Audio, Visual, Text | A large-scale dataset containing audio, visual, and textual data for sentiment, emotion, and humor analysis. It includes speech, text transcriptions, and visual features from movies. |
+| YouTube Multimodal Humor Detection Dataset | Audio, Video, Text | A multimodal dataset that combines audio, video, and text information from YouTube videos with humorous content. |
+| MovieHumorDetection (MHD) Dataset         | Audio, Video     | This dataset focuses on humor detection in movie scenes, providing audio and visual cues from various films. |
+| Reddit Jokes Dataset                      | Text             | A collection of humorous text data from Reddit. Used for text-based humor detection research. |
+
+
 
 #### References
 1. https://en.wikipedia.org/wiki/Theories_of_humor

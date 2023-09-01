@@ -20,6 +20,42 @@ tags:
 5. How do we accurately measure the performance of such systems?
 6. What are the novel applications enabled by these systems?
 
+
+*(Under Construction)
+#### Datasets for Humor Detection
+
+----------------------------------------------------------------------------
+|    Type of Data    |       Important Datasets for Humor Detection        |
+|--------------------|-----------------------------------------------------|
+|       Text         | - Reddit Jokes Dataset                              |
+|                    |   (Collection of humorous text from Reddit)       |
+|                    | - Humor Detection in News Headlines (HDNH) Dataset  |
+|                    |   (News headlines annotated for humor)              |
+|                    | - SemEval-2022 Task 7: Detecting Humor in Books    |
+|                    |   and Stories Dataset                               |
+|                    |   (Humor detection in books and stories)            |
+|--------------------|-----------------------------------------------------|
+|       Audio        | - The Ryerson Audio-Visual Database of Emotional   |
+|                    |   Speech and Song (RAVDESS)                        |
+|                    | - Interspeech 2017 Humor Detection Dataset         |
+|                    | - MHD (MovieHumorDetection) Dataset                |
+|                    |   (Dataset for humor detection in movie scenes)     |
+|--------------------|-----------------------------------------------------|
+|       Video        | - YouTube Comedy Slam Dataset                      |
+|                    |   (Videos with humorous content)                   |
+|                    | - SemEval-2022 Task 7: Detecting Humor in Videos   |
+|                    |   Dataset                                           |
+|                    |   (Videos annotated for humor)                     |
+|--------------------|-----------------------------------------------------|
+|  Audio-Visual      | - CMU Multimodal Opinion Sentiment and Emotion    |
+|                    |   (Multimodal dataset for sentiment and emotion)   |
+|                    | - YouTube Multimodal Humor Detection Dataset       |
+|                    |   (Multimodal dataset for humor detection)         |
+|                    | - MHD (MovieHumorDetection) Dataset                |
+|                    |   (Dataset for humor detection in audio-visual)    |
+|--------------------|-----------------------------------------------------|
+
+
 #### References
 1. https://en.wikipedia.org/wiki/Theories_of_humor
 2. https://floriandietz.me/humor/

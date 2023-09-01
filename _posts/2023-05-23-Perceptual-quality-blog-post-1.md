@@ -26,7 +26,6 @@ tags:
 
 
 *Under construction 
-Here's the expanded table with instructions given to human annotators and the number of annotators used for each perceptual image quality estimation dataset:
 
 | Dataset           | Number of Images | Ratings Metadata                                  | Number of Annotators | Annotator Instructions                                            | License Information                                  | Description and Creation Process                                                                                        |
 |-------------------|------------------|--------------------------------------------------|----------------------|-------------------------------------------------------------------|-------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------|

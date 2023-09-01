@@ -10,6 +10,11 @@ tags:
 
 ### Papers 
 
+##### 01 September 2023
+
+1. [A Benchmark for General purpose visual representation](https://arxiv.org/pdf/2211.15402.pdf)
+
+
 ##### 31 August 2023
 
 1. [Diffusion Models: A Comprehensive Survey of Methods and Applications](https://arxiv.org/pdf/2209.00796.pdf)

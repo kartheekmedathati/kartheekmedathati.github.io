@@ -32,3 +32,23 @@ tags:
       ></model-viewer>
 </div>
 
+<div>
+    <script
+      type="module"
+      src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"
+    ></script>
+    <style>
+    model-viewer {
+    width: 800px;
+    height: 600px;
+    }
+</style>
+      <model-viewer
+   src="../images/USNM_1145291-150k-2048-medium-100k-2048_draco.glb"
+        alt="fossil"
+        auto-rotate
+        camera-controls
+      ></model-viewer>
+</div>
+
+

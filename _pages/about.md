@@ -14,8 +14,6 @@ If you are interested in research collaboration please email me.
 
 ### News 
 
-> <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Would you donate your medical data (transcripts, scans) for research purposes?</p>&mdash; Kartheek MNV (@Kartheekmnv) <a href="https://twitter.com/Kartheekmnv/status/1702716390342619468?ref_src=twsrc%5Etfw">September 15, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
-
 
 ### Highlights
 

@@ -21,9 +21,6 @@ If you are interested in research collaboration please email me.
 
 > Recurrent network dynamics reconciles visual motion segmentation and integration, N. V. Kartheek Medathati, James Rankin, Andrew I. Meso, P. Kornprobst, G. S. Masson, Scientific Reports, 2017.
 
-### Visitors
-
-<a href="https://clustrmaps.com/site/1by10" title="Visit tracker"><img src="//clustrmaps.com/map_v2.png?cl=ffffff&w=a&t=n&d=vHgWqROfP4T204hgxHnmUI6sge0oY4lBR5JPpAIMcVg&co=2d78ad&ct=ffffff" /></a>
 
 
 

@@ -14,7 +14,7 @@ If you are interested in research collaboration please email me.
 
 ### News 
 
-kartheek.info is now active. 
+
 
 ### Highlights
 

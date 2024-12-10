@@ -14,6 +14,8 @@ If you are interested in research collaboration please email me.
 
 ### News 
 
+> Field Tests Commenced for AAMbot Uno.
+
 
 
 ### Highlights

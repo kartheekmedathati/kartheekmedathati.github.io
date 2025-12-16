@@ -1,0 +1,2095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoboFlow v4 - Democratized Robot Development Platform</title>
+    <style>
+        :root {
+            --color-primary: #2196F3;
+            --color-primary-dark: #1976D2;
+            --color-secondary: #FF6F00;
+            --color-success: #4CAF50;
+            --color-warning: #FFC107;
+            --color-danger: #F44336;
+            --color-bg-primary: #0f1419;
+            --color-bg-secondary: #1a1f2e;
+            --color-bg-tertiary: #242b3a;
+            --color-text-primary: #f5f5f5;
+            --color-text-secondary: #b0bec5;
+            --color-border: #3a4556;
+            --color-accent-1: #00BCD4;
+            --color-accent-2: #8BC34A;
+            --color-accent-3: #E91E63;
+            --color-accent-4: #9C27B0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--color-bg-primary);
+            color: var(--color-text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, rgba(26, 31, 46, 0.95) 100%);
+            border-bottom: 1px solid var(--color-border);
+            padding: 1rem 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        nav .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+        nav a:hover {
+            color: var(--color-accent-1);
+            transform: translateY(-2px);
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.1) 0%, rgba(156, 39, 176, 0.1) 100%);
+            border-bottom: 2px solid var(--color-border);
+            padding: 6rem 2rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -10%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -5%;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(156, 39, 176, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+
+        .hero-content { position: relative; z-index: 2; }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-primary), var(--color-accent-2));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            letter-spacing: -2px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--color-text-secondary);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            line-height: 1.8;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 8px;
+            border: none;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+            color: white;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(33, 150, 243, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--color-accent-1);
+            color: var(--color-accent-1);
+        }
+        .btn-secondary:hover {
+            background: var(--color-accent-1);
+            color: var(--color-bg-primary);
+            transform: translateY(-3px);
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(30px); }
+        }
+
+        /* Section Titles */
+        .section-title {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 700;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--color-text-secondary);
+            margin-bottom: 3rem;
+            font-size: 1.1rem;
+        }
+
+        /* Features Grid */
+        .features-section {
+            padding: 4rem 2rem;
+            background-color: var(--color-bg-secondary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .feature-card {
+            background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, rgba(36, 43, 58, 0.5) 100%);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent-1));
+            transition: left 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--color-accent-1);
+            box-shadow: 0 10px 30px rgba(0, 188, 212, 0.2);
+        }
+        .feature-card:hover::before { left: 0; }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.2), rgba(33, 150, 243, 0.2));
+            border-radius: 10px;
+        }
+
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.8rem;
+            color: var(--color-accent-1);
+        }
+        .feature-card p {
+            color: var(--color-text-secondary);
+            line-height: 1.8;
+            font-size: 0.95rem;
+        }
+
+        /* Components Section */
+        .components-section {
+            padding: 4rem 2rem;
+            background-color: var(--color-bg-primary);
+        }
+
+        .components-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .component-item {
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(156, 39, 176, 0.05) 100%);
+            border-left: 4px solid var(--color-primary);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .component-item:nth-child(2) { border-left-color: var(--color-accent-1); }
+        .component-item:nth-child(3) { border-left-color: var(--color-accent-2); }
+        .component-item:nth-child(4) { border-left-color: var(--color-accent-3); }
+        .component-item:nth-child(5) { border-left-color: var(--color-accent-4); }
+        .component-item:nth-child(6) { border-left-color: var(--color-warning); }
+        .component-item:nth-child(7) { border-left-color: var(--color-accent-1); }
+        .component-item:nth-child(8) { border-left-color: var(--color-success); }
+
+        .component-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.1);
+        }
+
+        .component-item h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--color-accent-1);
+        }
+        .component-item p {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            line-height: 1.6;
+        }
+
+        .component-tags {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            padding: 0.3rem 0.7rem;
+            background: rgba(0, 188, 212, 0.15);
+            color: var(--color-accent-1);
+            border-radius: 20px;
+            border: 1px solid rgba(0, 188, 212, 0.3);
+        }
+
+        /* Vision Section */
+        .vision-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, rgba(33, 150, 243, 0.05) 0%, rgba(156, 39, 176, 0.05) 100%);
+            border-top: 2px solid var(--color-border);
+            border-bottom: 2px solid var(--color-border);
+        }
+
+        .vision-diagram {
+            max-width: 1200px;
+            margin: 3rem auto;
+        }
+
+        .vision-level {
+            background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, rgba(36, 43, 58, 0.7) 100%);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        .vision-level:hover {
+            border-color: var(--color-accent-1);
+            box-shadow: 0 12px 40px rgba(0, 188, 212, 0.15);
+        }
+
+        .level-header {
+            padding: 1.5rem 2rem;
+            background: linear-gradient(90deg, rgba(33, 150, 243, 0.1), rgba(0, 188, 212, 0.1));
+            border-bottom: 2px solid var(--color-border);
+            position: relative;
+        }
+
+        .level-1-header { border-left: 6px solid var(--color-primary); }
+        .level-2-header { border-left: 6px solid var(--color-accent-1); }
+        .level-3-header { border-left: 6px solid var(--color-accent-2); }
+
+        .level-number {
+            font-size: 3rem;
+            font-weight: 800;
+            opacity: 0.15;
+            position: absolute;
+            right: 2rem;
+            top: 0.5rem;
+        }
+
+        .level-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-accent-1);
+            margin-bottom: 0.3rem;
+        }
+
+        .level-subtitle {
+            color: var(--color-text-secondary);
+            font-size: 1rem;
+        }
+
+        .level-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+            padding: 2rem;
+        }
+
+        .layer-box {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        .layer-box:hover {
+            border-color: var(--color-accent-1);
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.05), transparent);
+            transform: translateY(-3px);
+        }
+
+        .integrated-box {
+            border: 2px solid rgba(139, 195, 74, 0.3);
+            background: linear-gradient(135deg, rgba(139, 195, 74, 0.05), transparent);
+        }
+
+        .layer-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: var(--color-accent-1);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .layer-items {
+            list-style: none;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            line-height: 1.8;
+        }
+
+        .layer-items li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid rgba(58, 69, 86, 0.4);
+        }
+        .layer-items li:last-child { border-bottom: none; }
+        .layer-items li::before {
+            content: '→ ';
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-right: 0.5rem;
+        }
+
+        .integration-matrix-3 {
+            background: linear-gradient(135deg, rgba(139, 195, 74, 0.1), rgba(0, 188, 212, 0.05));
+            border: 2px dashed var(--color-accent-2);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 1.5rem 0;
+            text-align: center;
+        }
+
+        .integration-note {
+            color: var(--color-text-primary);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .level-outcome {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(139, 195, 74, 0.1));
+            padding: 1.5rem 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-success);
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .vision-arrow {
+            text-align: center;
+            padding: 1rem;
+            font-size: 1.8rem;
+            color: var(--color-primary);
+            font-weight: 700;
+            margin: 1rem 0;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        .architecture-comparison {
+            max-width: 1200px;
+            margin: 3rem auto;
+            background: var(--color-bg-secondary);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .comparison-title {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--color-accent-1);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .comparison-cell {
+            background: var(--color-bg-tertiary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .comparison-dimension {
+            font-weight: 700;
+            color: var(--color-accent-1);
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+        }
+
+        .comparison-l1, .comparison-l2, .comparison-l3 {
+            padding: 0.7rem 0;
+            font-size: 0.9rem;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .comparison-l1 { color: var(--color-text-secondary); }
+        .comparison-l2 { color: var(--color-accent-1); }
+        .comparison-l3 {
+            color: var(--color-accent-2);
+            border-bottom: none;
+            font-weight: 600;
+        }
+
+        /* Iteration Cost Section */
+        .iteration-section {
+            padding: 4rem 2rem;
+            background-color: var(--color-bg-primary);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .iteration-layout {
+            max-width: 1100px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: minmax(260px, 1.2fr) minmax(260px, 1fr);
+            gap: 2rem;
+        }
+
+        .iteration-graphic {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 1.5rem;
+        }
+
+        .iteration-bars { margin-top: 1rem; }
+        .iteration-bar { margin-bottom: 1rem; }
+
+        .iteration-bar-label {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        .iteration-bar-track {
+            width: 100%;
+            height: 10px;
+            border-radius: 999px;
+            background: #202634;
+            overflow: hidden;
+        }
+
+        .iteration-bar-fill {
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, var(--color-danger), var(--color-warning), var(--color-success));
+        }
+
+        .iteration-copy {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        .iteration-copy ul {
+            margin-top: 0.8rem;
+            padding-left: 1rem;
+        }
+        .iteration-copy li { margin-bottom: 0.4rem; }
+
+        /* Projected Gains Section */
+        .gains-section {
+            padding: 4rem 2rem;
+            background: var(--color-bg-secondary);
+        }
+
+        .gains-grid {
+            max-width: 1100px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gain-card {
+            background: var(--color-bg-tertiary);
+            border-radius: 10px;
+            border: 1px solid var(--color-border);
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .gain-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--color-accent-2);
+            margin-bottom: 0.3rem;
+        }
+        .gain-label {
+            font-size: 0.95rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Workflow Section */
+        .workflow-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .workflow-diagram {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .workflow-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            position: relative;
+        }
+
+        .workflow-steps::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
+            z-index: 0;
+        }
+
+        .workflow-step {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+        }
+
+        .workflow-step-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-accent-1));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 20px rgba(33, 150, 243, 0.3);
+        }
+
+        .workflow-step-label {
+            font-weight: 600;
+            color: var(--color-accent-1);
+            margin-bottom: 0.5rem;
+        }
+        .workflow-step-desc {
+            font-size: 0.85rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Integration Matrix */
+        .integration-section {
+            padding: 4rem 2rem;
+            background-color: var(--color-bg-primary);
+        }
+
+        .integration-matrix {
+            max-width: 1200px;
+            margin: 2rem auto;
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+        }
+
+        .matrix-row {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            align-items: start;
+        }
+
+        .matrix-row-title {
+            font-weight: 700;
+            color: var(--color-accent-1);
+            font-size: 1.1rem;
+        }
+
+        .integrations-list {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .integration-badge {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.2), rgba(33, 150, 243, 0.2));
+            border: 1px solid rgba(0, 188, 212, 0.4);
+            border-radius: 6px;
+            padding: 0.6rem 1rem;
+            font-size: 0.9rem;
+            color: var(--color-accent-1);
+            transition: all 0.3s ease;
+        }
+
+        .integration-badge:hover {
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.4), rgba(33, 150, 243, 0.4));
+            border-color: var(--color-accent-1);
+        }
+
+        /* Tabs Section */
+        .tabs-section {
+            padding: 4rem 2rem;
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+        }
+
+        .tabs-container {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 12px;
+            overflow: hidden;
+        }
+
+        .tabs-header {
+            display: flex;
+            border-bottom: 2px solid var(--color-border);
+            flex-wrap: wrap;
+        }
+
+        .tab-button {
+            flex: 1;
+            min-width: 150px;
+            padding: 1.2rem;
+            border: none;
+            background: transparent;
+            color: var(--color-text-secondary);
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        .tab-button.active {
+            color: var(--color-accent-1);
+        }
+
+        .tab-button.active::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-accent-1));
+        }
+
+        .tab-button:hover { background: rgba(0, 188, 212, 0.05); }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .tab-content.active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .tab-content ul { list-style: none; }
+        .tab-content li {
+            padding: 0.8rem 0;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            align-items: center;
+        }
+        .tab-content li:last-child { border-bottom: none; }
+        .tab-content li::before {
+            content: '✓';
+            color: var(--color-success);
+            font-weight: 700;
+            margin-right: 1rem;
+            font-size: 1.2rem;
+        }
+
+        /* Agents Section */
+        .agents-section {
+            padding: 4rem 2rem;
+            background-color: var(--color-bg-primary);
+        }
+
+        .agents-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .agent-card {
+            background: linear-gradient(135deg, var(--color-bg-tertiary) 0%, rgba(36, 43, 58, 0.6) 100%);
+            border: 2px solid var(--color-border);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .agent-card:hover {
+            border-color: var(--color-accent-1);
+            box-shadow: 0 12px 35px rgba(0, 188, 212, 0.2);
+            transform: translateY(-8px);
+        }
+
+        .agent-title {
+            font-size: 1.3rem;
+            color: var(--color-accent-1);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .agent-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, rgba(0, 188, 212, 0.3), rgba(33, 150, 243, 0.3));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+        }
+
+        .agent-description {
+            color: var(--color-text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.7;
+            font-size: 0.95rem;
+        }
+
+        .agent-capabilities { list-style: none; }
+        .agent-capabilities li {
+            padding: 0.5rem 0;
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+        }
+        .agent-capabilities li::before {
+            content: '→';
+            color: var(--color-primary);
+            font-weight: 700;
+            margin-right: 0.8rem;
+        }
+
+        /* Milestones / Roadmap */
+        .roadmap-section {
+            padding: 4rem 2rem;
+            background: var(--color-bg-secondary);
+        }
+
+        .roadmap-timeline {
+            max-width: 1100px;
+            margin: 2rem auto;
+            border-left: 2px solid var(--color-border);
+            position: relative;
+        }
+
+        .roadmap-item {
+            position: relative;
+            padding: 1.5rem 1.5rem 1.5rem 2.5rem;
+        }
+
+        .roadmap-dot {
+            position: absolute;
+            left: -7px;
+            top: 1.7rem;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: var(--color-accent-1);
+            box-shadow: 0 0 0 4px rgba(0, 188, 212, 0.2);
+        }
+
+        .roadmap-time {
+            font-size: 0.8rem;
+            color: var(--color-text-secondary);
+            margin-bottom: 0.2rem;
+        }
+
+        .roadmap-title {
+            font-size: 1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--color-accent-1);
+        }
+
+        .roadmap-desc {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+        }
+
+        /* Investment Section */
+        .investment-section {
+            padding: 4rem 2rem;
+            background-color: var(--color-bg-primary);
+            border-top: 1px solid var(--color-border);
+        }
+
+        .investment-grid {
+            max-width: 1100px;
+            margin: 2rem auto;
+            display: grid;
+            grid-template-columns: minmax(260px, 1.2fr) minmax(260px, 1fr);
+            gap: 2rem;
+        }
+
+        .investment-card {
+            background: var(--color-bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--color-border);
+            padding: 1.8rem;
+        }
+
+        .investment-card h3 {
+            font-size: 1.1rem;
+            color: var(--color-accent-1);
+            margin-bottom: 0.8rem;
+        }
+
+        .investment-card ul {
+            font-size: 0.9rem;
+            color: var(--color-text-secondary);
+            padding-left: 1rem;
+        }
+
+        .investment-card li { margin-bottom: 0.4rem; }
+
+        .metric-row {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--color-border);
+            padding: 0.4rem 0;
+            font-size: 0.9rem;
+        }
+
+        .metric-label { color: var(--color-text-secondary); }
+        .metric-value { color: var(--color-accent-2); }
+
+        /* Interactive Elements */
+        .interactive-demo {
+            background: var(--color-bg-secondary);
+            border: 2px dashed var(--color-primary);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+
+        .demo-button {
+            background: linear-gradient(135deg, var(--color-accent-1), var(--color-primary));
+            color: white;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .demo-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 188, 212, 0.4);
+        }
+
+        .demo-output {
+            background: var(--color-bg-primary);
+            border: 1px solid var(--color-border);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+            font-family: 'Courier New', monospace;
+            color: var(--color-accent-2);
+            text-align: left;
+            min-height: 60px;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--color-bg-secondary) 0%, var(--color-bg-tertiary) 100%);
+            border-top: 1px solid var(--color-border);
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h4 {
+            color: var(--color-accent-1);
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .footer-section ul { list-style: none; }
+        .footer-section li { margin-bottom: 0.7rem; }
+
+        .footer-section a {
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .footer-section a:hover {
+            color: var(--color-accent-1);
+            transform: translateX(3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid var(--color-border);
+            color: var(--color-text-secondary);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .section-title { font-size: 1.8rem; }
+            nav ul { gap: 1rem; }
+            .workflow-steps::before { left: 40px; right: auto; }
+            .matrix-row { grid-template-columns: 1fr; }
+            .tab-button {
+                min-width: 100px;
+                padding: 0.8rem;
+                font-size: 0.85rem;
+            }
+            .iteration-layout,
+            .investment-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">⚙️ RoboFlow v4</div>
+            <ul>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#vision">Vision</a></li>
+                <li><a href="#components">Components</a></li>
+                <li><a href="#workflow">Workflow</a></li>
+                <li><a href="#gains">Gains</a></li>
+                <li><a href="#roadmap">Milestones</a></li>
+                <li><a href="#investment">Investment</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>RoboFlow: Democratizing the Robot Development Lifecycle</h1>
+                <p>
+                    A tightly integrated, open-source-first platform that unifies programmatic design, interactive AI agents, 
+                    manufacturing, simulation, and learning into one stack—bringing full-stack robotics within reach of any team.
+                </p>
+                <div class="cta-buttons">
+                    <button class="btn btn-primary">Launch Builder</button>
+                    <button class="btn btn-secondary">Download Reference Designs</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Core Capabilities -->
+    <section class="features-section" id="features">
+        <div class="container">
+            <h2 class="section-title">Core Capabilities</h2>
+            <p class="section-subtitle">End-to-end workflows from idea to fleet-scale deployment</p>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🎨</div>
+                    <h3>Programmatic Design Studio</h3>
+                    <p>
+                        Create fully parametric robot geometries using CadQuery, OpenSCAD, and Python APIs, enabling 
+                        scripted mechanisms, assemblies, and instant variations across entire design families.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🧩</div>
+                    <h3>Agent-Editable Open Designs</h3>
+                    <p>
+                        Open-source reference robots that can be interactively modified by AI agents—edit arm reach, 
+                        payload, or mobility constraints and regenerate CAD, PCBs, and firmware in minutes.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🏭</div>
+                    <h3>Manufacturing-Oriented Pipelines</h3>
+                    <p>
+                        Multi-material 3D printing, CNC, and PCB workflows with automatic DFM checks, print/CAM job queues, 
+                        and vendor routing for cost-optimized production runs.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">📊</div>
+                    <h3>High-Fidelity Simulation</h3>
+                    <p>
+                        NVIDIA Isaac Sim, Gazebo, and Webots integration for physics-accurate digital twins, 
+                        policy training, and hardware-in-the-loop regression tests before touching hardware.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Firmware & Control Agents</h3>
+                    <p>
+                        Firmware synthesis agents generate HALs, RTOS configs, and ROS2 nodes for microcontrollers, 
+                        while control agents tune planners, IK, and feedback loops from real-world telemetry.
+                    </p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🎓</div>
+                    <h3>Learning & Collaboration Layer</h3>
+                    <p>
+                        Interactive courses, notebooks, and community blueprints that grow a shared library of 
+                        robot building blocks, all versioned and composable through Git-driven workflows.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Vision: 3-Level Architecture -->
+    <section class="vision-section" id="vision">
+        <div class="container">
+            <h2 class="section-title">Execution Vision: 3-Level Architecture</h2>
+            <p class="section-subtitle">From proprietary stacks to intelligent, modular building blocks</p>
+
+            <div class="vision-diagram">
+                <!-- Level 1 -->
+                <div class="vision-level">
+                    <div class="level-header level-1-header">
+                        <div class="level-number">L1</div>
+                        <div class="level-title">Software Layers on Existing Hardware</div>
+                        <div class="level-subtitle">Adapt and unify proprietary devices</div>
+                    </div>
+                    <div class="level-content">
+                        <div class="layer-box">
+                            <div class="layer-title">🔧 Hardware Abstraction</div>
+                            <ul class="layer-items">
+                                <li>Driver shims for industrial arms and AGVs</li>
+                                <li>Unified HAL for mixed-vendor fleets</li>
+                                <li>Safety and e-stop integration layer</li>
+                                <li>Diagnostics and telemetry streaming</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box">
+                            <div class="layer-title">📡 ROS2 & Middleware</div>
+                            <ul class="layer-items">
+                                <li>ROS2 graph over DDS, CAN, and fieldbus</li>
+                                <li>Legacy protocol translation (Modbus, OPC-UA)</li>
+                                <li>Time-sync and clock abstraction</li>
+                                <li>Dockerized deployment to on-prem clusters</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box">
+                            <div class="layer-title">🖥️ Application Stack</div>
+                            <ul class="layer-items">
+                                <li>Task-level planners and behavior trees</li>
+                                <li>Vision pipelines, SLAM, and VIO</li>
+                                <li>Monitoring dashboards and alerting</li>
+                                <li>Digital twin mirroring of shop-floor cells</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="level-outcome">
+                        <strong>Outcome:</strong> Unify heterogeneous proprietary assets under one modern software stack without replacing hardware.
+                    </div>
+                </div>
+
+                <div class="vision-arrow">↓ Open-source foundation ↓</div>
+
+                <!-- Level 2 -->
+                <div class="vision-level">
+                    <div class="level-header level-2-header">
+                        <div class="level-number">L2</div>
+                        <div class="level-title">Open-Source Hardware & Software Layers</div>
+                        <div class="level-subtitle">Parametric, forkable, community-owned robotics</div>
+                    </div>
+                    <div class="level-content">
+                        <div class="layer-box">
+                            <div class="layer-title">⚙️ Mechanical Subsystems</div>
+                            <ul class="layer-items">
+                                <li>CadQuery/OpenSCAD parametric robot joints</li>
+                                <li>Open-source end-effectors and grippers</li>
+                                <li>Chassis and base platforms for AMRs</li>
+                                <li>Configurable workcell fixtures and tooling</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box">
+                            <div class="layer-title">📱 PCB & Power Stacks</div>
+                            <ul class="layer-items">
+                                <li>KiCad reference boards for motor control</li>
+                                <li>Sensor hubs with IMU, ToF, and encoders</li>
+                                <li>Standardized power rails and connectors</li>
+                                <li>Bill of materials with multi-vendor sourcing</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box">
+                            <div class="layer-title">🧠 Firmware & ROS2 Nodes</div>
+                            <ul class="layer-items">
+                                <li>Micro-ROS and Zephyr-based firmware templates</li>
+                                <li>Agents that generate HAL & RTOS configs</li>
+                                <li>Reference controllers and planners</li>
+                                <li>OTA update pipeline for fleets</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box">
+                            <div class="layer-title">🌍 Open Design Library</div>
+                            <ul class="layer-items">
+                                <li>GitHub-hosted robot families and variants</li>
+                                <li>Scripted blueprints and notebooks</li>
+                                <li>Issue- and PR-driven hardware evolution</li>
+                                <li>MIT / CERN-OHL licensing presets</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="level-outcome">
+                        <strong>Outcome:</strong> Teams own their stack, remix open modules, and ship robots at an order of magnitude lower cost.
+                    </div>
+                </div>
+
+                <div class="vision-arrow">↓ Integrated building blocks ↓</div>
+
+                <!-- Level 3 -->
+                <div class="vision-level">
+                    <div class="level-header level-3-header">
+                        <div class="level-number">L3</div>
+                        <div class="level-title">Advanced Integrated Energy–Actuation–Sensing Blocks</div>
+                        <div class="level-subtitle">Composable units that scale from prototype to production</div>
+                    </div>
+                    <div class="level-content">
+                        <div class="layer-box integrated-box">
+                            <div class="layer-title">🔋 Energy Module</div>
+                            <ul class="layer-items">
+                                <li>Smart battery packs with BMS and telemetry</li>
+                                <li>Supercap buffers for peak loads</li>
+                                <li>Integrated fusing and power distribution</li>
+                                <li>Thermal and health monitoring sensors</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box integrated-box">
+                            <div class="layer-title">⚙️ Actuator Module</div>
+                            <ul class="layer-items">
+                                <li>Motor + gearbox + encoder as one part</li>
+                                <li>Integrated torque and current sensing</li>
+                                <li>Embedded driver and safety cutoffs</li>
+                                <li>Standard mechanical and electrical interface</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box integrated-box">
+                            <div class="layer-title">👁️ Sensing Module</div>
+                            <ul class="layer-items">
+                                <li>IMU + proximity + tactile fusion</li>
+                                <li>Depth/ToF for local obstacle awareness</li>
+                                <li>Onboard filtering and sensor fusion</li>
+                                <li>CAN / I2C / UART plug-and-play</li>
+                            </ul>
+                        </div>
+                        <div class="layer-box integrated-box">
+                            <div class="layer-title">🧠 Local Compute Node</div>
+                            <ul class="layer-items">
+                                <li>MCU with RT control loop and inference</li>
+                                <li>Agent-generated control firmware</li>
+                                <li>Self-description of capabilities to ROS2 graph</li>
+                                <li>Secure boot and signed updates</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="integration-matrix-3">
+                        <div class="integration-note">
+                            <strong>Key Concept:</strong> Robots become compositions of self-contained blocks. 
+                            A single script and a few agent prompts define which blocks are used, how they connect, 
+                            and which behaviors they run.
+                        </div>
+                    </div>
+                    <div class="level-outcome">
+                        <strong>Outcome:</strong> Hours to reconfigure robots, predictable production costs, and massive reuse across product lines.
+                    </div>
+                </div>
+            </div>
+
+            <div class="architecture-comparison">
+                <div class="comparison-title">Projected Lifecycle Gains Across Levels</div>
+                <div class="comparison-grid">
+                    <div class="comparison-cell">
+                        <div class="comparison-dimension">Time to First Prototype</div>
+                        <div class="comparison-l1">L1: 2–4 weeks</div>
+                        <div class="comparison-l2">L2: 1–2 weeks</div>
+                        <div class="comparison-l3">L3: 2–3 days</div>
+                    </div>
+                    <div class="comparison-cell">
+                        <div class="comparison-dimension">Cost per Deployed Robot</div>
+                        <div class="comparison-l1">L1: $50k–$200k</div>
+                        <div class="comparison-l2">L2: $5k–$15k</div>
+                        <div class="comparison-l3">L3: $2k–$8k</div>
+                    </div>
+                    <div class="comparison-cell">
+                        <div class="comparison-dimension">Iteration Cost</div>
+                        <div class="comparison-l1">L1: Manual redraw and recertification</div>
+                        <div class="comparison-l2">L2: Scripted variants with limited retooling</div>
+                        <div class="comparison-l3">L3: Block swap, script update, re-simulate</div>
+                    </div>
+                    <div class="comparison-cell">
+                        <div class="comparison-dimension">Production Scalability</div>
+                        <div class="comparison-l1">L1: 1–10 units</div>
+                        <div class="comparison-l2">L2: 10–1000 units</div>
+                        <div class="comparison-l3">L3: 1000+ modular systems</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Platform Components -->
+    <section class="components-section" id="components">
+        <div class="container">
+            <h2 class="section-title">Platform Components</h2>
+            <p class="section-subtitle">Every phase of the robot lifecycle in one connected toolchain</p>
+            <div class="components-grid">
+                <div class="component-item">
+                    <h4>🎯 Programmable CAD Engine</h4>
+                    <p>
+                        CadQuery and OpenSCAD-based parametric modeling with a Python API for algorithmic geometry, 
+                        constraint solving, and batch design exploration.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">CadQuery</span>
+                        <span class="tag">OpenSCAD</span>
+                        <span class="tag">Python</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>🌐 Interactive Design Agents</h4>
+                    <p>
+                        LLM-powered agents that read design goals and constraints, then rewrite CAD scripts, 
+                        update joints, materials, and mass properties, and push changes into Git.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">Generative Agents</span>
+                        <span class="tag">Optimization</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>🏭 Manufacturing Orchestration</h4>
+                    <p>
+                        From export to toolpath: 3D printing (FDM/SLA/Polyjet), CNC, laser cutting, and PCB 
+                        fab orders driven by a single design source of truth.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">DFM</span>
+                        <span class="tag">CNC</span>
+                        <span class="tag">3D Print</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>📊 Simulation & Data</h4>
+                    <p>
+                        NVIDIA Isaac Sim, Gazebo, and Webots adapters, synthetic data pipelines, and 
+                        physics validation hooks that mirror real hardware configurations.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">Isaac Sim</span>
+                        <span class="tag">ROS2</span>
+                        <span class="tag">Synthetic Data</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>⚙️ Firmware & Embedded</h4>
+                    <p>
+                        Firmware agents emit MCU projects, drivers, and RTOS scheduling policies that match 
+                        each hardware variant, closing the loop between CAD, PCB, and code.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">Micro-ROS</span>
+                        <span class="tag">Zephyr</span>
+                        <span class="tag">RTOS</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>📱 PCB Design & Electronics</h4>
+                    <p>
+                        KiCad-based reference designs for motor drivers, sensor hubs, and power stages, 
+                        plus BOM optimization and supply-chain-aware design assistants.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">KiCad</span>
+                        <span class="tag">AI Routing</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>🎓 Learning & Simulation Academy</h4>
+                    <p>
+                        Notebooks, tutorials, and challenge tracks that walk users from “hello world gripper” 
+                        to multi-robot cells, all built with the same toolchain.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">Guided Workflows</span>
+                        <span class="tag">Community</span>
+                    </div>
+                </div>
+                <div class="component-item">
+                    <h4>🌍 Open-Source Ecosystem</h4>
+                    <p>
+                        A living library of modules, blocks, and full robots, each with code, CAD, PCs, and 
+                        simulation, enabling true fork-and-go development.
+                    </p>
+                    <div class="component-tags">
+                        <span class="tag">GitHub</span>
+                        <span class="tag">MIT / OHL</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Iteration Cost Visualization -->
+    <section class="iteration-section">
+        <div class="container">
+            <h2 class="section-title">Iteration Cost Compression</h2>
+            <p class="section-subtitle">Turning weeks of rework into scripted, agent-driven cycles</p>
+            <div class="iteration-layout">
+                <div class="iteration-graphic">
+                    <h3 style="font-size:1.1rem; margin-bottom:0.5rem;">Relative Cost per Design Iteration</h3>
+                    <p style="font-size:0.9rem; color:var(--color-text-secondary);">
+                        Conceptual: manual CAD versus scripted workflows with agents and simulation.
+                    </p>
+                    <div class="iteration-bars">
+                        <div class="iteration-bar">
+                            <div class="iteration-bar-label">
+                                <span>Traditional CAD + Manual Changes</span>
+                                <span>100%</span>
+                            </div>
+                            <div class="iteration-bar-track">
+                                <div class="iteration-bar-fill" style="width:95%;"></div>
+                            </div>
+                        </div>
+                        <div class="iteration-bar">
+                            <div class="iteration-bar-label">
+                                <span>Scripted CAD (CadQuery/OpenSCAD)</span>
+                                <span>≈ 40–60%</span>
+                            </div>
+                            <div class="iteration-bar-track">
+                                <div class="iteration-bar-fill" style="width:55%;"></div>
+                            </div>
+                        </div>
+                        <div class="iteration-bar">
+                            <div class="iteration-bar-label">
+                                <span>Scripted CAD + Agents + Simulation</span>
+                                <span>≈ 20–30%</span>
+                            </div>
+                            <div class="iteration-bar-track">
+                                <div class="iteration-bar-fill" style="width:28%;"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="iteration-copy">
+                    <p>
+                        RoboFlow expresses robots as code and data, so design changes propagate through CAD, 
+                        simulation, and firmware with a single commit instead of multiple teams repeating work.
+                    </p>
+                    <ul>
+                        <li>Scripted CAD eliminates redraws; dimensions, constraints, and joints are parameters, not manual edits.</li>
+                        <li>Agents propose and implement modifications, then regenerate geometry, meshes, and URDFs automatically.</li>
+                        <li>Digital twins filter out bad ideas before any plastic, metal, or PCB is consumed.</li>
+                        <li>Shared open-source modules reduce greenfield work and make reuse the default behavior.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projected Gains -->
+    <section class="gains-section" id="gains">
+        <div class="container">
+            <h2 class="section-title">Projected Gains</h2>
+            <p class="section-subtitle">Quantifying the leverage of a fully integrated robotics platform</p>
+            <div class="gains-grid">
+                <div class="gain-card">
+                    <div class="gain-number">-75%</div>
+                    <div class="gain-label">Average design & prototyping cost per iteration</div>
+                </div>
+                <div class="gain-card">
+                    <div class="gain-number">-60%</div>
+                    <div class="gain-label">Time to functional pilot cell vs. bespoke builds</div>
+                </div>
+                <div class="gain-card">
+                    <div class="gain-number">10×</div>
+                    <div class="gain-label">Lower up-front capex for open-source-based robots</div>
+                </div>
+                <div class="gain-card">
+                    <div class="gain-number">+240%</div>
+                    <div class="gain-label">Expected ROI on automation projects over 3–5 years</div>
+                </div>
+                <div class="gain-card">
+                    <div class="gain-number">99.5%</div>
+                    <div class="gain-label">Simulation-to-reality behavior agreement target</div>
+                </div>
+                <div class="gain-card">
+                    <div class="gain-number">∞</div>
+                    <div class="gain-label">Design variants possible via parametric + agentic workflows</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Development Workflow -->
+    <section class="workflow-section" id="workflow">
+        <div class="container">
+            <h2 class="section-title">Integrated Development Workflow</h2>
+            <p class="section-subtitle">From requirements to deployed fleets, all in one loop</p>
+            <div class="workflow-diagram">
+                <div class="workflow-steps">
+                    <div class="workflow-step">
+                        <div class="workflow-step-circle">1</div>
+                        <div class="workflow-step-label">Specify</div>
+                        <div class="workflow-step-desc">Natural language requirements to design agents</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-circle">2</div>
+                        <div class="workflow-step-label">Design</div>
+                        <div class="workflow-step-desc">CadQuery/OpenSCAD models and PCB layouts generated</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-circle">3</div>
+                        <div class="workflow-step-label">Simulate</div>
+                        <div class="workflow-step-desc">Isaac/Gazebo scenarios and synthetic data generation</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-circle">4</div>
+                        <div class="workflow-step-label">Fabricate</div>
+                        <div class="workflow-step-desc">3D print, CNC, and PCB fabrication orchestrated</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-circle">5</div>
+                        <div class="workflow-step-label">Integrate</div>
+                        <div class="workflow-step-desc">Firmware, sensing, and control loop deployment</div>
+                    </div>
+                    <div class="workflow-step">
+                        <div class="workflow-step-circle">6</div>
+                        <div class="workflow-step-label">Deploy</div>
+                        <div class="workflow-step-desc">Cloud-managed ROS2 fleets with continuous learning</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="interactive-demo">
+                <h3>Interactive Demo: Design a Gripper</h3>
+                <p>Click to see how an agent turns a requirement into a complete parametric design + workflow.</p>
+                <button class="demo-button" onclick="runDemo()">Run Demo</button>
+                <div class="demo-output" id="demoOutput">Output will appear here...</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Integration Matrix -->
+    <section class="integration-section" id="integration">
+        <div class="container">
+            <h2 class="section-title">Ecosystem Integrations</h2>
+            <p class="section-subtitle">Plug into the tools and hardware you already use</p>
+            <div class="integration-matrix">
+                <div class="matrix-row">
+                    <div class="matrix-row-title">🔬 Design & Simulation</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">CadQuery</span>
+                        <span class="integration-badge">OpenSCAD</span>
+                        <span class="integration-badge">FreeCAD</span>
+                        <span class="integration-badge">NVIDIA Isaac Sim</span>
+                        <span class="integration-badge">Gazebo</span>
+                        <span class="integration-badge">Webots</span>
+                        <span class="integration-badge">CoppeliaSim</span>
+                        <span class="integration-badge">MuJoCo</span>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-row-title">🦾 Middleware</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">ROS2</span>
+                        <span class="integration-badge">ROS1 Bridge</span>
+                        <span class="integration-badge">DDS</span>
+                        <span class="integration-badge">Micro-ROS</span>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-row-title">🧠 AI & ML</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">PyTorch</span>
+                        <span class="integration-badge">TensorFlow</span>
+                        <span class="integration-badge">OpenAI APIs</span>
+                        <span class="integration-badge">Claude</span>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-row-title">📦 CAD & CAM</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">Fusion 360</span>
+                        <span class="integration-badge">Onshape</span>
+                        <span class="integration-badge">SolidWorks (URDF)</span>
+                        <span class="integration-badge">Blender</span>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-row-title">🏭 Fabrication</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">3D Print APIs</span>
+                        <span class="integration-badge">CNC.js</span>
+                        <span class="integration-badge">PCB fabs</span>
+                        <span class="integration-badge">Shapeways</span>
+                        <span class="integration-badge">Protolabs</span>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-row-title">📡 Hardware</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">Raspberry Pi</span>
+                        <span class="integration-badge">Jetson Orin</span>
+                        <span class="integration-badge">ESP32</span>
+                        <span class="integration-badge">ARM Cortex-M</span>
+                        <span class="integration-badge">RISC-V</span>
+                    </div>
+                </div>
+                <div class="matrix-row">
+                    <div class="matrix-row-title">☁️ Cloud & CI</div>
+                    <div class="integrations-list">
+                        <span class="integration-badge">AWS RoboMaker</span>
+                        <span class="integration-badge">Azure</span>
+                        <span class="integration-badge">GCP</span>
+                        <span class="integration-badge">GitHub Actions</span>
+                        <span class="integration-badge">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tabs Deep Dive -->
+    <section class="tabs-section">
+        <div class="container">
+            <h2 class="section-title">Deep-Dive: Tools & Workflows</h2>
+            <div class="tabs-container">
+                <div class="tabs-header">
+                    <button class="tab-button active" onclick="switchTab('design')">Design & CAD</button>
+                    <button class="tab-button" onclick="switchTab('manufacturing')">Manufacturing</button>
+                    <button class="tab-button" onclick="switchTab('simulation')">Simulation</button>
+                    <button class="tab-button" onclick="switchTab('agents')">AI Agents</button>
+                </div>
+                <div id="design" class="tab-content active">
+                    <ul>
+                        <li>Parametric CAD pipelines using CadQuery and OpenSCAD scripts under Git.</li>
+                        <li>Automatic URDF/mesh export and ROS2 package scaffolding.</li>
+                        <li>Shared library of joints, links, and assemblies for fast composition.</li>
+                        <li>Constraint solvers and parameter sweeps for performance envelopes.</li>
+                        <li>Inline previews and web-based 3D viewers for stakeholders.</li>
+                    </ul>
+                </div>
+                <div id="manufacturing" class="tab-content">
+                    <ul>
+                        <li>3D-print job queues with material, infill, and support optimization.</li>
+                        <li>CNC toolpath generation and G-code validation inside the platform.</li>
+                        <li>PCB DRC checks, panelization, and vendor-ready Gerber export.</li>
+                        <li>Per-part and per-batch cost estimation, with supplier recommendations.</li>
+                        <li>Closed-loop: failed prints and builds logged back into agents as feedback.</li>
+                    </ul>
+                </div>
+                <div id="simulation" class="tab-content">
+                    <ul>
+                        <li>Automated Isaac/Gazebo scene creation from CAD and URDF.</li>
+                        <li>Policy training pipelines with synthetic data and domain randomization.</li>
+                        <li>Performance metrics dashboards: cycle time, collision rates, MTBF.</li>
+                        <li>Hardware-in-the-loop regression tests before field deployment.</li>
+                        <li>Scenario libraries for common environments (warehouse, lab, farm).</li>
+                    </ul>
+                </div>
+                <div id="agents" class="tab-content">
+                    <ul>
+                        <li>Design agents that refactor CAD/PCB scripts to satisfy constraints.</li>
+                        <li>Firmware agents that synthesize MCU projects from hardware manifests.</li>
+                        <li>Manufacturing agents that schedule prints, CNC jobs, and PCB orders.</li>
+                        <li>Learning agents that curate tutorials from successful projects.</li>
+                        <li>Debug agents that analyze logs and propose fixes to designs or code.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Agents Ecosystem -->
+    <section class="agents-section" id="agents">
+        <div class="container">
+            <h2 class="section-title">AI Agent Ecosystem</h2>
+            <p class="section-subtitle">Specialized agents collaborating across the robot lifecycle</p>
+            <div class="agents-grid">
+                <div class="agent-card">
+                    <div class="agent-title">
+                        <div class="agent-icon">🎨</div>
+                        Design Agent
+                    </div>
+                    <div class="agent-description">
+                        Translates requirements into CAD/PCB edits, proposes alternatives, and 
+                        ensures manufacturability and structural soundness.
+                    </div>
+                    <ul class="agent-capabilities">
+                        <li>Intent parsing and requirement extraction</li>
+                        <li>Parametric script editing and refactoring</li>
+                        <li>Topology and mass optimization</li>
+                        <li>Automatic URDF and mesh export</li>
+                    </ul>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-title">
+                        <div class="agent-icon">⚡</div>
+                        Firmware Agent
+                    </div>
+                    <div class="agent-description">
+                        Generates and maintains firmware stacks as hardware evolves, 
+                        keeping embedded code and ROS2 nodes in sync.
+                    </div>
+                    <ul class="agent-capabilities">
+                        <li>HAL and driver scaffolding</li>
+                        <li>RTOS scheduling and timing analysis</li>
+                        <li>Interface definition to ROS2/micro-ROS</li>
+                        <li>Automated test generation for regressions</li>
+                    </ul>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-title">
+                        <div class="agent-icon">🔧</div>
+                        Manufacturing Agent
+                    </div>
+                    <div class="agent-description">
+                        Converts designs into fabrication plans, selecting methods, vendors, 
+                        and schedules to minimize cost and lead time.
+                    </div>
+                    <ul class="agent-capabilities">
+                        <li>Process planning across print/CNC/PCB</li>
+                        <li>Cost and lead-time optimization</li>
+                        <li>DFM feedback to design agents</li>
+                        <li>Supplier and machine utilization balancing</li>
+                    </ul>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-title">
+                        <div class="agent-icon">📊</div>
+                        Simulation Agent
+                    </div>
+                    <div class="agent-description">
+                        Builds digital twins, stress-tests designs, 
+                        and captures synthetic data for training and validation.
+                    </div>
+                    <ul class="agent-capabilities">
+                        <li>Scenario and environment generation</li>
+                        <li>Physics and kinematic validation</li>
+                        <li>Edge case search and coverage reporting</li>
+                        <li>Policy evaluation and selection</li>
+                    </ul>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-title">
+                        <div class="agent-icon">🤖</div>
+                        Control Agent
+                    </div>
+                    <div class="agent-description">
+                        Designs controllers and planners, tunes parameters, 
+                        and adapts policies as deployment data is collected.
+                    </div>
+                    <ul class="agent-capabilities">
+                        <li>IK and motion planning synthesis</li>
+                        <li>Gain tuning and robustness analysis</li>
+                        <li>Online adaptation from telemetry</li>
+                        <li>Multi-robot coordination strategies</li>
+                    </ul>
+                </div>
+                <div class="agent-card">
+                    <div class="agent-title">
+                        <div class="agent-icon">🎓</div>
+                        Learning Agent
+                    </div>
+                    <div class="agent-description">
+                        Guides users through best practices, 
+                        surfaces relevant examples, and builds curriculum from real projects.
+                    </div>
+                    <ul class="agent-capabilities">
+                        <li>Context-aware tutorial suggestions</li>
+                        <li>Pattern mining from successful builds</li>
+                        <li>Code and design review assistance</li>
+                        <li>Progress tracking for teams and cohorts</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Roadmap / Key Milestones -->
+    <section class="roadmap-section" id="roadmap">
+        <div class="container">
+            <h2 class="section-title">Key Milestones</h2>
+            <p class="section-subtitle">A phased rollout from core tech to global adoption</p>
+            <div class="roadmap-timeline">
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-time">Q1–Q2 2025</div>
+                    <div class="roadmap-title">Core Platform & Private Alpha</div>
+                    <div class="roadmap-desc">
+                        Deliver integrated CAD–sim–firmware loop for 3–5 anchor partners; 
+                        validate agent workflows on real cells.
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-time">Q3–Q4 2025</div>
+                    <div class="roadmap-title">Open-Source Reference Robots</div>
+                    <div class="roadmap-desc">
+                        Release open robot families (mobile base, arm, grippers) with 
+                        full design stacks and tutorials; grow to 100+ active builders.
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-time">H1 2026</div>
+                    <div class="roadmap-title">Manufacturing-Grade Workflows</div>
+                    <div class="roadmap-desc">
+                        Integrate with contract manufacturers, PCB fabs, and QA pipelines; 
+                        close the loop from spec to production.
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-time">H2 2026</div>
+                    <div class="roadmap-title">Level 3 Integrated Building Blocks</div>
+                    <div class="roadmap-desc">
+                        Ship first generation energy–actuation–sensing modules with 
+                        standard interfaces and production-ready design docs.
+                    </div>
+                </div>
+                <div class="roadmap-item">
+                    <div class="roadmap-dot"></div>
+                    <div class="roadmap-time">2027+</div>
+                    <div class="roadmap-title">Ecosystem & Fleet Intelligence</div>
+                    <div class="roadmap-desc">
+                        Hundreds of teams building on the platform; large fleets share 
+                        policies, benchmarks, and best practices through the cloud layer.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Investment Outlook -->
+    <section class="investment-section" id="investment">
+        <div class="container">
+            <h2 class="section-title">Investment Outlook</h2>
+            <p class="section-subtitle">Positioning RoboFlow in the next decade of robotics</p>
+            <div class="investment-grid">
+                <div class="investment-card">
+                    <h3>Market & Opportunity</h3>
+                    <div class="metric-row">
+                        <span class="metric-label">Global robotics spend (2033)</span>
+                        <span class="metric-value">$250B+ TAM</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Targetable stack (software + hardware kits)</span>
+                        <span class="metric-value">$20–40B SAM</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Initial focus</span>
+                        <span class="metric-value">SMBs & robotics startups</span>
+                    </div>
+                    <ul style="margin-top:1rem;">
+                        <li>Rising labor costs and skill shortages accelerate automation adoption.</li>
+                        <li>Open-source hardware and standardized modules reduce vendor lock-in.</li>
+                        <li>Agentic AI makes non-experts productive in full-stack robotics.</li>
+                    </ul>
+                </div>
+                <div class="investment-card">
+                    <h3>Business Trajectory</h3>
+                    <div class="metric-row">
+                        <span class="metric-label">Years 1–3 revenue target</span>
+                        <span class="metric-value">$2–5M ARR</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Long-term gross margin</span>
+                        <span class="metric-value">70%+ blended</span>
+                    </div>
+                    <div class="metric-row">
+                        <span class="metric-label">Potential exit range</span>
+                        <span class="metric-value">$500M–$2B</span>
+                    </div>
+                    <ul style="margin-top:1rem;">
+                        <li>SaaS + usage-based manufacturing orchestration fees.</li>
+                        <li>Hardware kits and building blocks with healthy margins.</li>
+                        <li>Strategic fit with cloud, industrial, and OEM acquirers.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Product</h4>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Pricing</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">API Reference</a></li>
+                    <li><a href="#">Roadmap</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="#">Discord</a></li>
+                    <li><a href="#">Forums</a></li>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Showcase</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Partners</a></li>
+                    <li><a href="#">Careers</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Getting Started</a></li>
+                    <li><a href="#">Video Tutorials</a></li>
+                    <li><a href="#">Design Library</a></li>
+                    <li><a href="#">Component Store</a></li>
+                    <li><a href="#">Research Papers</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 RoboFlow - Democratized Robotics Development Platform. Open-source friendly, agent-powered, and built for the next generation of robot builders.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab switching
+        function switchTab(tabName) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+            contents.forEach(c => c.classList.remove('active'));
+            buttons.forEach(b => b.classList.remove('active'));
+            document.getElementById(tabName).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Demo
+        function runDemo() {
+            const output = document.getElementById('demoOutput');
+            output.innerHTML = 'Initializing Design Agent...<br>';
+            setTimeout(() => {
+                output.innerHTML += '✓ Parsing requirement: “adaptive parallel gripper for 2–5 cm objects”<br>';
+            }, 300);
+            setTimeout(() => {
+                output.innerHTML += '✓ Generating CadQuery parametric script (jaw width, stroke, force)...<br>';
+            }, 700);
+            setTimeout(() => {
+                output.innerHTML += '✓ Spawning Isaac Sim scene and running FEA approximations...<br>';
+            }, 1100);
+            setTimeout(() => {
+                output.innerHTML += '✓ Selecting variant #2 based on deflection and print time...<br>';
+            }, 1500);
+            setTimeout(() => {
+                output.innerHTML += '✓ Emitting STL, URDF, and firmware config for motor driver block...<br>';
+            }, 1900);
+            setTimeout(() => {
+                output.innerHTML += '<br><strong style="color:#4CAF50;">✓ Ready: send to multi-material 3D printer and assemble with standard actuator block.</strong>';
+            }, 2300);
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const href = this.getAttribute('href');
+                if (href && href.startsWith('#')) {
+                    e.preventDefault();
+                    const el = document.querySelector(href);
+                    if (el) el.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Hover effects for main CTAs
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-3px)';
+            });
+            btn.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
+
+        // Intersection Observer for fade-in
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -100px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll(
+            '.feature-card, .component-item, .vision-level, .agent-card'
+        ).forEach(el => {
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

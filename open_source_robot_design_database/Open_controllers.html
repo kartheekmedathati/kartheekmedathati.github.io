@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Open Controllers – Landscape, Designs & Positioning</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --primary: #1f82c7;
+      --secondary: #1f9a8a;
+      --accent: #f36a2f;
+      --bg: #f5f6f8;
+      --surface: #ffffff;
+      --text: #1f2224;
+      --muted: #6a7a83;
+      --border: #d4d8dd;
+      --success: #208070;
+      --error: #c0392b;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--primary); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    header {
+      background: var(--surface);
+      border-bottom: 3px solid var(--primary);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+      padding: 28px 16px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+    .header-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .title-block h1 {
+      font-size: 1.9rem;
+      color: var(--primary);
+      margin-bottom: 4px;
+    }
+    .subtitle {
+      font-size: 0.95rem;
+      color: var(--muted);
+      max-width: 620px;
+    }
+    nav.top-nav a {
+      margin-left: 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+    nav.top-nav a:hover { color: var(--primary); }
+
+    main {
+      max-width: 1200px;
+      margin: 24px auto 40px;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    /* Sidebar nav */
+    .side-nav {
+      position: sticky;
+      top: 88px;
+      align-self: flex-start;
+      background: var(--surface);
+      border-radius: 8px;
+      padding: 16px 14px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+      border: 1px solid var(--border);
+    }
+    .side-nav h2 {
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+    .side-nav a {
+      display: block;
+      padding: 6px 0;
+      font-size: 0.9rem;
+      color: var(--text);
+    }
+    .side-nav a:hover { color: var(--primary); }
+
+    /* Sections */
+    section {
+      background: var(--surface);
+      border-radius: 10px;
+      padding: 20px 20px 24px;
+      margin-bottom: 16px;
+      box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+      border: 1px solid var(--border);
+    }
+    section h2 {
+      font-size: 1.35rem;
+      color: var(--secondary);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    section h3 {
+      font-size: 1.05rem;
+      color: var(--primary);
+      margin: 14px 0 6px;
+    }
+    p { font-size: 0.95rem; margin-bottom: 6px; }
+
+    .tagline {
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .hero-highlight {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+      margin-top: 10px;
+    }
+    .hero-card {
+      background: #f0f5fb;
+      border-radius: 8px;
+      padding: 10px 12px;
+      border: 1px solid #d7e4f2;
+      font-size: 0.88rem;
+    }
+    .hero-card strong { display: block; margin-bottom: 2px; }
+
+    /* Infographic */
+    .infographic-wrapper {
+      margin-top: 4px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      overflow: hidden;
+      background: #f8fafc;
+    }
+    .infographic-header {
+      padding: 8px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .infographic-header span { font-weight: 500; }
+    .infographic-body {
+      padding: 10px 10px 12px;
+    }
+    .infographic-body img {
+      max-width: 100%;
+      display: block;
+      border-radius: 6px;
+    }
+    .infographic-caption {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Table */
+    .table-wrapper {
+      margin-top: 10px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.86rem;
+      min-width: 760px;
+    }
+    thead {
+      background: var(--primary);
+      color: #fff;
+    }
+    th, td {
+      padding: 8px 9px;
+      border: 1px solid var(--border);
+      text-align: left;
+      vertical-align: top;
+    }
+    tbody tr:nth-child(even) {
+      background: #f6f7fa;
+    }
+    tbody tr:hover {
+      background: #eef5ff;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 0.73rem;
+      font-weight: 600;
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+    .badge-gaming { background: #e4f0ff; color: #1f5fa8; }
+    .badge-robotics { background: #efe4ff; color: #6a1b9a; }
+    .badge-diy { background: #e4fbef; color: #1b8c4a; }
+    .badge-open { background: #e7f7ec; color: var(--success); }
+    .badge-fw { background: #fff1e3; color: #b45a13; }
+
+    /* Detail cards */
+    .design-card {
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      padding: 14px 14px 12px;
+      margin-top: 10px;
+    }
+    .design-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+    .design-header h3 { margin: 0; }
+    .meta-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(170px,1fr));
+      gap: 8px;
+      margin: 8px 0 10px;
+    }
+    .meta-item {
+      background: #f7f8fb;
+      border-radius: 6px;
+      padding: 6px 8px;
+      border-left: 3px solid var(--secondary);
+      font-size: 0.8rem;
+    }
+    .meta-label {
+      font-weight: 600;
+      color: var(--secondary);
+      display: block;
+      margin-bottom: 2px;
+    }
+    .meta-value { color: var(--text); }
+
+    .flex-cols {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+    ul {
+      list-style: none;
+      margin-top: 4px;
+    }
+    ul li {
+      position: relative;
+      padding-left: 16px;
+      font-size: 0.86rem;
+      margin-bottom: 3px;
+    }
+    ul.pros li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--success);
+      font-weight: 700;
+    }
+    ul.cons li::before {
+      content: "✗";
+      position: absolute;
+      left: 0;
+      color: var(--error);
+      font-weight: 700;
+    }
+
+    /* Shared vs not shared grid */
+    .share-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
+      gap: 6px;
+      margin-top: 4px;
+    }
+    .share-item {
+      background: #f7f7f9;
+      border-radius: 6px;
+      padding: 5px 7px;
+      font-size: 0.8rem;
+    }
+    .share-item strong {
+      display: block;
+      margin-bottom: 2px;
+    }
+    .share-yes { color: var(--success); }
+    .share-partial { color: #b47d00; }
+    .share-no { color: var(--error); }
+
+    .link-list li::before { content: "•"; color: var(--muted); left: 0; }
+
+    @media (max-width: 860px) {
+      main {
+        grid-template-columns: 1fr;
+      }
+      .side-nav {
+        position: static;
+        order: -1;
+      }
+      header {
+        position: static;
+      }
+      .header-inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      nav.top-nav a { margin-left: 0; margin-right: 12px; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div class="title-block">
+      <h1>Open Controllers: Landscape & Positioning</h1>
+      <p class="subtitle">
+        A high-level map of open gaming and robotics controllers, their designs, licenses,
+        openness levels, and where they sit relative to commercial leaders.
+      </p>
+    </div>
+    <nav class="top-nav">
+      <a href="#overview">Overview</a>
+      <a href="#infographic">Landscape</a>
+      <a href="#comparison">Comparison</a>
+      <a href="#designs">Design Profiles</a>
+      <a href="#strategy">Strategy</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- Side navigation -->
+  <aside class="side-nav">
+    <h2>On this page</h2>
+    <a href="#overview">1. Executive Overview</a>
+    <a href="#infographic">2. Landscape & Openness</a>
+    <a href="#comparison">3. Comparative Table</a>
+    <a href="#designs">4. Open Design Profiles</a>
+    <a href="#strategy">5. Strategic Positioning</a>
+  </aside>
+
+  <div>
+    <!-- 1. Executive overview -->
+    <section id="overview">
+      <h2>1. Executive Overview</h2>
+      <p class="tagline">
+        Open controllers are the bridge between consumer gaming ergonomics and industrial/robotics requirements,
+        enabled by fully documented hardware, firmware, and CAD.
+      </p>
+      <div class="hero-highlight">
+        <div class="hero-card">
+          <strong>Category</strong>
+          Open, hackable controllers spanning gaming, CAD, and robotics – in contrast to
+          closed Logitech/Sony pads and OEM teach pendants.
+        </div>
+        <div class="hero-card">
+          <strong>Key Differentiators</strong>
+          Transparency, modifiability, ROS/fieldbus support, and 6‑DOF/gyro sensing alongside
+          competitive latency.
+        </div>
+        <div class="hero-card">
+          <strong>Strategic Wedge</strong>
+          Prosumer gamers and robotics developers who need more than a console pad
+          but less cost/lock‑in than industrial pendants.
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. Infographic / Landscape -->
+    <section id="infographic">
+      <h2>2. Controllers Landscape & Openness</h2>
+      <p>
+        The infographic below captures the levels of openness, examples of current designs,
+        and positioning against closed gaming and industrial offerings.
+      </p>
+      <div class="infographic-wrapper">
+        <div class="infographic-header">
+          <span>Open Controllers: Market Landscape & Positioning</span>
+          <span>Openness · Designs · Market position</span>
+        </div>
+        <div class="infographic-body">
+          <!-- Replace src with your actual image path -->
+          <img src="open_controller_infographic.png"
+               alt="Infographic summarizing openness levels, current open designs, and market positioning of open controllers.">
+          <p class="infographic-caption">
+            Visual spectrum of controller openness (Fully Open → Closed/Hacked),
+            sample open designs (GP2040‑CE, Alpakka, DIY SpaceMouse),
+            and a 2×2 matrix positioning open controllers versus console OEMs and Logitech/Razer.
+          </p>
+        </div>
+      </div>
+
+      <h3>Levels of Openness (Conceptual Spectrum)</h3>
+      <p>
+        Openness spans from fully documented hardware and firmware to closed, reverse‑engineered devices.
+      </p>
+      <ul>
+        <li><strong>Fully Open</strong> – HW schematics, PCB, firmware, CAD, and protocols are all published under OSH‑friendly licenses.</li>
+        <li><strong>Mostly Open</strong> – Core design open, but some radios/sensors remain closed modules with public APIs.</li>
+        <li><strong>Ecosystem‑Open</strong> – Closed hardware with open SDKs and HID documentation (typical premium gaming controllers).</li>
+        <li><strong>Closed / Hacked</strong> – Proprietary consoles and pendants where community support depends on reverse engineering.</li>
+      </ul>
+    </section>
+
+    <!-- 3. Comparative table -->
+    <section id="comparison">
+      <h2>3. Comparative Table: Current Open Designs</h2>
+      <p>
+        The table below summarizes the most relevant open controller platforms across gaming, CAD/teleop,
+        robotics, and motor control, including approximate BOM and price bands.
+      </p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>Project</th>
+              <th>Domain</th>
+              <th>Platform / MCU</th>
+              <th>Openness & Licenses</th>
+              <th>Approx. BOM</th>
+              <th>Typical Price</th>
+              <th>Best For</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>GP2040‑CE</strong></td>
+              <td><span class="badge badge-gaming">Gaming – Arcade/Fight</span></td>
+              <td>RP2040 (Raspberry Pi Pico)</td>
+              <td>
+                <span class="badge badge-open">Firmware open (GPL‑3.0)</span><br>
+                Community PCBs (mixed licenses).
+              </td>
+              <td>$15–25 (populated control PCB, excl. case/buttons)</td>
+              <td>$25–50 board; $80–200 complete stick</td>
+              <td>Competitive fighting/arcade builds needing sub‑ms latency.</td>
+            </tr>
+            <tr>
+              <td><strong>Alpakka (Input Labs)</strong></td>
+              <td><span class="badge badge-gaming">Gaming – Gyro/Accessibility</span></td>
+              <td>RP2040 (Pico) + dual gyros</td>
+              <td>
+                <span class="badge badge-open">HW+FW+CAD open</span><br>
+                FW: GPL; CAD/PCB: CC‑type.
+              </td>
+              <td>≈€50–110 (~$55–120) DIY BOM</td>
+              <td>≈€80–150 DIY/kit</td>
+              <td>FPS/gyro‑aim gamers, accessibility users, Linux/Steam Deck.</td>
+            </tr>
+            <tr>
+              <td><strong>DIY SpaceMouse / Nebula</strong></td>
+              <td><span class="badge badge-robotics">CAD / 6‑DOF / Teleop</span></td>
+              <td>Arduino / Teensy + IMU/magnets</td>
+              <td>
+                <span class="badge badge-open">Fully open (per project)</span><br>
+                MIT/GPL mix for FW & CAD.
+              </td>
+              <td>≈€20 (basic) → €100+ (advanced)</td>
+              <td>$30–150 DIY</td>
+              <td>CAD professionals and teleop researchers needing 6‑DOF input.</td>
+            </tr>
+            <tr>
+              <td><strong>OpenCM9.04 (Robotis)</strong></td>
+              <td><span class="badge badge-robotics">Robotics – Servo controller</span></td>
+              <td>STM32F103 (Cortex‑M3)</td>
+              <td>
+                <span class="badge badge-open">HW+FW documented</span><br>
+                Robotis open docs/e‑Manual.
+              </td>
+              <td>$15–30 (board)</td>
+              <td>$25–40 retail</td>
+              <td>Dynamixel‑based robots in research/education.</td>
+            </tr>
+            <tr>
+              <td><strong>Arduino Pro Micro / Leonardo Gamepads</strong></td>
+              <td><span class="badge badge-diy">DIY – Gaming/Macro</span></td>
+              <td>ATmega32U4</td>
+              <td>
+                <span class="badge badge-fw">Firmware open</span><br>
+                Arduino + MIT Joystick library.
+              </td>
+              <td>$20–50</td>
+              <td>$25–80 kits/boards</td>
+              <td>Custom layouts, prototyping, education.</td>
+            </tr>
+            <tr>
+              <td><strong>Moteus BLDC Controller (mjbots)</strong></td>
+              <td><span class="badge badge-robotics">Robotics – Motor control</span></td>
+              <td>STM32G4 (Cortex‑M4F)</td>
+              <td>
+                <span class="badge badge-open">HW+FW open (Apache‑2.0)</span>
+              </td>
+              <td>$60–100 (board + sensors)</td>
+              <td>$150–200</td>
+              <td>Quadrupeds and dynamic joint‑level control over CAN‑FD.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top:8px;font-size:0.82rem;color:var(--muted);">
+        BOM figures assume small‑batch sourcing; prices tighten at higher volumes and increase with
+        more polished enclosures and wireless modules.
+      </p>
+    </section>
+
+    <!-- 4. Design profiles -->
+    <section id="designs">
+      <h2>4. Open Design Profiles & Shared Assets</h2>
+      <p>
+        Each design below includes domain, performance and cost bands, licensing, and an explicit view of what
+        is and is not shared (firmware, PCB, CAD, BOM, and protocol documentation).
+      </p>
+
+      <!-- GP2040-CE -->
+      <div class="design-card">
+        <div class="design-header">
+          <h3>🎮 GP2040‑CE – Multi‑Platform Arcade/Fight Firmware</h3>
+          <div>
+            <span class="badge badge-gaming">Gaming</span>
+            <span class="badge badge-fw">Firmware open</span>
+          </div>
+        </div>
+        <p class="tagline">
+          RP2040‑based firmware providing ultra‑low‑latency, multi‑platform support for fight sticks,
+          leverless hitboxes, and arcade panels.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-value">RP2040 (Raspberry Pi Pico)</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">BOM Cost (board)</span>
+            <span class="meta-value">$15–25 including RP2040 and connectors.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Typical Price</span>
+            <span class="meta-value">$25–50 PCB; $80–200 complete stick.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Latency</span>
+            <span class="meta-value">≈0.76 ms average (wired).</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Licenses</span>
+            <span class="meta-value">Firmware: GPL‑3.0; board licenses vary by vendor.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Integration</span>
+            <span class="meta-value">USB HID; ROS via joy_node.</span>
+          </div>
+        </div>
+        <div class="flex-cols">
+          <div>
+            <h3>Pros</h3>
+            <ul class="pros-list">
+              <li>Ultra‑low latency tuned for competitive fighting games.</li>
+              <li>Mature firmware with web‑based configuration UI.</li>
+              <li>Large community and broad board support ecosystem.</li>
+              <li>Very low incremental BOM for makers and vendors.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Cons</h3>
+            <ul class="cons-list">
+              <li>Primary focus is digital inputs (arcade buttons/leverless).</li>
+              <li>No native ROS/fieldbus protocol beyond HID.</li>
+              <li>Hardware openness depends on each board vendor.</li>
+            </ul>
+          </div>
+        </div>
+        <h3>What’s Shared vs Not</h3>
+        <div class="share-grid">
+          <div class="share-item">
+            <strong>Firmware</strong>
+            <span class="share-yes">✅ Full source (GPL‑3.0).</span>
+          </div>
+          <div class="share-item">
+            <strong>PCB & Schematics</strong>
+            <span class="share-partial">⚠️ Per‑vendor; some open KiCad, others closed.</span>
+          </div>
+          <div class="share-item">
+            <strong>CAD (Shell)</strong>
+            <span class="share-partial">⚠️ Community designs, no canonical enclosure.</span>
+          </div>
+          <div class="share-item">
+            <strong>BOM</strong>
+            <span class="share-partial">⚠️ Listed by many board vendors, not centralized.</span>
+          </div>
+          <div class="share-item">
+            <strong>Protocols</strong>
+            <span class="share-yes">✅ Standard USB HID documented.</span>
+          </div>
+        </div>
+        <h3>Key Links</h3>
+        <ul class="link-list">
+          <li>[nav_link:GP2040‑CE] – main firmware and documentation.</li>
+        </ul>
+      </div>
+
+      <!-- Alpakka -->
+      <div class="design-card">
+        <div class="design-header">
+          <h3>🎮 Alpakka – Open Gyro‑to‑Mouse Controller</h3>
+          <div>
+            <span class="badge badge-gaming">Gaming / Accessibility</span>
+            <span class="badge badge-open">HW+FW+CAD open</span>
+          </div>
+        </div>
+        <p class="tagline">
+          Fully open, 3D‑printable gyro controller built on RP2040, designed to deliver mouse‑competitive
+          gyro aiming and rich accessibility features.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-value">RP2040 (Pico) + dual gyroscopes.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">BOM Cost</span>
+            <span class="meta-value">≈€50–110 (~$55–120) depending on region and options.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Typical Price</span>
+            <span class="meta-value">≈€80–150 DIY build or kit.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Polling / Latency</span>
+            <span class="meta-value">250 Hz default; up to 1000 Hz in mods.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Licenses</span>
+            <span class="meta-value">FW: GPL; PCB/CAD: CC‑style OSH licenses.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Connectivity</span>
+            <span class="meta-value">USB wired; optional custom 2.4 GHz wireless.</span>
+          </div>
+        </div>
+        <div class="flex-cols">
+          <div>
+            <h3>Pros</h3>
+            <ul class="pros-list">
+              <li>Mouse‑competitive gyro aiming with open tuning tools.</li>
+              <li>Full stack openness – firmware, PCB, and CAD shared.</li>
+              <li>Strong Linux/Steam Deck support and accessibility focus.</li>
+              <li>Good documentation (manual, firmware dev guide).</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Cons</h3>
+            <ul class="cons-list">
+              <li>Build requires fine‑pitch soldering and 3D‑printing.</li>
+              <li>Wireless is optional and adds BOM and complexity.</li>
+              <li>No native ROS/teleop stack beyond HID.</li>
+              <li>Total cost can approach premium closed controllers.</li>
+            </ul>
+          </div>
+        </div>
+        <h3>What’s Shared vs Not</h3>
+        <div class="share-grid">
+          <div class="share-item">
+            <strong>Firmware</strong>
+            <span class="share-yes">✅ Full source (GPL‑3.0) in firmware repo.</span>
+          </div>
+          <div class="share-item">
+            <strong>PCB & Schematics</strong>
+            <span class="share-yes">✅ KiCad project and schematics shared.</span>
+          </div>
+          <div class="share-item">
+            <strong>CAD (Shell)</strong>
+            <span class="share-yes">✅ STL/STEP and parametric models available.</span>
+          </div>
+          <div class="share-item">
+            <strong>BOM</strong>
+            <span class="share-yes">✅ Documented BOM and sourcing guidance.</span>
+          </div>
+          <div class="share-item">
+            <strong>Protocols</strong>
+            <span class="share-yes">✅ USB HID; gyro‑mouse behavior documented.</span>
+          </div>
+        </div>
+        <h3>Key Links</h3>
+        <ul class="link-list">
+          <li>[nav_link:Input Labs – Alpakka] – product and manual.</li>
+          <li>[nav_link:alpakka_firmware] – firmware repository.</li>
+          <li>[nav_link:alpakka_pcb] – PCB design repository.</li>
+          <li>[nav_link:inputlabs/cad] – enclosure CAD files.</li>
+        </ul>
+      </div>
+
+      <!-- DIY SpaceMouse -->
+      <div class="design-card">
+        <div class="design-header">
+          <h3>🤖 DIY SpaceMouse / Nebula‑Class 6‑DOF Controllers</h3>
+          <div>
+            <span class="badge badge-robotics">CAD / Teleop</span>
+            <span class="badge badge-open">Fully open (per project)</span>
+          </div>
+        </div>
+        <p class="tagline">
+          Community‑built 6‑DOF input devices emulating 3Dconnexion SpaceMouse behavior, using IMUs,
+          magnets, and 3D‑printed mechanisms – ideal for CAD and experimental teleoperation.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-value">Arduino/Teensy (various MCUs) + IMU/magnetometer.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">BOM Cost</span>
+            <span class="meta-value">≈€20 (basic) to €100+ (advanced metal/PCBs).</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Typical Price</span>
+            <span class="meta-value">DIY only – roughly $30–150 per build.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Licenses</span>
+            <span class="meta-value">MIT/GPL/open CAD depending on project.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Integration</span>
+            <span class="meta-value">USB HID emulating 3D mice; ROS via custom mappings.</span>
+          </div>
+        </div>
+        <div class="flex-cols">
+          <div>
+            <h3>Pros</h3>
+            <ul class="pros-list">
+              <li>True 6‑DOF input at a fraction of commercial SpaceMouse cost.</li>
+              <li>Fully open mechanical and electrical designs.</li>
+              <li>Excellent foundation for robotic arm teleoperation.</li>
+              <li>Highly customizable geometry and feel.</li>
+            </ul>
+          </div>
+          <div>
+            <h3>Cons</h3>
+            <ul class="cons-list">
+              <li>Quality heavily depends on builder skill and sourcing.</li>
+              <li>One‑off builds can end up near commercial pricing.</li>
+              <li>No standard ROS stack; HID → robot mapping is custom.</li>
+              <li>No force feedback or industrial safety features.</li>
+            </ul>
+          </div>
+        </div>
+        <h3>What’s Shared vs Not</h3>
+        <div class="share-grid">
+          <div class="share-item">
+            <strong>Firmware</strong>
+            <span class="share-yes">✅ Source shared for most projects.</span>
+          </div>
+          <div class="share-item">
+            <strong>PCB & Schematics</strong>
+            <span class="share-yes">✅ Many designs provide full KiCad/Eagle.</span>
+          </div>
+          <div class="share-item">
+            <strong>CAD (Shell)</strong>
+            <span class="share-yes">✅ STL/STEP models for housings and internals.</span>
+          </div>
+          <div class="share-item">
+            <strong>BOM</strong>
+            <span class="share-yes">✅ Parts lists and cost breakdowns often included.</span>
+          </div>
+          <div class="share-item">
+            <strong>Protocols</strong>
+            <span class="share-partial">⚠️ HID usage documented; less on higher‑level APIs.</span>
+          </div>
+        </div>
+        <h3>Key Links</h3>
+        <ul class="link-list">
+          <li>[nav_link:DIY SpaceMouse projects on All3DP] – curated list of open 3D mouse designs.</li>
+        </ul>
+      </div>
+
+      <!-- OpenCM9.04 -->
+      <div class="design-card">
+        <div class="design-header">
+          <h3>🤖 OpenCM9.04 – Open Dynamixel Controller (Robotis)</h3>
+          <div>
+            <span class="badge badge-robotics">Robotics</span>
+            <span class="badge badge-open">HW+FW documented</span>
+          </div>
+        </div>
+        <p class="tagline">
+          STM32‑based controller for Dynamixel servos with open docs and ROS examples; a building block
+          for robots rather than a handheld controller.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-value">STM32F103 (Cortex‑M3) + TTL/RS‑485.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">BOM & Price</span>
+            <span class="meta-value">≈$15–30 BOM, ~$25–40 retail.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Licenses</span>
+            <span class="meta-value">Robotis open docs; examples under OSS licenses.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Integration</span>
+            <span class="meta-value">Native Dynamixel protocol; ROS integration available.</span>
+          </div>
+        </div>
+        <h3>What’s Shared vs Not</h3>
+        <div class="share-grid">
+          <div class="share-item">
+            <strong>Firmware</strong>
+            <span class="share-yes">✅ Examples and APIs documented.</span>
+          </div>
+          <div class="share-item">
+            <strong>PCB & Schematics</strong>
+            <span class="share-yes">✅ Board and pinouts documented in e‑Manual.</span>
+          </div>
+          <div class="share-item">
+            <strong>CAD (Shell)</strong>
+            <span class="share-partial">⚠️ Board outlines/mounting, no ergonomic shell.</span>
+          </div>
+          <div class="share-item">
+            <strong>BOM</strong>
+            <span class="share-partial">⚠️ Implicit in docs; not a full manufacturing BOM.</span>
+          </div>
+          <div class="share-item">
+            <strong>Protocols</strong>
+            <span class="share-yes">✅ Dynamixel protocol and ROS bindings documented.</span>
+          </div>
+        </div>
+        <h3>Key Links</h3>
+        <ul class="link-list">
+          <li>[nav_link:OpenCM9.04 e‑Manual] – official documentation and examples.</li>
+        </ul>
+      </div>
+
+      <!-- Arduino DIY -->
+      <div class="design-card">
+        <div class="design-header">
+          <h3>🎮 Arduino Pro Micro / Leonardo DIY Gamepads</h3>
+          <div>
+            <span class="badge badge-diy">DIY / Education</span>
+            <span class="badge badge-fw">Firmware open</span>
+          </div>
+        </div>
+        <p class="tagline">
+          Simple Arduino‑based USB HID controllers used for macro pads, custom gamepads,
+          and rapid experimentation.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-value">ATmega32U4 (Pro Micro / Leonardo).</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">BOM & Price</span>
+            <span class="meta-value">$20–50 BOM; $25–80 kits.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Licenses</span>
+            <span class="meta-value">Arduino core; Joystick library MIT‑licensed.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Integration</span>
+            <span class="meta-value">Standard USB HID, ROS via joy_node.</span>
+          </div>
+        </div>
+        <h3>What’s Shared vs Not</h3>
+        <div class="share-grid">
+          <div class="share-item">
+            <strong>Firmware</strong>
+            <span class="share-yes">✅ Examples & library code open.</span>
+          </div>
+          <div class="share-item">
+            <strong>PCB & Schematics</strong>
+            <span class="share-partial">⚠️ Reference designs open; many custom boards.</span>
+          </div>
+          <div class="share-item">
+            <strong>CAD (Shell)</strong>
+            <span class="share-partial">⚠️ Community‑shared cases, not centralized.</span>
+          </div>
+          <div class="share-item">
+            <strong>BOM</strong>
+            <span class="share-partial">⚠️ Typically in project docs, not standardized.</span>
+          </div>
+          <div class="share-item">
+            <strong>Protocols</strong>
+            <span class="share-yes">✅ Standard HID usage documented.</span>
+          </div>
+        </div>
+        <h3>Key Links</h3>
+        <ul class="link-list">
+          <li>[nav_link:Arduino Joystick Library] – turn Pro Micro into a USB gamepad.</li>
+        </ul>
+      </div>
+
+      <!-- Moteus -->
+      <div class="design-card">
+        <div class="design-header">
+          <h3>🤖 Moteus BLDC Controller (mjbots)</h3>
+          <div>
+            <span class="badge badge-robotics">Motor Control</span>
+            <span class="badge badge-open">HW+FW open</span>
+          </div>
+        </div>
+        <p class="tagline">
+          High‑performance BLDC motor controller for legged robots and dynamic mechanisms, with
+          fully open hardware and firmware and CAN‑FD fieldbus.
+        </p>
+        <div class="meta-grid">
+          <div class="meta-item">
+            <span class="meta-label">Platform</span>
+            <span class="meta-value">STM32G4 (Cortex‑M4F, 170 MHz).</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">BOM & Price</span>
+            <span class="meta-value">$60–100 BOM; $150–200 retail.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Control Loop</span>
+            <span class="meta-value">&lt;1 ms joint‑level control.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Licenses</span>
+            <span class="meta-value">Apache‑2.0 for hardware and firmware.</span>
+          </div>
+          <div class="meta-item">
+            <span class="meta-label">Integration</span>
+            <span class="meta-value">CAN‑FD fieldbus; ROS via CAN bridge.</span>
+          </div>
+        </div>
+        <h3>What’s Shared vs Not</h3>
+        <div class="share-grid">
+          <div class="share-item">
+            <strong>Firmware</strong>
+            <span class="share-yes">✅ Full control firmware open.</span>
+          </div>
+          <div class="share-item">
+            <strong>PCB & Schematics</strong>
+            <span class="share-yes">✅ Board designs and schematics documented.</span>
+          </div>
+          <div class="share-item">
+            <strong>CAD (Shell)</strong>
+            <span class="share-partial">⚠️ Mounting/mechanical dims, not ergonomic shells.</span>
+          </div>
+          <div class="share-item">
+            <strong>BOM</strong>
+            <span class="share-yes">✅ Detailed component data and costs.</span>
+          </div>
+          <div class="share-item">
+            <strong>Protocols</strong>
+            <span class="share-yes">✅ CAN‑FD messages and APIs documented.</span>
+          </div>
+        </div>
+        <h3>Key Links</h3>
+        <ul class="link-list">
+          <li>[nav_link:Moteus GitHub] – open hardware/firmware for BLDC control.</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 5. Strategic positioning -->
+    <section id="strategy">
+      <h2>5. Strategic Positioning & Opportunity</h2>
+      <p>
+        Existing open controllers demonstrate clear demand, but each design is anchored in either gaming
+        or robotics rather than spanning both with a unified, open stack.
+      </p>
+      <h3>Where Today’s Designs Sit</h3>
+      <ul>
+        <li>GP2040‑CE and Alpakka are open, gaming‑first designs with excellent latency and UX but no native ROS/industrial stack.</li>
+        <li>DIY SpaceMouse and related 6‑DOF projects are open mechanical + HID layers tuned for CAD and experimental teleop.</li>
+        <li>OpenCM9.04 and Moteus are open robotics building blocks, focused on servo and joint control, not on handheld operator input.</li>
+      </ul>
+      <h3>Opportunity for a New “Open Teleop Controller” Platform</h3>
+      <ul>
+        <li>Combine GP2040‑class latency, Alpakka‑class gyro/inputs, and SpaceMouse‑class 6‑DOF into one hardware platform.</li>
+        <li>Deliver full‑stack openness (HW+FW+CAD+protocol), with explicit ROS 2, CAN‑FD, and HID support.</li>
+        <li>Price at $150–250 for prosumer gaming and $200–400 for robotics/teleop, undercutting industrial teach pendants.</li>
+        <li>Monetize via hardware, premium support, integration work, and an ecosystem of accessories and cloud services.</li>
+      </ul>
+    </section>
+  </div>
+</main>
+
+</body>
+</html>

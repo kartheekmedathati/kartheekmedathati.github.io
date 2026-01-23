@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Design & MCP Tools Overview</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      margin: 40px;
+      background: #f7f7f9;
+      color: #222;
+    }
+    h1 {
+      margin-bottom: 0.5rem;
+    }
+    p.subtitle {
+      margin-top: 0;
+      color: #555;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      background: white;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    th, td {
+      padding: 10px 12px;
+      border-bottom: 1px solid #ddd;
+      text-align: left;
+      vertical-align: top;
+      font-size: 14px;
+    }
+    th {
+      background: #f0f2f5;
+      cursor: pointer;
+      user-select: none;
+    }
+    th.sort-asc::after {
+      content: " ▲";
+      font-size: 11px;
+    }
+    th.sort-desc::after {
+      content: " ▼";
+      font-size: 11px;
+    }
+    tr:hover {
+      background: #fafafa;
+    }
+    a {
+      color: #0056b3;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    .tag {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 3px;
+      font-size: 11px;
+      background: #e9f2ff;
+      color: #174ea6;
+      margin-right: 4px;
+      margin-bottom: 2px;
+    }
+  </style>
+</head>
+<body>
+  <h1>Design & MCP Tools Overview</h1>
+  <p class="subtitle">Blender MCP, KiCad MCP, gdsfactory, CadQuery, and OpenSCAD.</p>
+
+  <table id="tools-table">
+    <thead>
+      <tr>
+        <th data-col="tool">Tool</th>
+        <th data-col="domain">Domain</th>
+        <th data-col="links">Main links</th>
+        <th data-col="maturity">Maturity level</th>
+        <th data-col="usage">Commercial / real-world use</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Blender MCP</td>
+        <td>3D / CG (Blender)</td>
+        <td>
+          <span class="tag">Site</span>
+          <a href="https://blender-mcp.com" target="_blank" rel="noopener noreferrer">
+            blender-mcp.com
+          </a><br />
+          <span class="tag">Code</span>
+          <a href="https://github.com/ahujasid/blender-mcp" target="_blank" rel="noopener noreferrer">
+            github.com/ahujasid/blender-mcp
+          </a>
+        </td>
+        <td>Early-stage MCP integration on top of mature Blender</td>
+        <td>Used by early adopters (small studios, indie game teams, technical artists) for AI-assisted 3D workflows.</td>
+      </tr>
+      <tr>
+        <td>KiCad MCP</td>
+        <td>PCB / electronics</td>
+        <td>
+          <span class="tag">Code</span>
+          <a href="https://github.com/lamaalrajih/kicad-mcp" target="_blank" rel="noopener noreferrer">
+            github.com/lamaalrajih/kicad-mcp
+          </a><br />
+          <span class="tag">Community</span>
+          <a href="https://forum.kicad.info" target="_blank" rel="noopener noreferrer">
+            forum.kicad.info
+          </a>
+        </td>
+        <td>Experimental / early-stage, community-driven integration</td>
+        <td>Internal prototypes and pilots in hardware startups and small EE teams for AI-assisted PCB design.</td>
+      </tr>
+      <tr>
+        <td>gdsfactory</td>
+        <td>Chips / photonics</td>
+        <td>
+          <span class="tag">Docs</span>
+          <a href="https://gdsfactory.github.io" target="_blank" rel="noopener noreferrer">
+            gdsfactory.github.io
+          </a><br />
+          <span class="tag">Code</span>
+          <a href="https://github.com/gdsfactory/gdsfactory" target="_blank" rel="noopener noreferrer">
+            github.com/gdsfactory/gdsfactory
+          </a><br />
+          <span class="tag">Commercial</span>
+          <a href="https://gdsfactory.com" target="_blank" rel="noopener noreferrer">
+            gdsfactory.com
+          </a>
+        </td>
+        <td>Production-grade open source plus commercial “GDSFactory+”</td>
+        <td>Used by photonics/chip startups, research fabs, and R&amp;D teams for real chip design, verification, and validation.</td>
+      </tr>
+      <tr>
+        <td>CadQuery</td>
+        <td>Mechanical CAD</td>
+        <td>
+          <span class="tag">Docs</span>
+          <a href="https://cadquery.readthedocs.io" target="_blank" rel="noopener noreferrer">
+            cadquery.readthedocs.io
+          </a><br />
+          <span class="tag">Code</span>
+          <a href="https://github.com/CadQuery/cadquery" target="_blank" rel="noopener noreferrer">
+            github.com/CadQuery/cadquery
+          </a>
+        </td>
+        <td>Mature open-source Python CAD library</td>
+        <td>Used in startups and companies for scripted parametric parts and internal CAD automation.</td>
+      </tr>
+      <tr>
+        <td>OpenSCAD</td>
+        <td>General 3D / makers</td>
+        <td>
+          <span class="tag">Site</span>
+          <a href="https://openscad.org" target="_blank" rel="noopener noreferrer">
+            openscad.org
+          </a>
+        </td>
+        <td>Very mature, long-lived scripted CAD ecosystem</td>
+        <td>Widely used in 3D-printing/maker communities and small commercial shops for fixtures, jigs, and custom enclosures.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <script>
+    // Simple column sort on click
+    (function () {
+      const table = document.getElementById("tools-table");
+      const headers = table.querySelectorAll("th");
+      let sortState = {}; // { col: 'asc' | 'desc' }
+
+      headers.forEach((th, index) => {
+        th.addEventListener("click", () => {
+          const col = th.getAttribute("data-col") || index;
+          const current = sortState[col] === "asc" ? "desc" : "asc";
+          sortState = { [col]: current };
+
+          headers.forEach(h => h.classList.remove("sort-asc", "sort-desc"));
+          th.classList.add(current === "asc" ? "sort-asc" : "sort-desc");
+
+          const tbody = table.querySelector("tbody");
+          const rows = Array.from(tbody.querySelectorAll("tr"));
+
+          rows.sort((a, b) => {
+            const aText = (a.children[index].innerText || "").trim().toLowerCase();
+            const bText = (b.children[index].innerText || "").trim().toLowerCase();
+            if (aText < bText) return current === "asc" ? -1 : 1;
+            if (aText > bText) return current === "asc" ? 1 : -1;
+            return 0;
+          });
+
+          rows.forEach(r => tbody.appendChild(r));
+        });
+      });
+    })();
+  </script>
+</body>
+</html>

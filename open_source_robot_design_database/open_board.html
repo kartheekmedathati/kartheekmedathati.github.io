@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Siliconseek: Open PCB & Controller Design Database</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Reuse your existing theme tokens and base styles from open_pdk.html -->
+  <style>
+    :root {
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+      --color-gray-400-rgb: 119, 124, 124;
+
+      --color-bg-1: rgba(59, 130, 246, 0.08);
+      --color-bg-2: rgba(245, 158, 11, 0.08);
+      --color-bg-3: rgba(34, 197, 94, 0.08);
+      --color-bg-4: rgba(239, 68, 68, 0.08);
+      --color-bg-5: rgba(147, 51, 234, 0.08);
+      --color-bg-6: rgba(249, 115, 22, 0.08);
+      --color-bg-7: rgba(236, 72, 153, 0.08);
+      --color-bg-8: rgba(6, 182, 212, 0.08);
+
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-btn-primary-text: var(--color-cream-50);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-error: var(--color-red-500);
+      --color-success: var(--color-teal-500);
+      --color-warning: var(--color-orange-500);
+      --color-info: var(--color-slate-500);
+      --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+      --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+      --focus-ring: 0 0 0 3px var(--color-focus-ring);
+      --focus-outline: 2px solid var(--color-primary);
+
+      --font-family-base: "FKGroteskNeue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --font-size-3xl: 24px;
+
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 550;
+      --font-weight-bold: 600;
+
+      --space-0: 0;
+      --space-4: 4px;
+      --space-6: 6px;
+      --space-8: 8px;
+      --space-10: 10px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(var(--color-gray-300-rgb, 167,169,169), 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+        --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-btn-primary-text: var(--color-slate-900);
+        --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+        --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      font-size: var(--font-size-base);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-16) var(--space-24);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .app-header h1 {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-4);
+    }
+
+    .app-header p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: var(--space-24);
+    }
+
+    .tabs {
+      display: flex;
+      gap: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: var(--space-24);
+      overflow-x: auto;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      padding: var(--space-12) var(--space-20);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .tab-button:hover {
+      color: var(--color-text);
+      background-color: var(--color-secondary);
+    }
+
+    .tab-button.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .controls {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-16);
+      margin-bottom: var(--space-24);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-16);
+      margin-bottom: var(--space-16);
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .control-group label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .control-group input,
+    .control-group select {
+      padding: var(--space-8) var(--space-12);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      font-size: var(--font-size-sm);
+      font-family: var(--font-family-base);
+    }
+
+    .control-group input:focus,
+    .control-group select:focus {
+      outline: var(--focus-outline);
+      border-color: var(--color-primary);
+    }
+
+    .button-group {
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: var(--space-8) var(--space-16);
+      border: none;
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+      font-family: var(--font-family-base);
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-btn-primary-text);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--color-secondary);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-secondary-hover);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--font-size-sm);
+    }
+
+    thead {
+      background-color: var(--color-bg-1);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    thead th {
+      padding: var(--space-12);
+      text-align: left;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--color-border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    thead th.sortable::after {
+      content: ' ⇅';
+      opacity: 0.3;
+    }
+
+    thead th.sorted-asc::after {
+      content: ' ↑';
+      opacity: 1;
+    }
+
+    thead th.sorted-desc::after {
+      content: ' ↓';
+      opacity: 1;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--color-card-border-inner);
+    }
+
+    tbody tr:hover {
+      background-color: var(--color-bg-3);
+    }
+
+    tbody tr.expanded {
+      background-color: var(--color-bg-4);
+    }
+
+    tbody td {
+      padding: var(--space-12);
+      vertical-align: top;
+    }
+
+    td.name {
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+    }
+
+    td.category {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .badge-research {
+      background-color: var(--color-bg-5);
+    }
+
+    .badge-production {
+      background-color: var(--color-bg-3);
+    }
+
+    .badge-commercial {
+      background-color: var(--color-bg-1);
+    }
+
+    .expanded-content {
+      background-color: var(--color-background);
+      padding: var(--space-16);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .expanded-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-16);
+    }
+
+    .expanded-section h4 {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+    }
+
+    .expanded-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .expanded-section li {
+      padding: var(--space-4) 0;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .expanded-section li::before {
+      content: '• ';
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    .comparison-container {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-16);
+      margin-top: var(--space-24);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-16);
+      margin-top: var(--space-16);
+    }
+
+    .comparison-card {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+    }
+
+    .comparison-card h3 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+      color: var(--color-primary);
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--color-card-border-inner);
+      font-size: var(--font-size-sm);
+    }
+
+    .spec-label {
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+    }
+
+    .spec-value {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+
+    .link-list a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: var(--space-32);
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-base);
+    }
+
+    .decision-matrix {
+      display: grid;
+      gap: var(--space-24);
+    }
+
+    .matrix-section {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-16);
+    }
+
+    .matrix-section h3 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-16);
+    }
+
+    .matrix-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .matrix-list li {
+      padding: var(--space-12);
+      margin-bottom: var(--space-8);
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+    }
+
+    .matrix-list strong {
+      display: block;
+      margin-bottom: var(--space-6);
+    }
+
+    .matrix-list ul {
+      margin-top: var(--space-6);
+      padding-left: var(--space-20);
+    }
+
+    .matrix-list ul li {
+      padding: 2px 0;
+      margin: 0;
+      background: none;
+      border: none;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .export-output {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+      margin-top: var(--space-16);
+      font-family: var(--font-family-mono);
+      font-size: var(--font-size-sm);
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .specs-reference img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      margin-top: var(--space-16);
+    }
+
+    .license-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-16);
+      margin-top: var(--space-16);
+    }
+
+    .license-card {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+    }
+
+    .license-card h4 {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      color: var(--color-primary);
+    }
+
+    .license-card p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin: var(--space-4) 0;
+    }
+
+    .platform-count {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+    }
+
+    a {
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+<header class="app-header">
+  <h1>Siliconseek: Open PCB &amp; Controller Design Database</h1>
+  <p>Executive decision-making reference for Raspberry-Pi-class SBCs, compute modules, carrier boards, and robot controllers</p>
+</header>
+
+<div class="container">
+  <div class="tabs">
+    <button class="tab-button active" data-tab="all">All Platforms</button>
+    <button class="tab-button" data-tab="sbcs">SBCs &amp; Compute Modules</button>
+    <button class="tab-button" data-tab="carriers">Carrier &amp; HAT Boards</button>
+    <button class="tab-button" data-tab="controllers">Motor &amp; Robot Controllers</button>
+    <button class="tab-button" data-tab="specs">Specs Reference</button>
+    <button class="tab-button" data-tab="decision">Decision Matrix</button>
+  </div>
+
+  <!-- All Platforms Tab -->
+  <div class="tab-content active" id="all-tab">
+    <div class="controls">
+      <div class="controls-grid">
+        <div class="control-group">
+          <label for="search">Search</label>
+          <input type="text" id="search" placeholder="Search platforms, SBCs, controllers...">
+        </div>
+        <div class="control-group">
+          <label for="filter-category">Category</label>
+          <select id="filter-category">
+            <option value="">All</option>
+            <option value="SBC">SBC</option>
+            <option value="Compute Module">Compute Module</option>
+            <option value="Carrier Board">Carrier Board</option>
+            <option value="HAT / Shield">HAT / Shield</option>
+            <option value="Microcontroller Board">Microcontroller Board</option>
+            <option value="Robot Controller">Robot Controller</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="filter-license">License</label>
+          <select id="filter-license">
+            <option value="">All Licenses</option>
+            <option value="CERN OHL">CERN OHL</option>
+            <option value="Open hardware">Open hardware</option>
+            <option value="MIT">MIT</option>
+            <option value="BSD">BSD</option>
+            <option value="Mixed">Mixed</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="filter-maturity">Maturity</label>
+          <select id="filter-maturity">
+            <option value="">All</option>
+            <option value="Research">Research</option>
+            <option value="Production">Production</option>
+            <option value="Commercial">Commercial</option>
+          </select>
+        </div>
+        <div class="control-group">
+          <label for="filter-open">Open Hardware</label>
+          <select id="filter-open">
+            <option value="">All</option>
+            <option value="true">Open (KiCad / sources)</option>
+            <option value="false">Closed / Partial</option>
+          </select>
+        </div>
+      </div>
+      <div class="button-group">
+        <button class="btn btn-secondary" id="reset-filters">Reset Filters</button>
+        <button class="btn btn-primary" id="compare-selected">Compare Selected</button>
+        <button class="btn btn-secondary" id="export-data">Export Summary</button>
+      </div>
+    </div>
+
+    <div class="platform-count" id="platform-count">Showing 0 platforms</div>
+
+    <div class="table-container">
+      <table id="platforms-table">
+        <thead>
+        <tr>
+          <th style="width: 40px;">Select</th>
+          <th class="sortable" data-sort="name">Platform</th>
+          <th class="sortable" data-sort="category">Category</th>
+          <th class="sortable" data-sort="cpu">CPU / MCU</th>
+          <th class="sortable" data-sort="ram_options">RAM</th>
+          <th class="sortable" data-sort="voltage">Voltage</th>
+          <th class="sortable" data-sort="org">Org</th>
+          <th class="sortable" data-sort="license">License</th>
+          <th class="sortable" data-sort="maturity">Maturity</th>
+          <th class="sortable" data-sort="first_release">First Release</th>
+          <th>Links</th>
+        </tr>
+        </thead>
+        <tbody id="platforms-tbody"></tbody>
+      </table>
+    </div>
+
+    <div class="comparison-container" id="comparison-container" style="display:none;">
+      <h2>Side-by-Side Comparison</h2>
+      <div class="comparison-grid" id="comparison-grid"></div>
+    </div>
+
+    <div class="export-output" id="export-output" style="display:none;"></div>
+  </div>
+
+  <!-- SBCs & Compute Modules Tab -->
+  <div class="tab-content" id="sbcs-tab">
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Category</th>
+          <th>CPU / MCU</th>
+          <th>RAM</th>
+          <th>Connectivity</th>
+          <th>Open HW</th>
+        </tr>
+        </thead>
+        <tbody id="sbcs-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Carrier & HAT Boards Tab -->
+  <div class="tab-content" id="carriers-tab">
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Platform</th>
+          <th>Type</th>
+          <th>Ecosystem</th>
+          <th>Voltage</th>
+          <th>Key IO</th>
+          <th>Design Files</th>
+        </tr>
+        </thead>
+        <tbody id="carriers-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Motor & Robot Controllers Tab -->
+  <div class="tab-content" id="controllers-tab">
+    <div class="table-container">
+      <table>
+        <thead>
+        <tr>
+          <th>Controller</th>
+          <th>MCU / SoC</th>
+          <th>Channels &amp; Current</th>
+          <th>Voltage Range</th>
+          <th>Ecosystem</th>
+          <th>Open HW</th>
+        </tr>
+        </thead>
+        <tbody id="controllers-tbody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Specs Reference Tab -->
+  <div class="tab-content" id="specs-tab">
+    <div class="matrix-section">
+      <h3>Comprehensive Specifications Overview</h3>
+      <p style="color: var(--color-text-secondary); margin-bottom: var(--space-16);">
+        High-level comparison of SBCs, compute modules, carrier boards, and robot controllers for robotics and embedded systems.
+      </p>
+      <div class="specs-reference">
+        <!-- Replace image with your own comparison sheet -->
+        <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/placeholder-pcb-specs.png"
+             alt="PCB Platforms Comparison Table">
+      </div>
+    </div>
+
+    <div class="matrix-section" style="margin-top:var(--space-24);">
+      <h3>License &amp; Openness Information</h3>
+      <div class="license-grid">
+        <div class="license-card">
+          <h4>CERN OHL / Open Hardware</h4>
+          <p><strong>Commercial Use:</strong> Yes (subject to OHL terms)</p>
+          <p><strong>Restrictions:</strong> Share-alike conditions, documentation requirements</p>
+          <p><strong>Applies To:</strong> BeagleBone, OLinuXino families, many open carrier boards</p>
+        </div>
+        <div class="license-card">
+          <h4>Permissive (MIT / BSD)</h4>
+          <p><strong>Commercial Use:</strong> Yes</p>
+          <p><strong>Restrictions:</strong> Include copyright and license notice</p>
+          <p><strong>Applies To:</strong> Some controller boards, firmware stacks, reference designs</p>
+        </div>
+        <div class="license-card">
+          <h4>Mixed / Partially Open</h4>
+          <p><strong>Commercial Use:</strong> Yes</p>
+          <p><strong>Restrictions:</strong> Schematics often open, layout and silicon closed</p>
+          <p><strong>Applies To:</strong> Raspberry Pi boards, many commodity MCU boards</p>
+        </div>
+        <div class="license-card">
+          <h4>Commercial / Proprietary</h4>
+          <p><strong>Commercial Use:</strong> Yes (under vendor contracts)</p>
+          <p><strong>Restrictions:</strong> No redistribution of design files, NDA for detailed docs</p>
+          <p><strong>Applies To:</strong> Industrial PLCs, safety-rated controllers, some motor drives</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Decision Matrix Tab -->
+  <div class="tab-content" id="decision-tab">
+    <div class="decision-matrix">
+      <div class="matrix-section">
+        <h3>Cost &amp; Access Tiers</h3>
+        <ul class="matrix-list">
+          <li>
+            <strong>Fully Open &amp; Low-Cost</strong>
+            <p style="color:var(--color-text-secondary); margin:var(--space-8) 0;">
+              Best for: Early research, teaching labs, reproducible open robots.
+            </p>
+            <p style="color:var(--color-text);">
+              Platforms: OLinuXino boards, BeagleBone family, open CM4 carriers, open robot controllers (e.g. mower or mobile-base boards).
+            </p>
+          </li>
+          <li>
+            <strong>Commodity SBCs &amp; Controllers</strong>
+            <p style="color:var(--color-text-secondary); margin:var(--space-8) 0;">
+              Best for: Rapid prototyping, hobby robots, proof-of-concept systems.
+            </p>
+            <p style="color:var(--color-text);">
+              Platforms: Raspberry Pi boards, Pi HATs, Blue Pill–style MCU boards, off-the-shelf motor controllers.
+            </p>
+          </li>
+          <li>
+            <strong>Industrial &amp; Safety-Critical</strong>
+            <p style="color:var(--color-text-secondary); margin:var(--space-8) 0;">
+              Best for: Production robots, certified machinery, long-term support.
+            </p>
+            <p style="color:var(--color-text);">
+              Platforms: Industrial PCs, PLC-based controllers, certified drive systems with vendor toolchains.
+            </p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="matrix-section">
+        <h3>Critical Decision Factors</h3>
+        <ul class="matrix-list">
+          <li>
+            <strong>Compute &amp; Real-Time Needs</strong>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              How much CPU/GPU do you need, and where does hard real-time live?
+            </p>
+            <ul>
+              <li>SBCs handle high-level planning, perception, and networking.</li>
+              <li>MCUs or dedicated controllers handle hard real-time motor control.</li>
+              <li>Hybrid designs pair Pi-class SBCs with open motor controllers.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>IO, Power &amp; Safety</strong>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              How many channels, which voltage rails, and what safety features?
+            </p>
+            <ul>
+              <li>Check motor current, battery voltage, and connector ratings.</li>
+              <li>Include e-stops, fuses, and isolation where appropriate.</li>
+              <li>Prefer boards with clear power tree and protection schemes.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Openness &amp; Reproducibility</strong>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              Can you fork the design, re-spin it, and debug it at PCB level?
+            </p>
+            <ul>
+              <li>Open KiCad sources allow rapid customization and review.</li>
+              <li>Open documentation simplifies community support and audits.</li>
+              <li>Closed silicon is acceptable if the PCB itself is open.</li>
+            </ul>
+          </li>
+          <li>
+            <strong>Timeline &amp; Supply Risk</strong>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              How sensitive is your project to shortages and EOL risk?
+            </p>
+            <ul>
+              <li>Favor multiple-source components and stable SBC ecosystems.</li>
+              <li>Keep a migration path (e.g., Pi → OLinuXino or CM4 → other SOM).</li>
+              <li>Document substitutes for regulators, connectors, and drivers.</li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+
+      <div class="matrix-section">
+        <h3>Deployment Scale Guidance</h3>
+        <ul class="matrix-list">
+          <li>
+            <strong>Academic Labs &amp; Makers (1–5 robots)</strong>
+            <p style="color:var(--color-text);">
+              Recommended: Raspberry Pi or BeagleBone + open motor HATs or shields; simple MCU boards for low-level control.
+            </p>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              Priority: Documentation, community examples, quick assembly, minimal NRE.
+            </p>
+          </li>
+          <li>
+            <strong>Startups &amp; Research Prototypes (5–50 robots)</strong>
+            <p style="color:var(--color-text);">
+              Recommended: CM4 or open SBC (OLinuXino) with custom carrier, plus open robot controllers that you can modify.
+            </p>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              Priority: Control over BOM, reproducible KiCad projects, manufacturability.
+            </p>
+          </li>
+          <li>
+            <strong>Commercial Products (50+ robots)</strong>
+            <p style="color:var(--color-text);">
+              Recommended: Custom baseboards around compute modules or SOMs, safety-rated motor drives, industrial IO.
+            </p>
+            <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+              Priority: Yield, certification, long-term supply, clear IP position.
+            </p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // === Platform dataset ===
+  const platforms = [
+    {
+      id: 'rpi4b',
+      name: 'Raspberry Pi 4 Model B',
+      category: 'SBC',
+      cpu: 'Broadcom BCM2711, Quad-core Cortex-A72',
+      ram_options: '2–8 GB LPDDR4',
+      storage: 'microSD',
+      connectivity: 'GbE, 802.11ac Wi‑Fi, BT 5.0',
+      voltage: '5 V',
+      typical_current: '600–1000 mA (idle–load)',
+      org: 'Raspberry Pi Foundation',
+      license: 'Mixed',
+      license_kind: 'Mixed',
+      open_source: false,
+      maturity: 'Production',
+      status_badge: 'Production',
+      first_release: '2019',
+      last_update: 'Rolling',
+      form_factor: 'Credit-card',
+      ecosystem: 'Raspberry Pi',
+      url_main: 'https://www.raspberrypi.com/products/raspberry-pi-4-model-b/',
+      url_docs: 'https://www.raspberrypi.com/documentation/computers/raspberry-pi.html',
+      url_design: '',
+      notes: 'Pi-class SBC for robotics and embedded systems with large community ecosystem.' [web:9]
+    },
+    {
+      id: 'rpi-cm4',
+      name: 'Raspberry Pi Compute Module 4',
+      category: 'Compute Module',
+      cpu: 'Broadcom BCM2711, Quad-core Cortex-A72',
+      ram_options: '1–8 GB',
+      storage: 'eMMC / external',
+      connectivity: 'PCIe, SDIO, MIPI CSI/DSI',
+      voltage: '5 V / 3.3 V via carrier',
+      typical_current: 'Carrier dependent',
+      org: 'Raspberry Pi Foundation',
+      license: 'Mixed',
+      license_kind: 'Mixed',
+      open_source: false,
+      maturity: 'Production',
+      status_badge: 'Production',
+      first_release: '2020',
+      last_update: 'Rolling',
+      form_factor: 'Module',
+      ecosystem: 'Raspberry Pi',
+      url_main: 'https://www.raspberrypi.com/products/compute-module-4/',
+      url_docs: 'https://datasheets.raspberrypi.com/cm4/cm4-datasheet.pdf',
+      url_design: 'https://github.com/raspberrypi/hw/tree/master/CM4IO',
+      notes: 'SOM variant; official CM4 IO board design files provide a reference carrier.' [web:9]
+    },
+    {
+      id: 'beaglebone-black',
+      name: 'BeagleBone Black',
+      category: 'SBC',
+      cpu: 'TI AM335x Cortex-A8',
+      ram_options: '512 MB DDR3',
+      storage: 'eMMC + microSD',
+      connectivity: '10/100 Ethernet, USB',
+      voltage: '5 V',
+      typical_current: '≈210–460 mA typical',
+      org: 'BeagleBoard.org',
+      license: 'CERN OHL / Mixed',
+      license_kind: 'Open hardware',
+      open_source: true,
+      maturity: 'Production',
+      status_badge: 'Production',
+      first_release: '2013',
+      last_update: 'Rolling',
+      form_factor: 'Credit-card',
+      ecosystem: 'BeagleBone',
+      url_main: 'https://beagleboard.org/black',
+      url_docs: 'https://github.com/beagleboard/beaglebone-black',
+      url_design: 'https://github.com/beagleboard/beaglebone-black',
+      notes: 'Open-hardware SBC with publicly available schematics and layout sources.' [web:9]
+    },
+    {
+      id: 'olimex-a64-olinuxino',
+      name: 'A64-OLinuXino',
+      category: 'SBC',
+      cpu: 'Allwinner A64 Cortex-A53',
+      ram_options: '1–2 GB',
+      storage: 'microSD / optional eMMC',
+      connectivity: 'GbE, Wi‑Fi (variants), USB',
+      voltage: '5 V',
+      typical_current: 'Board dependent',
+      org: 'Olimex',
+      license: 'CERN OHL',
+      license_kind: 'Open hardware',
+      open_source: true,
+      maturity: 'Production',
+      status_badge: 'Production',
+      first_release: '2016',
+      last_update: 'Rolling',
+      form_factor: 'Custom SBC',
+      ecosystem: 'OLinuXino',
+      url_main: 'https://www.olimex.com/Products/OLinuXino/',
+      url_docs: 'https://github.com/OLIMEX/OLINUXINO',
+      url_design: 'https://github.com/OLIMEX/OLINUXINO',
+      notes: 'Fully open KiCad designs for Linux-capable boards; good Pi-like open reference.' [web:9]
+    },
+    {
+      id: 'stm32-bluepill',
+      name: 'STM32F103 Blue Pill',
+      category: 'Microcontroller Board',
+      cpu: 'Arm Cortex-M3 (STM32F103C8)',
+      ram_options: '20 KB SRAM',
+      storage: '64 KB Flash',
+      connectivity: 'USB FS (bootloader), UART, SPI, I2C',
+      voltage: '3.3 V (5 V tolerant IO)',
+      typical_current: '20–50 mA typical',
+      org: 'Community / clones',
+      license: 'Mixed',
+      license_kind: 'Mixed',
+      open_source: false,
+      maturity: 'Production',
+      status_badge: 'Production',
+      first_release: '≈2015',
+      last_update: 'Rolling',
+      form_factor: 'DIP-style module',
+      ecosystem: 'STM32 / Arduino',
+      url_main: 'https://www.st.com/en/microcontrollers-microprocessors/stm32f103c8.html',
+      url_docs: '',
+      url_design: '',
+      notes: 'Commodity MCU board; often used as low-cost controller or peripheral interface.' [web:9]
+    },
+    {
+      id: 'openmower-mainboard',
+      name: 'OpenMower Mainboard',
+      category: 'Robot Controller',
+      cpu: 'STM32 + SBC socket',
+      ram_options: 'MCU + external SBC',
+      storage: 'MCU flash + SBC storage',
+      connectivity: 'Motor drivers, IMU, RTK, GPIO',
+      voltage: 'Battery (≈20–30 V typical)',
+      typical_current: 'Design dependent',
+      org: 'OpenMower',
+      license: 'CERN OHL',
+      license_kind: 'Open hardware',
+      open_source: true,
+      maturity: 'Research',
+      status_badge: 'Research',
+      first_release: '2021',
+      last_update: 'Rolling',
+      form_factor: 'Custom robot controller',
+      ecosystem: 'ROS / OpenMower',
+      url_main: 'https://openmower.de',
+      url_docs: 'https://github.com/ClemensElflein/OpenMower',
+      url_design: 'https://github.com/ClemensElflein/OpenMower',
+      notes: 'Open robot controller integrating high-level SBC with motor and sensor interfaces.' [web:11]
+    }
+  ];
+
+  let currentSort = { key: 'name', direction: 'asc' };
+
+  function setupTabs() {
+    const buttons = document.querySelectorAll('.tab-button');
+    const contents = {
+      all: document.getElementById('all-tab'),
+      sbcs: document.getElementById('sbcs-tab'),
+      carriers: document.getElementById('carriers-tab'),
+      controllers: document.getElementById('controllers-tab'),
+      specs: document.getElementById('specs-tab'),
+      decision: document.getElementById('decision-tab')
+    };
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        Object.values(contents).forEach(c => c.classList.remove('active'));
+        const tabKey = btn.getAttribute('data-tab');
+        contents[tabKey].classList.add('active');
+      });
+    });
+  }
+
+  function renderPlatformsTable(data) {
+    const tbody = document.getElementById('platforms-tbody');
+    tbody.innerHTML = '';
+
+    if (!data.length) {
+      tbody.innerHTML = '<tr><td colspan="11" class="no-results">No platforms match current filters.</td></tr>';
+      document.getElementById('platform-count').textContent = 'Showing 0 platforms';
+      return;
+    }
+
+    data.forEach(p => {
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td><input type="checkbox" data-platform-id="${p.id}"></td>
+        <td class="name">${p.name}</td>
+        <td class="category">${p.category}</td>
+        <td>${p.cpu || ''}</td>
+        <td>${p.ram_options || ''}</td>
+        <td>${p.voltage || ''}</td>
+        <td>${p.org || ''}</td>
+        <td>${p.license || ''}</td>
+        <td>${p.maturity || ''}</td>
+        <td>${p.first_release || ''}</td>
+        <td>
+          <div class="link-list">
+            ${p.url_main ? `<a href="${p.url_main}" target="_blank" rel="noopener noreferrer">Main</a>` : ''}
+            ${p.url_docs ? `<a href="${p.url_docs}" target="_blank" rel="noopener noreferrer">Docs</a>` : ''}
+            ${p.url_design ? `<a href="${p.url_design}" target="_blank" rel="noopener noreferrer">Design</a>` : ''}
+          </div>
+        </td>
+      `;
+      tr.addEventListener('click', e => {
+        if (e.target.tagName.toLowerCase() === 'input' || e.target.tagName.toLowerCase() === 'a') return;
+        toggleExpandedRow(tr, p);
+      });
+      tbody.appendChild(tr);
+    });
+
+    document.getElementById('platform-count').textContent = `Showing ${data.length} platforms`;
+  }
+
+  function toggleExpandedRow(tr, platform) {
+    const isExpanded = tr.classList.contains('expanded');
+    const tbody = tr.parentElement;
+
+    Array.from(tbody.querySelectorAll('tr')).forEach(row => {
+      row.classList.remove('expanded');
+      const next = row.nextElementSibling;
+      if (next && next.classList.contains('expanded-content-row')) {
+        tbody.removeChild(next);
+      }
+    });
+
+    if (isExpanded) return;
+
+    tr.classList.add('expanded');
+
+    const detailsRow = document.createElement('tr');
+    detailsRow.classList.add('expanded-content-row');
+    const td = document.createElement('td');
+    td.colSpan = 11;
+
+    td.innerHTML = `
+      <div class="expanded-content">
+        <div class="expanded-grid">
+          <div class="expanded-section">
+            <h4>Summary</h4>
+            <ul>
+              <li>CPU / MCU: ${platform.cpu || 'n/a'}</li>
+              <li>RAM: ${platform.ram_options || 'n/a'}</li>
+              <li>Storage: ${platform.storage || 'n/a'}</li>
+              <li>Connectivity: ${platform.connectivity || 'n/a'}</li>
+              <li>Form factor: ${platform.form_factor || 'n/a'}</li>
+              <li>Ecosystem: ${platform.ecosystem || 'n/a'}</li>
+            </ul>
+          </div>
+          <div class="expanded-section">
+            <h4>Power &amp; Maturity</h4>
+            <ul>
+              <li>Voltage: ${platform.voltage || 'n/a'}</li>
+              <li>Typical current: ${platform.typical_current || 'n/a'}</li>
+              <li>Maturity: ${platform.maturity || 'n/a'}</li>
+              <li>First release: ${platform.first_release || 'n/a'}</li>
+              <li>Last update: ${platform.last_update || 'n/a'}</li>
+            </ul>
+          </div>
+          <div class="expanded-section">
+            <h4>Licensing &amp; Links</h4>
+            <ul>
+              <li>License: ${platform.license || 'n/a'} (${platform.license_kind || ''})</li>
+              <li>Open hardware: ${platform.open_source ? 'Yes' : 'No / Partial'}</li>
+              <li>Org: ${platform.org || 'n/a'}</li>
+            </ul>
+            <div class="link-list">
+              ${platform.url_main ? `<a href="${platform.url_main}" target="_blank" rel="noopener noreferrer">Main page</a>` : ''}
+              ${platform.url_docs ? `<a href="${platform.url_docs}" target="_blank" rel="noopener noreferrer">Documentation</a>` : ''}
+              ${platform.url_design ? `<a href="${platform.url_design}" target="_blank" rel="noopener noreferrer">Design files</a>` : ''}
+            </div>
+          </div>
+          <div class="expanded-section">
+            <h4>Notes</h4>
+            <p style="font-size:var(--font-size-sm); color:var(--color-text-secondary);">
+              ${platform.notes || 'No additional notes.'}
+            </p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    detailsRow.appendChild(td);
+    tbody.insertBefore(detailsRow, tr.nextSibling);
+  }
+
+  function applyFilters() {
+    const search = document.getElementById('search').value.toLowerCase();
+    const category = document.getElementById('filter-category').value;
+    const license = document.getElementById('filter-license').value;
+    const maturity = document.getElementById('filter-maturity').value;
+    const open = document.getElementById('filter-open').value;
+
+    let filtered = platforms.filter(p => {
+      const matchesSearch =
+        !search ||
+        p.name.toLowerCase().includes(search) ||
+        (p.cpu || '').toLowerCase().includes(search) ||
+        (p.ecosystem || '').toLowerCase().includes(search);
+
+      const matchesCategory = !category || p.category === category;
+      const matchesLicense = !license || (p.license && p.license.indexOf(license) !== -1) || (p.license_kind && p.license_kind.indexOf(license) !== -1);
+      const matchesMaturity = !maturity || p.maturity === maturity;
+      const matchesOpen = !open || String(p.open_source) === open;
+
+      return matchesSearch && matchesCategory && matchesLicense && matchesMaturity && matchesOpen;
+    });
+
+    filtered = sortData(filtered, currentSort.key, currentSort.direction);
+    renderPlatformsTable(filtered);
+  }
+
+  function sortData(data, key, direction) {
+    const sorted = [...data].sort((a, b) => {
+      const va = (a[key] || '').toString().toLowerCase();
+      const vb = (b[key] || '').toString().toLowerCase();
+      if (va < vb) return direction === 'asc' ? -1 : 1;
+      if (va > vb) return direction === 'asc' ? 1 : -1;
+      return 0;
+    });
+    return sorted;
+  }
+
+  function setupSorting() {
+    const headers = document.querySelectorAll('#platforms-table thead th.sortable');
+    headers.forEach(th => {
+      th.addEventListener('click', () => {
+        const key = th.getAttribute('data-sort');
+        const dir = currentSort.key === key && currentSort.direction === 'asc' ? 'desc' : 'asc';
+        currentSort = { key, direction: dir };
+        headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+        th.classList.add(dir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+        applyFilters();
+      });
+    });
+  }
+
+  function setupEvents() {
+    document.getElementById('search').addEventListener('input', applyFilters);
+    document.getElementById('filter-category').addEventListener('change', applyFilters);
+    document.getElementById('filter-license').addEventListener('change', applyFilters);
+    document.getElementById('filter-maturity').addEventListener('change', applyFilters);
+    document.getElementById('filter-open').addEventListener('change', applyFilters);
+
+    document.getElementById('reset-filters').addEventListener('click', () => {
+      document.getElementById('search').value = '';
+      document.getElementById('filter-category').value = '';
+      document.getElementById('filter-license').value = '';
+      document.getElementById('filter-maturity').value = '';
+      document.getElementById('filter-open').value = '';
+      currentSort = { key: 'name', direction: 'asc' };
+      applyFilters();
+    });
+
+    document.getElementById('compare-selected').addEventListener('click', () => {
+      const checkboxes = document.querySelectorAll('#platforms-tbody input[type="checkbox"]:checked');
+      const selected = Array.from(checkboxes).map(cb => {
+        const id = cb.getAttribute('data-platform-id');
+        return platforms.find(p => p.id === id);
+      }).filter(Boolean);
+      renderComparison(selected);
+    });
+
+    document.getElementById('export-data').addEventListener('click', () => {
+      const exportDiv = document.getElementById('export-output');
+      const filtered = Array.from(document.querySelectorAll('#platforms-tbody tr'))
+        .filter(tr => !tr.classList.contains('expanded-content-row'))
+        .map(tr => {
+          const name = tr.querySelector('.name')?.textContent || '';
+          const category = tr.querySelector('.category')?.textContent || '';
+          return { name, category };
+        });
+      exportDiv.textContent = JSON.stringify(filtered, null, 2);
+      exportDiv.style.display = exportDiv.style.display === 'none' ? 'block' : 'none';
+    });
+  }
+
+  function renderComparison(selected) {
+    const container = document.getElementById('comparison-container');
+    const grid = document.getElementById('comparison-grid');
+    grid.innerHTML = '';
+
+    if (!selected.length) {
+      container.style.display = 'none';
+      return;
+    }
+
+    selected.forEach(p => {
+      const card = document.createElement('div');
+      card.classList.add('comparison-card');
+      card.innerHTML = `
+        <h3>${p.name}</h3>
+        <div class="spec-row">
+          <span class="spec-label">Category</span>
+          <span class="spec-value">${p.category}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">CPU / MCU</span>
+          <span class="spec-value">${p.cpu || 'n/a'}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">RAM</span>
+          <span class="spec-value">${p.ram_options || 'n/a'}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Voltage</span>
+          <span class="spec-value">${p.voltage || 'n/a'}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Open HW</span>
+          <span class="spec-value">${p.open_source ? 'Yes' : 'No / Partial'}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Ecosystem</span>
+          <span class="spec-value">${p.ecosystem || 'n/a'}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">License</span>
+          <span class="spec-value">${p.license || 'n/a'}</span>
+        </div>
+        <div class="spec-row">
+          <span class="spec-label">Org</span>
+          <span class="spec-value">${p.org || 'n/a'}</span>
+        </div>
+        <div class="link-list" style="margin-top:var(--space-12);">
+          ${p.url_main ? `<a href="${p.url_main}" target="_blank" rel="noopener noreferrer">Main</a>` : ''}
+          ${p.url_docs ? `<a href="${p.url_docs}" target="_blank" rel="noopener noreferrer">Docs</a>` : ''}
+          ${p.url_design ? `<a href="${p.url_design}" target="_blank" rel="noopener noreferrer">Design</a>` : ''}
+        </div>
+      `;
+      grid.appendChild(card);
+    });
+
+    container.style.display = 'block';
+  }
+
+  function populateSecondaryTables() {
+    const sbcsTbody = document.getElementById('sbcs-tbody');
+    const carriersTbody = document.getElementById('carriers-tbody');
+    const controllersTbody = document.getElementById('controllers-tbody');
+
+    sbcsTbody.innerHTML = '';
+    carriersTbody.innerHTML = '';
+    controllersTbody.innerHTML = '';
+
+    platforms.forEach(p => {
+      if (p.category === 'SBC' || p.category === 'Compute Module' || p.category === 'Microcontroller Board') {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${p.name}</td>
+          <td>${p.category}</td>
+          <td>${p.cpu || ''}</td>
+          <td>${p.ram_options || ''}</td>
+          <td>${p.connectivity || ''}</td>
+          <td>${p.open_source ? 'Yes' : 'No / Partial'}</td>
+        `;
+        sbcsTbody.appendChild(tr);
+      }
+
+      if (p.category === 'Carrier Board' || p.category === 'HAT / Shield') {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${p.name}</td>
+          <td>${p.category}</td>
+          <td>${p.ecosystem || ''}</td>
+          <td>${p.voltage || ''}</td>
+          <td>${p.connectivity || ''}</td>
+          <td>${p.url_design ? '<a href="' + p.url_design + '" target="_blank" rel="noopener noreferrer">Design</a>' : ''}</td>
+        `;
+        carriersTbody.appendChild(tr);
+      }
+
+      if (p.category === 'Robot Controller') {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${p.name}</td>
+          <td>${p.cpu || ''}</td>
+          <td>${p.notes || ''}</td>
+          <td>${p.voltage || ''}</td>
+          <td>${p.ecosystem || ''}</td>
+          <td>${p.open_source ? 'Yes' : 'No / Partial'}</td>
+        `;
+        controllersTbody.appendChild(tr);
+      }
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    setupTabs();
+    setupSorting();
+    setupEvents();
+    populateSecondaryTables();
+    applyFilters();
+  });
+</script>
+</body>
+</html>

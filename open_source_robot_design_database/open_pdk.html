@@ -1,0 +1,1705 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Siliconseek: Open PDK & SoC Design Database</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    /* === THEME & TOKENS (ported from Botseek style) === */
+    :root {
+      --color-white: rgba(255, 255, 255, 1);
+      --color-black: rgba(0, 0, 0, 1);
+      --color-cream-50: rgba(252, 252, 249, 1);
+      --color-cream-100: rgba(255, 255, 253, 1);
+      --color-gray-200: rgba(245, 245, 245, 1);
+      --color-gray-300: rgba(167, 169, 169, 1);
+      --color-gray-400: rgba(119, 124, 124, 1);
+      --color-slate-500: rgba(98, 108, 113, 1);
+      --color-brown-600: rgba(94, 82, 64, 1);
+      --color-charcoal-700: rgba(31, 33, 33, 1);
+      --color-charcoal-800: rgba(38, 40, 40, 1);
+      --color-slate-900: rgba(19, 52, 59, 1);
+      --color-teal-300: rgba(50, 184, 198, 1);
+      --color-teal-400: rgba(45, 166, 178, 1);
+      --color-teal-500: rgba(33, 128, 141, 1);
+      --color-teal-600: rgba(29, 116, 128, 1);
+      --color-teal-700: rgba(26, 104, 115, 1);
+      --color-teal-800: rgba(41, 150, 161, 1);
+      --color-red-400: rgba(255, 84, 89, 1);
+      --color-red-500: rgba(192, 21, 47, 1);
+      --color-orange-400: rgba(230, 129, 97, 1);
+      --color-orange-500: rgba(168, 75, 47, 1);
+      --color-brown-600-rgb: 94, 82, 64;
+      --color-teal-500-rgb: 33, 128, 141;
+      --color-slate-900-rgb: 19, 52, 59;
+      --color-slate-500-rgb: 98, 108, 113;
+      --color-gray-400-rgb: 119, 124, 124;
+
+      --color-bg-1: rgba(59, 130, 246, 0.08);
+      --color-bg-2: rgba(245, 158, 11, 0.08);
+      --color-bg-3: rgba(34, 197, 94, 0.08);
+      --color-bg-4: rgba(239, 68, 68, 0.08);
+      --color-bg-5: rgba(147, 51, 234, 0.08);
+      --color-bg-6: rgba(249, 115, 22, 0.08);
+      --color-bg-7: rgba(236, 72, 153, 0.08);
+      --color-bg-8: rgba(6, 182, 212, 0.08);
+
+      --color-background: var(--color-cream-50);
+      --color-surface: var(--color-cream-100);
+      --color-text: var(--color-slate-900);
+      --color-text-secondary: var(--color-slate-500);
+      --color-primary: var(--color-teal-500);
+      --color-primary-hover: var(--color-teal-600);
+      --color-primary-active: var(--color-teal-700);
+      --color-secondary: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-secondary-hover: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-secondary-active: rgba(var(--color-brown-600-rgb), 0.25);
+      --color-border: rgba(var(--color-brown-600-rgb), 0.2);
+      --color-btn-primary-text: var(--color-cream-50);
+      --color-card-border: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-card-border-inner: rgba(var(--color-brown-600-rgb), 0.12);
+      --color-error: var(--color-red-500);
+      --color-success: var(--color-teal-500);
+      --color-warning: var(--color-orange-500);
+      --color-info: var(--color-slate-500);
+      --color-focus-ring: rgba(var(--color-teal-500-rgb), 0.4);
+      --color-select-caret: rgba(var(--color-slate-900-rgb), 0.8);
+
+      --focus-ring: 0 0 0 3px var(--color-focus-ring);
+      --focus-outline: 2px solid var(--color-primary);
+
+      --font-family-base: "FKGroteskNeue", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      --font-family-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      --font-size-xs: 11px;
+      --font-size-sm: 12px;
+      --font-size-base: 14px;
+      --font-size-lg: 16px;
+      --font-size-xl: 18px;
+      --font-size-2xl: 20px;
+      --font-size-3xl: 24px;
+
+      --font-weight-normal: 400;
+      --font-weight-medium: 500;
+      --font-weight-semibold: 550;
+      --font-weight-bold: 600;
+
+      --space-0: 0;
+      --space-4: 4px;
+      --space-6: 6px;
+      --space-8: 8px;
+      --space-10: 10px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+
+      --radius-sm: 6px;
+      --radius-base: 8px;
+      --radius-md: 10px;
+      --radius-lg: 12px;
+      --radius-full: 9999px;
+
+      --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.04), 0 1px 2px rgba(0, 0, 0, 0.02);
+
+      --duration-fast: 150ms;
+      --duration-normal: 250ms;
+      --ease-standard: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --color-background: var(--color-charcoal-700);
+        --color-surface: var(--color-charcoal-800);
+        --color-text: var(--color-gray-200);
+        --color-text-secondary: rgba(var(--color-gray-300-rgb, 167,169,169), 0.7);
+        --color-primary: var(--color-teal-300);
+        --color-primary-hover: var(--color-teal-400);
+        --color-primary-active: var(--color-teal-800);
+        --color-secondary: rgba(var(--color-gray-400-rgb), 0.15);
+        --color-secondary-hover: rgba(var(--color-gray-400-rgb), 0.25);
+        --color-secondary-active: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-border: rgba(var(--color-gray-400-rgb), 0.3);
+        --color-btn-primary-text: var(--color-slate-900);
+        --color-card-border: rgba(var(--color-gray-400-rgb), 0.2);
+        --color-card-border-inner: rgba(var(--color-gray-400-rgb), 0.15);
+      }
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--font-family-base);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      font-size: var(--font-size-base);
+      line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .app-header {
+      background-color: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+      padding: var(--space-16) var(--space-24);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .app-header h1 {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      margin-bottom: var(--space-4);
+    }
+
+    .app-header p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .container {
+      max-width: 1600px;
+      margin: 0 auto;
+      padding: var(--space-24);
+    }
+
+    .tabs {
+      display: flex;
+      gap: var(--space-4);
+      border-bottom: 1px solid var(--color-border);
+      margin-bottom: var(--space-24);
+      overflow-x: auto;
+      flex-wrap: wrap;
+    }
+
+    .tab-button {
+      padding: var(--space-12) var(--space-20);
+      background: none;
+      border: none;
+      border-bottom: 2px solid transparent;
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all var(--duration-fast) var(--ease-standard);
+    }
+
+    .tab-button:hover {
+      color: var(--color-text);
+      background-color: var(--color-secondary);
+    }
+
+    .tab-button.active {
+      color: var(--color-primary);
+      border-bottom-color: var(--color-primary);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .controls {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-16);
+      margin-bottom: var(--space-24);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .controls-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: var(--space-16);
+      margin-bottom: var(--space-16);
+    }
+
+    .control-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+
+    .control-group label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .control-group input,
+    .control-group select {
+      padding: var(--space-8) var(--space-12);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      background-color: var(--color-background);
+      color: var(--color-text);
+      font-size: var(--font-size-sm);
+      font-family: var(--font-family-base);
+    }
+
+    .control-group input:focus,
+    .control-group select:focus {
+      outline: var(--focus-outline);
+      border-color: var(--color-primary);
+    }
+
+    .button-group {
+      display: flex;
+      gap: var(--space-8);
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: var(--space-8) var(--space-16);
+      border: none;
+      border-radius: var(--radius-base);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-medium);
+      cursor: pointer;
+      transition: all var(--duration-fast) var(--ease-standard);
+      font-family: var(--font-family-base);
+    }
+
+    .btn-primary {
+      background-color: var(--color-primary);
+      color: var(--color-btn-primary-text);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--color-primary-hover);
+    }
+
+    .btn-secondary {
+      background-color: var(--color-secondary);
+      color: var(--color-text);
+      border: 1px solid var(--color-border);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--color-secondary-hover);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: var(--font-size-sm);
+    }
+
+    thead {
+      background-color: var(--color-bg-1);
+      position: sticky;
+      top: 0;
+      z-index: 1;
+    }
+
+    thead th {
+      padding: var(--space-12);
+      text-align: left;
+      font-weight: var(--font-weight-semibold);
+      font-size: var(--font-size-xs);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 2px solid var(--color-border);
+      cursor: pointer;
+      user-select: none;
+      white-space: nowrap;
+    }
+
+    thead th.sortable::after {
+      content: ' ⇅';
+      opacity: 0.3;
+    }
+
+    thead th.sorted-asc::after {
+      content: ' ↑';
+      opacity: 1;
+    }
+
+    thead th.sorted-desc::after {
+      content: ' ↓';
+      opacity: 1;
+    }
+
+    tbody tr {
+      border-bottom: 1px solid var(--color-card-border-inner);
+    }
+
+    tbody tr:hover {
+      background-color: var(--color-bg-3);
+    }
+
+    tbody tr.expanded {
+      background-color: var(--color-bg-4);
+    }
+
+    tbody td {
+      padding: var(--space-12);
+      vertical-align: top;
+    }
+
+    td.name {
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-primary);
+    }
+
+    td.category {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .badge-research {
+      background-color: var(--color-bg-5);
+    }
+
+    .badge-production {
+      background-color: var(--color-bg-3);
+    }
+
+    .badge-commercial {
+      background-color: var(--color-bg-1);
+    }
+
+    .price-tier {
+      padding: var(--space-4) var(--space-8);
+      border-radius: var(--radius-sm);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+    }
+
+    .price-tier.ultra-budget {
+      background-color: var(--color-bg-3);
+    }
+
+    .price-tier.budget {
+      background-color: var(--color-bg-1);
+    }
+
+    .price-tier.mid-range {
+      background-color: var(--color-bg-2);
+    }
+
+    .price-tier.premium {
+      background-color: var(--color-bg-4);
+    }
+
+    .expanded-content {
+      background-color: var(--color-background);
+      padding: var(--space-16);
+      border-top: 1px solid var(--color-border);
+    }
+
+    .expanded-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: var(--space-16);
+    }
+
+    .expanded-section h4 {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+    }
+
+    .expanded-section ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .expanded-section li {
+      padding: var(--space-4) 0;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .expanded-section li::before {
+      content: '• ';
+      color: var(--color-primary);
+      font-weight: bold;
+    }
+
+    .comparison-container {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-16);
+      margin-top: var(--space-24);
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: var(--space-16);
+      margin-top: var(--space-16);
+    }
+
+    .comparison-card {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+    }
+
+    .comparison-card h3 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-12);
+      color: var(--color-primary);
+    }
+
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      padding: var(--space-6) 0;
+      border-bottom: 1px solid var(--color-card-border-inner);
+      font-size: var(--font-size-sm);
+    }
+
+    .spec-label {
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-secondary);
+    }
+
+    .spec-value {
+      font-weight: var(--font-weight-medium);
+    }
+
+    .link-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+      margin-top: var(--space-12);
+    }
+
+    .link-list a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-size: var(--font-size-sm);
+    }
+
+    .link-list a:hover {
+      text-decoration: underline;
+    }
+
+    .no-results {
+      text-align: center;
+      padding: var(--space-32);
+      color: var(--color-text-secondary);
+      font-size: var(--font-size-base);
+    }
+
+    .decision-matrix {
+      display: grid;
+      gap: var(--space-24);
+    }
+
+    .matrix-section {
+      background-color: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-16);
+    }
+
+    .matrix-section h3 {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-16);
+    }
+
+    .matrix-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .matrix-list li {
+      padding: var(--space-12);
+      margin-bottom: var(--space-8);
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+    }
+
+    .matrix-list strong {
+      display: block;
+      margin-bottom: var(--space-6);
+    }
+
+    .matrix-list ul {
+      margin-top: var(--space-6);
+      padding-left: var(--space-20);
+    }
+
+    .matrix-list ul li {
+      padding: var(--space-2) 0;
+      margin: 0;
+      background: none;
+      border: none;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: var(--space-8);
+    }
+
+    .checkbox-wrapper input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+    }
+
+    .export-output {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+      margin-top: var(--space-16);
+      font-family: var(--font-family-mono);
+      font-size: var(--font-size-sm);
+      white-space: pre-wrap;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+
+    .specs-reference img {
+      max-width: 100%;
+      height: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      margin-top: var(--space-16);
+    }
+
+    .license-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: var(--space-16);
+      margin-top: var(--space-16);
+    }
+
+    .license-card {
+      background-color: var(--color-background);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-base);
+      padding: var(--space-16);
+    }
+
+    .license-card h4 {
+      font-size: var(--font-size-base);
+      font-weight: var(--font-weight-semibold);
+      margin-bottom: var(--space-8);
+      color: var(--color-primary);
+    }
+
+    .license-card p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin: var(--space-4) 0;
+    }
+
+    .platform-count {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-16);
+    }
+
+    a {
+      color: var(--color-primary);
+    }
+  </style>
+</head>
+<body>
+  <header class="app-header">
+    <h1>Siliconseek: Open PDK & SoC Design Database</h1>
+    <p>Executive decision-making reference for process, SoC, and core selection across open and commercial ecosystems</p>
+  </header>
+
+  <div class="container">
+    <div class="tabs">
+      <button class="tab-button active" data-tab="all">All Platforms</button>
+      <button class="tab-button" data-tab="cmospdks">CMOS PDKs</button>
+      <button class="tab-button" data-tab="photonicpdks">Photonic PDKs</button>
+      <button class="tab-button" data-tab="socs">SoCs & Tooling</button>
+      <button class="tab-button" data-tab="cores">RISC-V & Arm Cores</button>
+      <button class="tab-button" data-tab="specs">Specs Reference</button>
+      <button class="tab-button" data-tab="decision">Decision Matrix</button>
+    </div>
+
+    <!-- All Platforms Tab -->
+    <div class="tab-content active" id="all-tab">
+      <div class="controls">
+        <div class="controls-grid">
+          <div class="control-group">
+            <label for="search">Search</label>
+            <input type="text" id="search" placeholder="Search platforms, PDKs, SoCs...">
+          </div>
+          <div class="control-group">
+            <label for="filter-category">Category</label>
+            <select id="filter-category">
+              <option value="">All</option>
+              <option value="CMOS PDK">CMOS PDK</option>
+              <option value="Photonic PDK">Photonic PDK</option>
+              <option value="RISC-V SoC">RISC-V SoC</option>
+              <option value="RISC-V Core">RISC-V Core</option>
+              <option value="Arm Core">Arm Core</option>
+              <option value="EDA Stack">EDA Stack</option>
+              <option value="Tooling">Tooling</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="filter-license">License</label>
+            <select id="filter-license">
+              <option value="">All Licenses</option>
+              <option value="Apache 2.0">Apache 2.0</option>
+              <option value="MIT">MIT</option>
+              <option value="ISC">ISC</option>
+              <option value="BSD">BSD</option>
+              <option value="Solderpad">Solderpad</option>
+              <option value="Commercial">Commercial</option>
+              <option value="Custom">Custom</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="filter-maturity">Maturity</label>
+            <select id="filter-maturity">
+              <option value="">All</option>
+              <option value="Research">Research</option>
+              <option value="Production">Production</option>
+              <option value="Commercial">Commercial</option>
+            </select>
+          </div>
+          <div class="control-group">
+            <label for="filter-open">Open Source</label>
+            <select id="filter-open">
+              <option value="">All</option>
+              <option value="true">Open</option>
+              <option value="false">Proprietary / Mixed</option>
+            </select>
+          </div>
+        </div>
+        <div class="button-group">
+          <button class="btn btn-secondary" id="reset-filters">Reset Filters</button>
+          <button class="btn btn-primary" id="compare-selected">Compare Selected</button>
+          <button class="btn btn-secondary" id="export-data">Export Summary</button>
+        </div>
+      </div>
+
+      <div class="platform-count" id="platform-count">Showing 0 platforms</div>
+
+      <div class="table-container">
+        <table id="platforms-table">
+          <thead>
+            <tr>
+              <th style="width: 40px;">Select</th>
+              <th class="sortable" data-sort="name">Platform</th>
+              <th class="sortable" data-sort="category">Category</th>
+              <th class="sortable" data-sort="node_or_tech">Node / Tech</th>
+              <th class="sortable" data-sort="org">Org</th>
+              <th class="sortable" data-sort="license">License</th>
+              <th class="sortable" data-sort="maturity">Maturity</th>
+              <th class="sortable" data-sort="first_release">First Release</th>
+              <th class="sortable" data-sort="last_update">Last Update</th>
+              <th>Links</th>
+            </tr>
+          </thead>
+          <tbody id="platforms-tbody"></tbody>
+        </table>
+      </div>
+
+      <div class="comparison-container" id="comparison-container" style="display:none;">
+        <h2>Side-by-Side Comparison</h2>
+        <div class="comparison-grid" id="comparison-grid"></div>
+      </div>
+
+      <div class="export-output" id="export-output" style="display:none;"></div>
+    </div>
+
+    <!-- CMOS PDKs Tab -->
+    <div class="tab-content" id="cmospdks-tab">
+      <div class="table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Node / Tech</th>
+            <th>Org</th>
+            <th>License</th>
+            <th>Maturity</th>
+            <th>Foundry</th>
+          </tr>
+          </thead>
+          <tbody id="cmospdks-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Photonic PDKs Tab -->
+    <div class="tab-content" id="photonicpdks-tab">
+      <div class="table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Tech</th>
+            <th>Org</th>
+            <th>License</th>
+            <th>Maturity</th>
+            <th>Notes</th>
+          </tr>
+          </thead>
+          <tbody id="photonicpdks-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- SoCs & Tooling Tab -->
+    <div class="tab-content" id="socs-tab">
+      <div class="table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>Platform</th>
+            <th>Type</th>
+            <th>Org</th>
+            <th>License</th>
+            <th>Maturity</th>
+            <th>Notes</th>
+          </tr>
+          </thead>
+          <tbody id="socs-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- RISC-V & Arm Cores Tab -->
+    <div class="tab-content" id="cores-tab">
+      <div class="table-container">
+        <table>
+          <thead>
+          <tr>
+            <th>Core</th>
+            <th>ISA / Profile</th>
+            <th>Family</th>
+            <th>License</th>
+            <th>Maturity</th>
+            <th>Typical Use</th>
+          </tr>
+          </thead>
+          <tbody id="cores-tbody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Specs Reference Tab -->
+    <div class="tab-content" id="specs-tab">
+      <div class="matrix-section">
+        <h3>Comprehensive Specifications Overview</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-16);">
+          High-level comparison of process nodes, open-source status, and integration stacks across PDKs, SoCs, and cores.
+        </p>
+        <div class="specs-reference">
+          <!-- Replace this image with your own generated comparison sheet if desired -->
+          <img src="https://ppl-ai-code-interpreter-files.s3.amazonaws.com/web/direct-files/1b24b558d9c9aa45107c2d28fb177218/ab33ac48-8141-41e6-b1e2-9e96c34eeb2a/bbc69f0b.png"
+               alt="Silicon Platforms Comparison Table">
+        </div>
+      </div>
+
+      <div class="matrix-section" style="margin-top:var(--space-24);">
+        <h3>License Information</h3>
+        <div class="license-grid">
+          <div class="license-card">
+            <h4>Apache 2.0</h4>
+            <p><strong>Commercial Use:</strong> Yes</p>
+            <p><strong>Restrictions:</strong> Attribution and patent grant conditions</p>
+            <p><strong>Applies To:</strong> SKY130, GF180MCU, many PULP artifacts</p>
+          </div>
+          <div class="license-card">
+            <h4>MIT / ISC / BSD</h4>
+            <p><strong>Commercial Use:</strong> Yes</p>
+            <p><strong>Restrictions:</strong> Minimal; include copyright and license</p>
+            <p><strong>Applies To:</strong> VexRiscv, PicoRV32, many RISC-V cores</p>
+          </div>
+          <div class="license-card">
+            <h4>Custom Open PDK</h4>
+            <p><strong>Commercial Use:</strong> Yes (with conditions)</p>
+            <p><strong>Restrictions:</strong> Share-alike and documentation-specific terms</p>
+            <p><strong>Applies To:</strong> IHP SG13G2 Open Source PDK</p>
+          </div>
+          <div class="license-card">
+            <h4>Commercial / NDA PDK</h4>
+            <p><strong>Commercial Use:</strong> Yes (under NDA and foundry contracts)</p>
+            <p><strong>Restrictions:</strong> Redistribution limits, MPW programme rules</p>
+            <p><strong>Applies To:</strong> AIM Photonics PDKs, many Arm-based SoCs</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Decision Matrix Tab -->
+    <div class="tab-content" id="decision-tab">
+      <div class="decision-matrix">
+        <div class="matrix-section">
+          <h3>Cost & Access Tiers</h3>
+          <ul class="matrix-list">
+            <li>
+              <strong>Fully Open & Free</strong>
+              <p style="color:var(--color-text-secondary); margin:var(--space-8) 0;">
+                Best for: Early research, teaching, community MPW.
+              </p>
+              <p style="color:var(--color-text);">
+                Platforms: SKY130, GF180MCU, IHP SG13G2, Open_PDKs, PicoRV32, VexRiscv, Chipyard and PULP SoCs.
+              </p>
+            </li>
+            <li>
+              <strong>Low-Cost Research (Fees / MPW)</strong>
+              <p style="color:var(--color-text-secondary); margin:var(--space-8) 0;">
+                Best for: University chips, startup prototypes, shared shuttles.
+              </p>
+              <p style="color:var(--color-text);">
+                Platforms: Open PDKs with MPW runs; PULP / Chipyard taped out on SKY130 or GF180.
+              </p>
+            </li>
+            <li>
+              <strong>Commercial PDK & IP</strong>
+              <p style="color:var(--color-text-secondary); margin:var(--space-8) 0;">
+                Best for: Product SoCs, photonic modules, high-volume integration.
+              </p>
+              <p style="color:var(--color-text);">
+                Platforms: AIM Photonics PDKs, proprietary CMOS nodes, Arm and licensed RISC‑V cores.
+              </p>
+            </li>
+          </ul>
+        </div>
+
+        <div class="matrix-section">
+          <h3>Critical Decision Factors</h3>
+          <ul class="matrix-list">
+            <li>
+              <strong>Process & Node</strong>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                How does feature size and device mix match your constraints?
+              </p>
+              <ul>
+                <li>130/180 nm open nodes work well for digital control and mixed-signal.</li>
+                <li>BiCMOS and RF options matter for analog-heavy designs.</li>
+                <li>Photonic PDKs add waveguides, couplers, and detectors.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Tooling & Integration</strong>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                Can your team run the full flow with open or licensed EDA?
+              </p>
+              <ul>
+                <li>Open_PDKs and IIC‑OSIC‑TOOLS enable full open flows on SKY130 and GF180.</li>
+                <li>SoC generators (Chipyard, PULP) accelerate RISC‑V integration.</li>
+                <li>Photonic design often requires specialised layout and simulation tools.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>IP & Licensing</strong>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                What are your obligations around redistribution and derivatives?
+              </p>
+              <ul>
+                <li>Apache, MIT, ISC, BSD are permissive with attribution.</li>
+                <li>Custom open PDKs may enforce share-alike requirements.</li>
+                <li>Commercial PDKs and Arm IP require NDAs and paid licences.</li>
+              </ul>
+            </li>
+            <li>
+              <strong>Timeline & Risk</strong>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                How quickly must you tape out and iterate?
+              </p>
+              <ul>
+                <li>Open MPWs favour frequent, low-cost iterations.</li>
+                <li>Commercial runs need more up-front validation and NRE.</li>
+                <li>Reuse of proven cores reduces bring-up risk.</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+
+        <div class="matrix-section">
+          <h3>Deployment Scale Guidance</h3>
+          <ul class="matrix-list">
+            <li>
+              <strong>Academic Labs & Makers (1–5 chips)</strong>
+              <p style="color:var(--color-text);">
+                Recommended: SKY130 / GF180 PDKs, Open_PDKs, IIC‑OSIC‑TOOLS, PicoRV32 or VexRiscv cores, Chipyard demo SoCs.
+              </p>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                Priority: Documentation, community examples, simple flows, low tapeout cost.
+              </p>
+            </li>
+            <li>
+              <strong>Startups & Research Prototypes (5–50 chips)</strong>
+              <p style="color:var(--color-text);">
+                Recommended: SKY130 / GF180 with PULP or Chipyard SoCs; mixed-signal extensions on IHP SG13G2.
+              </p>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                Priority: Integration with standard toolchains, reproducible flows, clear IP position.
+              </p>
+            </li>
+            <li>
+              <strong>Commercial Products (50+ chips)</strong>
+              <p style="color:var(--color-text);">
+                Recommended: Commercial CMOS and photonic PDKs, licensed Arm or high-end RISC‑V, professional EDA.
+              </p>
+              <p style="color:var(--color-text-secondary); margin-top:var(--space-6);">
+                Priority: Yield, foundry support, long-term IP agreements, safety certification.
+              </p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Data + Logic -->
+  <script>
+    // === Platform dataset ===
+    const platforms = [
+      {
+        id: 'sky130',
+        name: 'SkyWater SKY130 PDK',
+        category: 'CMOS PDK',
+        node_or_tech: '130 nm CMOS',
+        org: 'SkyWater / Google',
+        license: 'Apache 2.0',
+        license_kind: 'Apache 2.0',
+        open_source: true,
+        maturity: 'Production',
+        status_badge: 'Production',
+        first_release: '2020-05-05',
+        last_update: 'Rolling',
+        fab: 'SkyWater Technologies',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'https://github.com/google/skywater-pdk',
+        url_docs: 'https://skywater-pdk.readthedocs.io',
+        url_extra: 'http://opencircuitdesign.com/open_pdks/',
+        notes: 'Fully open CMOS PDK targeting SKY130 with digital and analog support.'
+      },
+      {
+        id: 'gf180',
+        name: 'GlobalFoundries GF180MCU PDK',
+        category: 'CMOS PDK',
+        node_or_tech: '180 nm MCU',
+        org: 'GlobalFoundries / Google',
+        license: 'Apache 2.0',
+        license_kind: 'Apache 2.0',
+        open_source: true,
+        maturity: 'Production',
+        status_badge: 'Production',
+        first_release: '2022',
+        last_update: 'Rolling',
+        fab: 'GlobalFoundries',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'https://github.com/google/gf180mcu-pdk',
+        url_docs: 'http://opencircuitdesign.com/open_pdks/',
+        url_extra: '',
+        notes: '180 nm MCU node with open PDK packages integrated via Open_PDKs.'
+      },
+      {
+        id: 'ihp-sg13g2',
+        name: 'IHP SG13G2 Open Source PDK',
+        category: 'CMOS PDK',
+        node_or_tech: '130 nm BiCMOS',
+        org: 'IHP Microelectronics',
+        license: 'Custom',
+        license_kind: 'Custom',
+        open_source: true,
+        maturity: 'Research',
+        status_badge: 'Research',
+        first_release: '2022',
+        last_update: 'Rolling',
+        fab: 'IHP',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'https://www.ihp-microelectronics.com/services/research-and-prototyping-service/fast-design-enablement/open-source-pdk',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Open PDK with digital and SRAM macros for SG13G2 BiCMOS node.'
+      },
+      {
+        id: 'open-pdks',
+        name: 'Open_PDKs',
+        category: 'Tooling',
+        node_or_tech: 'SKY130 / GF180 / IHP',
+        org: 'Open Circuit Design',
+        license: 'MIT-like',
+        license_kind: 'MIT',
+        open_source: true,
+        maturity: 'Production',
+        status_badge: 'Production',
+        first_release: '2020s',
+        last_update: '2025-10-27',
+        fab: '',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'http://opencircuitdesign.com/open_pdks/',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Scripts and infrastructure to install and use multiple open PDKs with open EDA tools.'
+      },
+      {
+        id: 'siepic',
+        name: 'SiEPIC EBeam Photonic PDK',
+        category: 'Photonic PDK',
+        node_or_tech: 'Silicon photonics (EBeam)',
+        org: 'SiEPIC',
+        license: 'Mixed',
+        license_kind: 'Custom',
+        open_source: false,
+        maturity: 'Research',
+        status_badge: 'Research',
+        first_release: '2010s',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'https://github.com/SiEPIC',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Open-source ecosystem for photonic design; PDK packages integrated into KLayout and other tools.'
+      },
+      {
+        id: 'aim-apsuny',
+        name: 'AIM Photonics APSUNY PDK',
+        category: 'Photonic PDK',
+        node_or_tech: 'Silicon photonics (C/O band)',
+        org: 'AIM Photonics / APSUNY',
+        license: 'Commercial',
+        license_kind: 'Commercial',
+        open_source: false,
+        maturity: 'Commercial',
+        status_badge: 'Commercial',
+        first_release: '2010s',
+        last_update: 'v7.5+',
+        fab: '',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'https://www.aimphotonics.com/pdk',
+        url_docs: 'https://www.aimphotonics.com/apsuny-component-library',
+        url_extra: '',
+        notes: 'Component library and PDK for AIM MPWs; requires access agreement and commercial tooling.'
+      },
+      {
+        id: 'iic-osic-tools',
+        name: 'IIC-OSIC-TOOLS Stack',
+        category: 'EDA Stack',
+        node_or_tech: 'SKY130 / GF180 / IHP',
+        org: 'JKU IIC',
+        license: 'MIT',
+        license_kind: 'MIT',
+        open_source: true,
+        maturity: 'Production',
+        status_badge: 'Production',
+        first_release: '2022',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: '',
+        family: '',
+        typical_use: '',
+        url_main: 'https://github.com/iic-jku/IIC-OSIC-TOOLS',
+        url_docs: '',
+        url_extra: '',
+        notes: 'All-in-one container stack for open-source IC design on multiple open PDKs.'
+      },
+      {
+        id: 'pulp',
+        name: 'PULP Platform SoCs',
+        category: 'RISC-V SoC',
+        node_or_tech: 'RISC-V multi-core',
+        org: 'ETH Zürich / Uni Bologna',
+        license: 'Solderpad',
+        license_kind: 'Solderpad',
+        open_source: true,
+        maturity: 'Research',
+        status_badge: 'Research',
+        first_release: '2014',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: 'RV32/64 (configurable)',
+        family: 'RISC-V',
+        typical_use: 'Research SoC, reference designs',
+        url_main: 'https://pulp-platform.org',
+        url_docs: 'https://jzjerry.github.io/2023/03/01/SoC-review/',
+        url_extra: '',
+        notes: 'Open SoC templates and IP blocks widely used in RISC-V research.'
+      },
+      {
+        id: 'chipyard',
+        name: 'Chipyard SoC Generator',
+        category: 'RISC-V SoC',
+        node_or_tech: 'RISC-V Rocket / BOOM',
+        org: 'UC Berkeley',
+        license: 'BSD',
+        license_kind: 'BSD',
+        open_source: true,
+        maturity: 'Research',
+        status_badge: 'Research',
+        first_release: '2019',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: 'RV64GC (typical)',
+        family: 'RISC-V',
+        typical_use: 'Application-class SoCs',
+        url_main: 'https://chipyard.readthedocs.io',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Generator framework for application-class RISC-V SoCs, including Rocket and BOOM cores.'
+      },
+      {
+        id: 'picorv32',
+        name: 'PicoRV32 Core',
+        category: 'RISC-V Core',
+        node_or_tech: '32-bit RV32IMC',
+        org: 'Clifford Wolf',
+        license: 'ISC',
+        license_kind: 'ISC',
+        open_source: true,
+        maturity: 'Production',
+        status_badge: 'Production',
+        first_release: '2016',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: 'RV32IMC',
+        family: 'RISC-V',
+        typical_use: 'Tiny embedded core, FPGA soft core',
+        url_main: 'https://github.com/cliffordwolf/picorv32',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Minimal RISC-V core used in many resource-constrained FPGA experiments.'
+      },
+      {
+        id: 'vexriscv',
+        name: 'VexRiscv Core',
+        category: 'RISC-V Core',
+        node_or_tech: '32-bit RV32IM',
+        org: 'SpinalHDL community',
+        license: 'MIT',
+        license_kind: 'MIT',
+        open_source: true,
+        maturity: 'Production',
+        status_badge: 'Production',
+        first_release: '2017',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: 'RV32IM (configurable)',
+        family: 'RISC-V',
+        typical_use: 'Configurable soft-core, embedded SoCs',
+        url_main: 'https://github.com/SpinalHDL/VexRiscv',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Highly configurable open core with good area–performance tradeoffs on FPGA.'
+      },
+      {
+        id: 'arm-designstart',
+        name: 'Arm Cortex-M DesignStart',
+        category: 'Arm Core',
+        node_or_tech: 'Cortex-M0/M3',
+        org: 'Arm',
+        license: 'Commercial',
+        license_kind: 'Commercial',
+        open_source: false,
+        maturity: 'Commercial',
+        status_badge: 'Commercial',
+        first_release: '2010s',
+        last_update: 'Rolling',
+        fab: '',
+        isa_profile: 'Armv6-M / Armv7-M',
+        family: 'Arm Cortex-M',
+        typical_use: 'Embedded MCU, commercial SoC IP',
+        url_main: 'https://developer.arm.com/ip-products/designstart',
+        url_docs: '',
+        url_extra: '',
+        notes: 'Low-cost entry programme to licensed Arm Cortex-M IP for ASIC and FPGA.'
+      }
+    ];
+
+    // === State ===
+    let currentSortKey = null;
+    let currentSortDir = 'asc';
+
+    // === Helpers ===
+    function getBadgeClass(maturity) {
+      if (maturity === 'Production') return 'badge badge-production';
+      if (maturity === 'Commercial') return 'badge badge-commercial';
+      return 'badge badge-research';
+    }
+
+    function formatOpenSource(open) {
+      if (open === true) return 'Open';
+      if (open === false) return 'Proprietary / Mixed';
+      return 'Mixed';
+    }
+
+    function compareValues(a, b, key, dir) {
+      const va = (a[key] || '').toString().toLowerCase();
+      const vb = (b[key] || '').toString().toLowerCase();
+      if (va < vb) return dir === 'asc' ? -1 : 1;
+      if (va > vb) return dir === 'asc' ? 1 : -1;
+      return 0;
+    }
+
+    function applyFilters() {
+      const search = document.getElementById('search').value.toLowerCase();
+      const cat = document.getElementById('filter-category').value;
+      const lic = document.getElementById('filter-license').value;
+      const mat = document.getElementById('filter-maturity').value;
+      const openVal = document.getElementById('filter-open').value;
+
+      let filtered = platforms.filter(p => {
+        let ok = true;
+        if (search) {
+          const hay = (p.name + ' ' + p.category + ' ' + p.node_or_tech + ' ' + p.org + ' ' + p.notes).toLowerCase();
+          ok = ok && hay.includes(search);
+        }
+        if (cat) {
+          ok = ok && p.category === cat;
+        }
+        if (lic) {
+          ok = ok && (p.license_kind === lic || p.license === lic);
+        }
+        if (mat) {
+          ok = ok && p.maturity === mat;
+        }
+        if (openVal) {
+          const boolVal = openVal === 'true';
+          ok = ok && p.open_source === boolVal;
+        }
+        return ok;
+      });
+
+      if (currentSortKey) {
+        filtered.sort((a, b) => compareValues(a, b, currentSortKey, currentSortDir));
+      }
+
+      renderMainTable(filtered);
+      renderCounts(filtered.length);
+    }
+
+    function renderCounts(count) {
+      const el = document.getElementById('platform-count');
+      el.textContent = 'Showing ' + count + ' platforms';
+    }
+
+    function renderMainTable(list) {
+      const tbody = document.getElementById('platforms-tbody');
+      tbody.innerHTML = '';
+      if (!list.length) {
+        const tr = document.createElement('tr');
+        const td = document.createElement('td');
+        td.colSpan = 10;
+        td.className = 'no-results';
+        td.textContent = 'No platforms match the current filters.';
+        tr.appendChild(td);
+        tbody.appendChild(tr);
+        return;
+      }
+
+      list.forEach(p => {
+        const tr = document.createElement('tr');
+
+        const tdSelect = document.createElement('td');
+        const cbWrapper = document.createElement('div');
+        cbWrapper.className = 'checkbox-wrapper';
+        const cb = document.createElement('input');
+        cb.type = 'checkbox';
+        cb.dataset.id = p.id;
+        cbWrapper.appendChild(cb);
+        tdSelect.appendChild(cbWrapper);
+        tr.appendChild(tdSelect);
+
+        const tdName = document.createElement('td');
+        tdName.className = 'name';
+        tdName.textContent = p.name;
+        tr.appendChild(tdName);
+
+        const tdCat = document.createElement('td');
+        tdCat.className = 'category';
+        tdCat.textContent = p.category;
+        tr.appendChild(tdCat);
+
+        const tdNode = document.createElement('td');
+        tdNode.textContent = p.node_or_tech || '';
+        tr.appendChild(tdNode);
+
+        const tdOrg = document.createElement('td');
+        tdOrg.textContent = p.org || '';
+        tr.appendChild(tdOrg);
+
+        const tdLic = document.createElement('td');
+        tdLic.textContent = p.license || p.license_kind || '';
+        tr.appendChild(tdLic);
+
+        const tdMat = document.createElement('td');
+        const spanMat = document.createElement('span');
+        spanMat.className = getBadgeClass(p.maturity);
+        spanMat.textContent = p.maturity || '';
+        tdMat.appendChild(spanMat);
+        tr.appendChild(tdMat);
+
+        const tdFirst = document.createElement('td');
+        tdFirst.textContent = p.first_release || '';
+        tr.appendChild(tdFirst);
+
+        const tdLast = document.createElement('td');
+        tdLast.textContent = p.last_update || '';
+        tr.appendChild(tdLast);
+
+        const tdLinks = document.createElement('td');
+        const links = [];
+        if (p.url_main) links.push('<a href="'+p.url_main+'" target="_blank">Main</a>');
+        if (p.url_docs) links.push('<a href="'+p.url_docs+'" target="_blank">Docs</a>');
+        if (p.url_extra) links.push('<a href="'+p.url_extra+'" target="_blank">Extra</a>');
+        tdLinks.innerHTML = links.join(' · ');
+        tr.appendChild(tdLinks);
+
+        // expandable row click
+        tr.addEventListener('click', (e) => {
+          if (e.target.tagName === 'INPUT' || e.target.tagName === 'A') return;
+          const expanded = tr.classList.contains('expanded');
+          // collapse others
+          tbody.querySelectorAll('tr.expanded').forEach(r => {
+            r.classList.remove('expanded');
+            const next = r.nextSibling;
+            if (next && next.classList && next.classList.contains('expanded-row')) {
+              next.remove();
+            }
+          });
+          if (!expanded) {
+            tr.classList.add('expanded');
+            const detailTr = document.createElement('tr');
+            detailTr.className = 'expanded-row';
+            const detailTd = document.createElement('td');
+            detailTd.colSpan = 10;
+            detailTd.innerHTML = buildExpandedContent(p);
+            detailTr.appendChild(detailTd);
+            tr.parentNode.insertBefore(detailTr, tr.nextSibling);
+          }
+        });
+
+        tbody.appendChild(tr);
+      });
+    }
+
+    function buildExpandedContent(p) {
+      return `
+        <div class="expanded-content">
+          <div class="expanded-grid">
+            <div class="expanded-section">
+              <h4>Overview</h4>
+              <ul>
+                <li><strong>Name:</strong> ${p.name}</li>
+                <li><strong>Category:</strong> ${p.category}</li>
+                <li><strong>Node / Tech:</strong> ${p.node_or_tech || '-'}</li>
+                <li><strong>Organisation:</strong> ${p.org || '-'}</li>
+                <li><strong>Foundry:</strong> ${p.fab || '-'}</li>
+              </ul>
+            </div>
+            <div class="expanded-section">
+              <h4>Licensing & Status</h4>
+              <ul>
+                <li><strong>License:</strong> ${p.license || p.license_kind || '-'}</li>
+                <li><strong>Open Source:</strong> ${formatOpenSource(p.open_source)}</li>
+                <li><strong>Maturity:</strong> ${p.maturity || '-'}</li>
+                <li><strong>First Release:</strong> ${p.first_release || '-'}</li>
+                <li><strong>Last Update:</strong> ${p.last_update || '-'}</li>
+              </ul>
+            </div>
+            <div class="expanded-section">
+              <h4>Architecture & Use</h4>
+              <ul>
+                <li><strong>ISA / Profile:</strong> ${p.isa_profile || '-'}</li>
+                <li><strong>Family:</strong> ${p.family || '-'}</li>
+                <li><strong>Typical Use:</strong> ${p.typical_use || '-'}</li>
+                <li><strong>Notes:</strong> ${p.notes || '-'}</li>
+              </ul>
+            </div>
+            <div class="expanded-section">
+              <h4>Links</h4>
+              <ul>
+                <li>${p.url_main ? '<a href="'+p.url_main+'" target="_blank">Main project</a>' : 'Main project: -'}</li>
+                <li>${p.url_docs ? '<a href="'+p.url_docs+'" target="_blank">Documentation</a>' : 'Documentation: -'}</li>
+                <li>${p.url_extra ? '<a href="'+p.url_extra+'" target="_blank">Additional resources</a>' : 'Additional resources: -'}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function setupSorting() {
+      const headers = document.querySelectorAll('#platforms-table thead th.sortable');
+      headers.forEach(th => {
+        th.addEventListener('click', () => {
+          const key = th.dataset.sort;
+          if (currentSortKey === key) {
+            currentSortDir = currentSortDir === 'asc' ? 'desc' : 'asc';
+          } else {
+            currentSortKey = key;
+            currentSortDir = 'asc';
+          }
+          headers.forEach(h => h.classList.remove('sorted-asc', 'sorted-desc'));
+          th.classList.add(currentSortDir === 'asc' ? 'sorted-asc' : 'sorted-desc');
+          applyFilters();
+        });
+      });
+    }
+
+    function resetFilters() {
+      document.getElementById('search').value = '';
+      document.getElementById('filter-category').value = '';
+      document.getElementById('filter-license').value = '';
+      document.getElementById('filter-maturity').value = '';
+      document.getElementById('filter-open').value = '';
+      currentSortKey = null;
+      currentSortDir = 'asc';
+      document.querySelectorAll('#platforms-table thead th').forEach(h => h.classList.remove('sorted-asc','sorted-desc'));
+      applyFilters();
+    }
+
+    function getSelectedPlatforms() {
+      const cbs = document.querySelectorAll('#platforms-tbody input[type="checkbox"]:checked');
+      const ids = Array.from(cbs).map(cb => cb.dataset.id);
+      return platforms.filter(p => ids.includes(p.id));
+    }
+
+    function renderComparison() {
+      const selected = getSelectedPlatforms();
+      const container = document.getElementById('comparison-container');
+      const grid = document.getElementById('comparison-grid');
+      grid.innerHTML = '';
+      if (!selected.length) {
+        container.style.display = 'none';
+        return;
+      }
+      selected.forEach(p => {
+        const card = document.createElement('div');
+        card.className = 'comparison-card';
+        card.innerHTML = `
+          <h3>${p.name}</h3>
+          <div class="spec-row">
+            <span class="spec-label">Category</span>
+            <span class="spec-value">${p.category}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Node / Tech</span>
+            <span class="spec-value">${p.node_or_tech || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Org</span>
+            <span class="spec-value">${p.org || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">License</span>
+            <span class="spec-value">${p.license || p.license_kind || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Maturity</span>
+            <span class="spec-value">${p.maturity || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Open Source</span>
+            <span class="spec-value">${formatOpenSource(p.open_source)}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">First Release</span>
+            <span class="spec-value">${p.first_release || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Last Update</span>
+            <span class="spec-value">${p.last_update || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">ISA / Profile</span>
+            <span class="spec-value">${p.isa_profile || '-'}</span>
+          </div>
+          <div class="spec-row">
+            <span class="spec-label">Typical Use</span>
+            <span class="spec-value">${p.typical_use || '-'}</span>
+          </div>
+          <div class="link-list">
+            ${p.url_main ? '<a href="'+p.url_main+'" target="_blank">Main project</a>' : ''}
+            ${p.url_docs ? '<a href="'+p.url_docs+'" target="_blank">Documentation</a>' : ''}
+            ${p.url_extra ? '<a href="'+p.url_extra+'" target="_blank">Additional resources</a>' : ''}
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+      container.style.display = 'block';
+    }
+
+    function exportSummary() {
+      const filtered = [];
+      const rows = document.querySelectorAll('#platforms-tbody tr');
+      rows.forEach(tr => {
+        const cb = tr.querySelector('input[type="checkbox"]');
+        if (!cb) return;
+        const id = cb.dataset.id;
+        const p = platforms.find(x => x.id === id);
+        if (p) filtered.push(p);
+      });
+      const list = filtered.length ? filtered : platforms;
+      const summary = list.map(p => ({
+        id: p.id,
+        name: p.name,
+        category: p.category,
+        node_or_tech: p.node_or_tech,
+        org: p.org,
+        license: p.license || p.license_kind,
+        open_source: formatOpenSource(p.open_source),
+        maturity: p.maturity,
+        first_release: p.first_release,
+        last_update: p.last_update,
+        main: p.url_main
+      }));
+      const out = document.getElementById('export-output');
+      out.textContent = JSON.stringify(summary, null, 2);
+      out.style.display = 'block';
+    }
+
+    function populateSecondaryTables() {
+      const cmospdksBody = document.getElementById('cmospdks-tbody');
+      const photonicBody = document.getElementById('photonicpdks-tbody');
+      const socsBody = document.getElementById('socs-tbody');
+      const coresBody = document.getElementById('cores-tbody');
+
+      cmospdksBody.innerHTML = '';
+      photonicBody.innerHTML = '';
+      socsBody.innerHTML = '';
+      coresBody.innerHTML = '';
+
+      platforms.forEach(p => {
+        if (p.category === 'CMOS PDK') {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${p.name}</td>
+            <td>${p.node_or_tech || '-'}</td>
+            <td>${p.org || '-'}</td>
+            <td>${p.license || p.license_kind || '-'}</td>
+            <td>${p.maturity || '-'}</td>
+            <td>${p.fab || '-'}</td>
+          `;
+          cmospdksBody.appendChild(tr);
+        }
+        if (p.category === 'Photonic PDK') {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${p.name}</td>
+            <td>${p.node_or_tech || '-'}</td>
+            <td>${p.org || '-'}</td>
+            <td>${p.license || p.license_kind || '-'}</td>
+            <td>${p.maturity || '-'}</td>
+            <td>${p.notes || '-'}</td>
+          `;
+          photonicBody.appendChild(tr);
+        }
+        if (p.category === 'RISC-V SoC' || p.category === 'EDA Stack' || p.category === 'Tooling') {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${p.name}</td>
+            <td>${p.category}</td>
+            <td>${p.org || '-'}</td>
+            <td>${p.license || p.license_kind || '-'}</td>
+            <td>${p.maturity || '-'}</td>
+            <td>${p.notes || '-'}</td>
+          `;
+          socsBody.appendChild(tr);
+        }
+        if (p.category === 'RISC-V Core' || p.category === 'Arm Core') {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${p.name}</td>
+            <td>${p.isa_profile || '-'}</td>
+            <td>${p.family || '-'}</td>
+            <td>${p.license || p.license_kind || '-'}</td>
+            <td>${p.maturity || '-'}</td>
+            <td>${p.typical_use || '-'}</td>
+          `;
+          coresBody.appendChild(tr);
+        }
+      });
+    }
+
+    function setupTabs() {
+      const buttons = document.querySelectorAll('.tab-button');
+      const tabs = {
+        'all': document.getElementById('all-tab'),
+        'cmospdks': document.getElementById('cmospdks-tab'),
+        'photonicpdks': document.getElementById('photonicpdks-tab'),
+        'socs': document.getElementById('socs-tab'),
+        'cores': document.getElementById('cores-tab'),
+        'specs': document.getElementById('specs-tab'),
+        'decision': document.getElementById('decision-tab')
+      };
+      buttons.forEach(btn => {
+        btn.addEventListener('click', () => {
+          buttons.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          Object.values(tabs).forEach(el => el.classList.remove('active'));
+          const tabKey = btn.dataset.tab;
+          const targetId = tabKey + '-tab';
+          const tabEl = document.getElementById(targetId);
+          if (tabEl) tabEl.classList.add('active');
+        });
+      });
+    }
+
+    function setupEvents() {
+      document.getElementById('search').addEventListener('input', applyFilters);
+      document.getElementById('filter-category').addEventListener('change', applyFilters);
+      document.getElementById('filter-license').addEventListener('change', applyFilters);
+      document.getElementById('filter-maturity').addEventListener('change', applyFilters);
+      document.getElementById('filter-open').addEventListener('change', applyFilters);
+
+      document.getElementById('reset-filters').addEventListener('click', resetFilters);
+      document.getElementById('compare-selected').addEventListener('click', renderComparison);
+      document.getElementById('export-data').addEventListener('click', exportSummary);
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      setupTabs();
+      setupSorting();
+      setupEvents();
+      populateSecondaryTables();
+      applyFilters();
+    });
+  </script>
+</body>
+</html>

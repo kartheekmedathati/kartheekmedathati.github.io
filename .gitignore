@@ -5,3 +5,7 @@ _site/
 vendor/
 *.swp
 .DS_Store
+.gstack/
+
+# Local-only Jekyll preview override (pins url to localhost); never deploy
+_config.local.yml

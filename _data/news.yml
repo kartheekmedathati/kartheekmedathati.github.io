@@ -1,0 +1,10 @@
+# Real milestones / news. Newest first. Reserve this for actual events:
+# funding, launches, pilots, partnerships, key hires, press, program acceptances.
+# Fields (same as writing.yml): date, title, url, source, blurb.
+#
+# To add a milestone, copy a block to the top and edit it.
+
+- date: 2026-04-29
+  title: "Handybot accepted into the NVIDIA Inception program"
+  url: "https://www.nvidia.com/en-us/startups/"
+  blurb: "NVIDIA's program for AI and robotics startups, giving Handybot access to technical resources, compute, and the NVIDIA ecosystem as we build physical AI for the real world."

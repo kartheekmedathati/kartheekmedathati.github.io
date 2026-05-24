@@ -1,0 +1,16 @@
+# Recent writing / posts. Newest first — add new entries at the top.
+#
+# Fields:
+#   date   (YYYY-MM-DD, optional) shown as the timestamp
+#   title  (required)             the headline
+#   url    (optional)             link target, e.g. a LinkedIn post
+#   source (optional)             small label after the title, e.g. LinkedIn
+#   blurb  (optional)             one-line teaser shown under the headline
+#
+# To feature a new post, copy a block below to the top and edit it.
+
+- date: 2026-05-20
+  title: "The physical world was never built for robots. Here's why that's changing."
+  url: "https://www.linkedin.com/posts/thehandybot_weve-spent-decades-redesigning-the-digital-activity-7462602243666501633-QjTJ"
+  source: LinkedIn
+  blurb: "We optimized the digital world for machines; the physical world never made that transition. Handybot starts where variability is highest, like vehicle interiors."

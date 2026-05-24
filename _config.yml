@@ -86,14 +86,15 @@ analytics:
 author:
   name             : "Kartheek Medathati"
   avatar           : "kartheek_profilepic.png"
-  bio              : "Research scientist working at the intersection of biological & computer vision, computational neuroscience, and human-centered AI."
+  bio              : "Founder, Handybot | Physical AI for the real world | ex-Amazon & Meta | PhD, INRIA Sophia Antipolis"
   location         : "Fremont, CA, USA"
-  employer         : "Founder/CEO, Handybot, Inc."
+  employer         :
   pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=kartheek+medathati"
   googlescholar    : "https://scholar.google.com/citations?user=ajnz0f0AAAAJ&hl=en"
-  email            : "kartheek.medathati@outlook.in"
+  email            : "kartheek@handybot.ai"
   researchgate     : "https://www.researchgate.net/profile/N_V_Kartheek_Medathati"
   uri              : "http://www-sop.inria.fr/members/Kartheek.Medathati/"
+  handybot         : "https://handybot.ai"
   bitbucket        : 
   codepen          :
   dribbble         :

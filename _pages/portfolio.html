@@ -7,8 +7,26 @@ author_profile: true
 
 {% include base_path %}
 
+<style>
+.port-list { margin-top:.5em; }
+.port-card { padding:1.1em 0; border-bottom:1px solid #ececec; }
+.port-card:last-child { border-bottom:0; }
+.port-card__title { font-size:1.1em; line-height:1.35; margin:0 0 .4em; }
+.port-card__title a { text-decoration:none; }
+.port-card__title a:hover { text-decoration:underline; }
+.port-card__desc { font-size:.92em; color:#444; line-height:1.55; margin:0 0 .75em; }
+.port-card__desc p { margin:0 0 .5em; }
+.port-card__desc p:last-child { margin-bottom:0; }
+.port-btn { display:inline-block; font-size:.8em; line-height:1.3; padding:.34em .95em; border-radius:5px; border:1px solid #1f2937; background:#1f2937; color:#fff; text-decoration:none; transition:background .15s; }
+.port-btn:hover { background:#374151; text-decoration:none; }
+</style>
 
+<div class="port-list">
 {% for post in site.portfolio %}
-  {% include archive-single.html %}
+  <div class="port-card">
+    <h3 class="port-card__title">{% if post.code %}<a href="{{ post.code }}">{{ post.title }}</a>{% else %}{{ post.title }}{% endif %}</h3>
+    <div class="port-card__desc">{{ post.content }}</div>
+    {% if post.code %}<p class="port-card__links"><a class="port-btn" href="{{ post.code }}">Code</a></p>{% endif %}
+  </div>
 {% endfor %}
-
+</div>

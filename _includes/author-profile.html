@@ -8,9 +8,14 @@
 
   <div class="author__avatar">
     {% if author.avatar contains "://" %}
-    	<img src="{{ author.avatar }}" alt="{{ author.name }}">
+    	<img src="{{ author.avatar }}" alt="{{ author.name }}" loading="lazy" decoding="async">
     {% else %}
-    	<img src="{{ author.avatar | prepend: "/images/" | prepend: base_path }}" class="author__avatar" alt="{{ author.name }}">
+    	{% assign avatar_src = author.avatar | prepend: "/images/" | prepend: base_path %}
+    	{% assign avatar_webp = avatar_src | replace: ".png", ".webp" | replace: ".jpg", ".webp" | replace: ".jpeg", ".webp" %}
+    	<picture>
+    		<source srcset="{{ avatar_webp }}" type="image/webp">
+    		<img src="{{ avatar_src }}" class="author__avatar" alt="{{ author.name }}" loading="lazy" decoding="async">
+    	</picture>
     {% endif %}
   </div>
 
@@ -26,7 +31,7 @@
         <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ author.location }}</li>
       {% endif %}
       {% if author.employer %}
-        <li><i class="fa fa-fw fa-map-marker" aria-hidden="true"></i> {{ author.employer }}</li>
+        <li><i class="fas fa-fw fa-briefcase" aria-hidden="true"></i> {{ author.employer }}</li>
       {% endif %}
       {% if author.uri %}
         <li><a href="{{ author.uri }}"><i class="fas fa-fw fa-link" aria-hidden="true"></i> {{ site.data.ui-text[site.locale].website_label | default: "Website" }}</a></li>

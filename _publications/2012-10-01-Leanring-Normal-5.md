@@ -1,11 +1,18 @@
 ---
 title: "Detection and discrimination of disease-related abnormalities based on learning normal cases"
 collection: publications
-permalink: 2012-10-01-Leanring-Normal-5 
+permalink: /publication/2012-10-01-Learning-Normal-5 
 excerpt: 'In this paper, we observe the key challenges for representation and feature extraction schemes to be met for detection of abnormalities by learning normal cases.'
 date: 2012-10-01
 venue: 'Pattern Recognition'
+venue_short: "Pattern Recognition"
+authors: "K. Sai Deepak, N. V. Kartheek Medathati, Jayanthi Sivaswamy"
+header:
+  teaser: /images/pub-thumbs/disease-detection-2012.jpg
 paperurl: 'https://www.sciencedirect.com/science/article/abs/pii/S0031320312001537'
+links:
+  pdf: "https://cdn.iiit.ac.in/cdn/cvit.iiit.ac.in/images/JournalPublications/2012/ja_Detectiondiscrimination.pdf"
+citation: "K. Sai Deepak, N. V. Kartheek Medathati, Jayanthi Sivaswamy. *Detection and discrimination of disease-related abnormalities based on learning normal cases.* Pattern Recognition, 45(10):3707–3716, 2012. doi:10.1016/j.patcog.2012.03.020"
 
 ---
 We introduce an image representation, motivated by the effect of motion on perception of structures. This representation is based on a set of patterns called generalized moment patterns (GMP) generated via induced motion over regions of interest, for learning normal. 

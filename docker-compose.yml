@@ -1,0 +1,30 @@
+name: kartheek-site
+
+services:
+  jekyll:
+    image: docker.io/jekyll/jekyll:4.2.2
+    container_name: kartheek-site-dev
+    userns_mode: keep-id
+    network_mode: host
+    working_dir: /srv/jekyll
+    environment:
+      BUNDLE_PATH: /srv/jekyll/vendor/bundle
+      BUNDLE_APP_CONFIG: /srv/jekyll/.bundle
+    volumes:
+      - .:/srv/jekyll:Z
+    command:
+      - bundle
+      - exec
+      - jekyll
+      - serve
+      - --config
+      - _config.yml,_config.dev.yml
+      - --drafts
+      - --livereload
+      - --host
+      - localhost
+      - --port
+      - "4000"
+      - --force_polling
+    stdin_open: true
+    tty: true

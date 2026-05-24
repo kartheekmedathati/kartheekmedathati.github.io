@@ -9,8 +9,8 @@
 locale                   : "en-US"
 title                    : "Kartheek Medathati"
 title_separator          : "-"
-name                     : &name "Your Name"
-description              : &description "personal description"
+name                     : &name "Kartheek Medathati"
+description              : &description "Kartheek Medathati is a research scientist working across biological and computer vision, computational neuroscience, human-centered AI, and augmented reality."
 url                      : https://kartheekmedathati.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
 repository               : "kartheekmedathati/kartheekmedathati.github.io"
@@ -57,23 +57,27 @@ yandex_site_verification :
 
 # Social Sharing
 twitter:
-  username               : &twitter
+  username               : &twitter "kartheekmnv"
 facebook:
   username               :
   app_id                 :
   publisher              :
-og_image                 :  # Open Graph/Twitter default site image
+og_image                 : "kartheek_profilepic.png"
 # For specifying social profiles
 # - https://developers.google.com/structured-data/customize/social-profiles
 social:
-  type                   : # Person or Organization (defaults to Person)
-  name                   : # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
+  type                   : Person
+  name                   : "Kartheek Medathati"
+  links:
+    - "https://github.com/kartheekmedathati"
+    - "https://www.linkedin.com/in/kartheekmedathati"
+    - "https://twitter.com/kartheekmnv"
+    - "https://scholar.google.com/citations?user=ajnz0f0AAAAJ&hl=en"
 
 
 # Analytics
 analytics:
-  provider               :  "false" # false (default), "google", "google-universal", "custom"
+  provider               : false # false (default), "google", "google-universal", "custom"
   google:
     tracking_id          :
 
@@ -82,9 +86,9 @@ analytics:
 author:
   name             : "Kartheek Medathati"
   avatar           : "kartheek_profilepic.png"
-  bio              : "Biological Vision, Computer Vision, Computational Neuroscience, Human Centered AI"
-  location         : "Seattle, WA, USA"
-  employer         : "Self"
+  bio              : "Research scientist working at the intersection of biological & computer vision, computational neuroscience, and human-centered AI."
+  location         : "Fremont, CA, USA"
+  employer         : "Founder/CEO, Handybot, Inc."
   pubmed           : "https://www.ncbi.nlm.nih.gov/pubmed/?term=kartheek+medathati"
   googlescholar    : "https://scholar.google.com/citations?user=ajnz0f0AAAAJ&hl=en"
   email            : "kartheek.medathati@outlook.in"
@@ -146,6 +150,9 @@ exclude:
   - package.json
   - tmp
   - vendor
+  - docs
+  - Makefile
+  - docker-compose.yml
 keep_files:
   - .git
   - .svn
@@ -223,10 +230,10 @@ defaults:
       path: ""
       type: publications
     values:
-      layout: single
+      layout: publication
       author_profile: true
       share: true
-      comments: true
+      comments: false
   # _portfolio
   - scope:
       path: ""

@@ -1,7 +1,7 @@
 ---
 permalink: /
-title: "About Me"
-excerpt: "About me"
+title: "Kartheek Medathati"
+excerpt: "Research scientist in biological & computer vision, computational neuroscience, and human-centered AI."
 author_profile: true
 redirect_from: 
   - /about/

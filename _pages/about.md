@@ -17,6 +17,7 @@ I have spent my career teaching machines to see. Before Handybot, I built percep
 If you are building in robotics or physical AI, or you want to bring real-world autonomy into your operations, I want to hear from you. Email is the best way to reach me.
 
 ### News
+{: .eyebrow}
 
 <ul class="news-list">
 {% for item in site.data.news %}
@@ -30,6 +31,7 @@ If you are building in robotics or physical AI, or you want to bring real-world 
 </ul>
 
 ### Writing
+{: .eyebrow}
 
 <ul class="news-list">
 {% for item in site.data.writing %}
@@ -43,6 +45,7 @@ If you are building in robotics or physical AI, or you want to bring real-world 
 </ul>
 
 ### Selected work
+{: .eyebrow}
 
 - **[BotSeek](/open_source_robot_design_database/)** (2026): an open-source robot design database I created, so teams can build on shared CAD, subsystems, and reference designs instead of starting from scratch.
 

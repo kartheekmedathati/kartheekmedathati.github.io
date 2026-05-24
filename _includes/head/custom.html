@@ -38,4 +38,74 @@
 </script>
 <script src='https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.4/latest.js?config=TeX-MML-AM_CHTML' async></script>
 
+<!-- Brand alignment with handybot.ai: cream + ink-navy palette, Playfair Display headline,
+     JetBrains Mono section labels, Inter body -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#1e232e;
+    --cream:#f4f1ea;
+    --text:#2c3038;
+    --muted:#6b7078;
+    --rule:#e3ded3;
+  }
+  body{
+    background-color:var(--cream);
+    color:var(--text);
+    font-family:Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+  .masthead,
+  .greedy-nav{ background-color:var(--cream); }
+  .masthead{ border-bottom:1px solid var(--rule); }
+  .masthead a, .greedy-nav a, .greedy-nav .visible-links a{ color:var(--ink); }
+  .page__footer{ background-color:var(--cream); border-top:1px solid var(--rule); color:var(--muted); }
+  .page__footer a{ color:var(--muted); }
+  h1,h2,h3,h4,h5,h6{ color:var(--ink); }
+
+  /* Editorial serif page title */
+  .page__title{
+    font-family:"Playfair Display", Georgia, "Times New Roman", serif;
+    font-weight:700;
+    font-size:2.4em;
+    line-height:1.14;
+    letter-spacing:-0.01em;
+    margin-bottom:0.7em;
+  }
+
+  /* Homepage section headings as monospace uppercase eyebrows (matches handybot.ai labels) */
+  .page__content h3.eyebrow{
+    font-family:"JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+    text-transform:uppercase;
+    letter-spacing:0.16em;
+    font-size:0.74em;
+    font-weight:600;
+    color:var(--muted);
+    margin-top:2.4em;
+    padding-bottom:0.55em;
+    border-bottom:1px solid var(--rule);
+  }
+
+  /* Calmer links: ink-colored, underline on hover */
+  .page__content a{
+    color:var(--ink);
+    text-decoration:none;
+    border-bottom:1px solid rgba(30,35,46,0.25);
+    transition:border-color .15s ease;
+  }
+  .page__content a:hover{ border-bottom-color:var(--ink); }
+  .author__urls a{ color:var(--ink); }
+  .author__bio{ color:var(--muted); }
+
+  /* Clean section lists */
+  .news-list{ list-style:none; margin-left:0; padding-left:0; }
+  .news-list > li{ margin-bottom:1.1em; padding-left:0; line-height:1.5; }
+  .news-list small{ color:var(--muted); }
+
+  /* Dark "Follow" button to match brand */
+  .btn--inverse{ background-color:var(--ink); color:var(--cream); border:1px solid var(--ink); }
+  .btn--inverse:hover{ background-color:#11151c; color:#fff; }
+</style>
+
 <!-- end custom head snippets -->

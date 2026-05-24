@@ -2,7 +2,9 @@ name: kartheek-site
 
 services:
   jekyll:
-    image: docker.io/jekyll/jekyll:4.2.2
+    # Ruby 3.3 (matches GitHub Pages' build env) so the patched nokogiri (>=1.19.3) installs.
+    # The old jekyll/jekyll:4.2.2 image shipped Ruby 3.1, which can't install nokogiri 1.19+.
+    image: docker.io/library/ruby:3.3
     container_name: kartheek-site-dev
     userns_mode: keep-id
     network_mode: host
@@ -13,18 +15,12 @@ services:
     volumes:
       - .:/srv/jekyll:Z
     command:
-      - bundle
-      - exec
-      - jekyll
-      - serve
-      - --config
-      - _config.yml,_config.dev.yml
-      - --drafts
-      - --livereload
-      - --host
-      - localhost
-      - --port
-      - "4000"
-      - --force_polling
+      - sh
+      - -c
+      - >-
+        bundle install &&
+        bundle exec jekyll serve
+        --config _config.yml,_config.dev.yml
+        --drafts --livereload --host localhost --port 4000 --force_polling
     stdin_open: true
     tty: true
